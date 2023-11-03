@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>DARKNAVY</title>
+    <link>https://darknavysecurity.github.io/</link>
+    <description>Recent content on DARKNAVY</description>
+    <image>
+      <title>DARKNAVY</title>
+      <url>https://darknavysecurity.github.io/papermod-cover.png</url>
+      <link>https://darknavysecurity.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://darknavysecurity.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://darknavysecurity.github.io/about/</link>
+      <pubDate>Thu, 02 Nov 2023 17:11:58 +0800</pubDate>
+      
+      <guid>https://darknavysecurity.github.io/about/</guid>
+      <description>We are DARKNAVY, an INDEPENDENT and FREE-SPIRITED security research team and service provider. We established AVSS ( Adversarial Vulnerability Scoring System) to evaluate vulnerabilities and the effectiveness of system mitigation mechanisms in real adversarial environments.
+During the past 20 years, we have been at the forefront of cybersecurity research and application, having won multiple world championships. We established the world’s unique and top-class security geek competition GEEKCON and responsibly disclosed over 1000 severe vulnerabilities.</description>
+    </item>
+    
+  </channel>
+</rss>
