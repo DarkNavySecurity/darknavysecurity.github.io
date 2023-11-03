@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>404 Page not found | DARKNAVY</title>
+<meta name="keywords" content="">
+<meta name="description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod">
+<meta name="author" content="DARKNAVY">
+<link rel="canonical" href="https://darknavysecurity.github.io/404.html">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8d1518f2e4c7235e64bf7676f347602520b2dd9251875503dd1190c8a212dd8b.css" integrity="sha256-jRUY8uTHI15kv3Z280dgJSCy3ZJRh1UD3RGQyKIS3Ys=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://darknavysecurity.github.io/images/favicon.ico">
+
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript><meta property="og:title" content="404 Page not found" />
+<meta property="og:description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://darknavysecurity.github.io/404.html" /><meta property="og:image" content="https://darknavysecurity.github.io/papermod-cover.png"/>
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://darknavysecurity.github.io/papermod-cover.png"/>
+
+<meta name="twitter:title" content="404 Page not found"/>
+<meta name="twitter:description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod"/>
+
+</head>
+
+<body class="list dark" id="top">
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://darknavysecurity.github.io" accesskey="h" title="DARKNAVY (Alt + H)">
+                <img src="https://darknavysecurity.github.io/images/darknavy_shenlan_dot.png" alt="" aria-label="logo"
+                    height="20">
+            </a>
+            <div class="logo-switches">
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://darknavysecurity.github.io/" title="Home">
+                    <span class="active">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://darknavysecurity.github.io/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://darknavysecurity.github.io/blog_cn/" title="Blog CN">
+                    <span>Blog CN</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://darknavysecurity.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+<div class="not-found">404</div>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2023 <a href="https://darknavysecurity.github.io">DARKNAVY</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+</body>
+
+</html>
