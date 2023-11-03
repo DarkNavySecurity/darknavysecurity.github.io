@@ -1,0 +1,11 @@
+.dark {
+    --main-width: 960px;
+    --theme: #070335;
+    --entry: rgba(46, 46, 51, 0.4);
+    --code-bg: rgba(55, 56, 62, 0.5);
+    --border: rgba(51, 51, 51, 0.3);
+}
+
+.entry-link:hover {
+    background: rgba(46, 46, 51, 0.3) !important;
+}
