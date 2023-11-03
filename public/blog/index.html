@@ -102,6 +102,33 @@
     </a>
   </h1>
 </header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Exploiting the libwebp Vulnerability, Part 2: Diving into Chrome Blink
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Introduction When we examine a third-party library vulnerability in a real environment, we often encounter numerous complex variables that exist within the vulnerability’s context. Exploiting such a vulnerability is not as easy as one might imagine.
+Here is the information we know:
+The overflowed variable huffman_tables, has a size of 0x2f28. The heap chunk is allocated in the renderer’s ThreadPool, while most objects are allocated in the main thread. We can write a partially controlled 4-byte integer with an offset that is a multiple of 8 bytes....</p>
+  </div>
+  <footer class="entry-footer"><span title='2023-11-03 14:10:17 +0800 CST'>November 3, 2023</span>&nbsp;·&nbsp;1673 words&nbsp;·&nbsp;DARKNAVY</footer>
+  <a class="entry-link" aria-label="post link to Exploiting the libwebp Vulnerability, Part 2: Diving into Chrome Blink" href="https://darknavysecurity.github.io/blog/exploiting_the_libwebp_vulnerability_part_2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Exploiting the libwebp Vulnerability, Part 1: Playing with Huffman Code
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Vulnerability Localization In the initial phase of vulnerability analysis, due to the absence of readily available PoCs or detailed analysis reports, we first attempted to read and understand the patch code for CVE-2023-4863 in the upstream repository of webmproject/libwebp. However, the WebM Project’s official patch was relatively complex, making it difficult for us to accurately pinpoint the root cause of the vulnerability.
+Thus, we turned our attention to Apple’s official patch for CVE-2023-41064, and performed a comparison of the ImageIO framework before and after the update using BinDiff....</p>
+  </div>
+  <footer class="entry-footer"><span title='2023-11-03 14:10:12 +0800 CST'>November 3, 2023</span>&nbsp;·&nbsp;2345 words&nbsp;·&nbsp;DARKNAVY</footer>
+  <a class="entry-link" aria-label="post link to Exploiting the libwebp Vulnerability, Part 1: Playing with Huffman Code" href="https://darknavysecurity.github.io/blog/exploiting_the_libwebp_vulnerability_part_1/"></a>
+</article>
     </main>
     
 <footer class="footer">

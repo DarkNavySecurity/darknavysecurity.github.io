@@ -10,6 +10,38 @@
       <link>https://darknavysecurity.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language><atom:link href="https://darknavysecurity.github.io/blog_cn/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Fri, 03 Nov 2023 14:10:29 +0800</lastBuildDate><atom:link href="https://darknavysecurity.github.io/blog_cn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exploiting the libwebp Vulnerability, Part 2: Diving into Chrome Blink</title>
+      <link>https://darknavysecurity.github.io/blog_cn/exploiting_the_libwebp_vulnerability_part_2/</link>
+      <pubDate>Fri, 03 Nov 2023 14:10:29 +0800</pubDate>
+      
+      <guid>https://darknavysecurity.github.io/blog_cn/exploiting_the_libwebp_vulnerability_part_2/</guid>
+      <description>前言 当我们把这样一个在三方库中的漏洞放到真实的环境中再看时，会发现漏洞所处的环境往往有很多复杂的变量，想要利用这个漏洞并非想象般那么容易。
+我们所已知的信息有：
+我们溢出的变量huffman_tables，大小为0x2f28 该堆块在renderer的ThreadPool中分配，而大多数对象在主线程中分配 我们可以以8字节倍数的offset，写入一个部分可控的4字节int Chrome中不同大小的堆块被存储在不同的bucket当中，不同大小的对象因为这个机制被安全地隔离开。通常来说，在chrome中的堆利用需要找到同样大小的对象进行布局，再通过UAF或是OOB篡改其他的对象，从而造成信息泄露或者控制流劫持。接下来我们会分享我们所发现的对象，同时试图去绕过这个机制。
+信息泄露 寻找对象 我们首先想要寻找的是一个合适的对象能够被OOB所改写，由于我们的越界写并不能很好地控制值，所以写指针基本被排除，最好的情况是能够改掉类似length这样的字段，对于值没有精确的要求，但是能够引发进一步更好利用的内存问题。
+HuffmanCode在libwebp中是用malloc分配的，在chrome中实际是被PartitionAlloc最终接管分配。在renderer中一共有四个partition，LayoutObject partition, Buffer partition, ArrayBuffer partition, FastMalloc partition。FastMalloc实际上最终调用的就是malloc，因此我们想要找的对象可以用FastMalloc来分配。
+我们首先用了Man Yue Mo在博客中提到的codeql查询，由于溢出在0x3000的bucket当中，可以选择的对象大小范围为0x2800 - 0x3000。但非常遗憾的是，查询结果为空，这个size下的对象几乎完全不存在。另一个思路是用溢出对象本身，但是这个对象被改掉后不会产生特别的破坏效果，libwebp中也没有其他好的候选对象。到了这里似乎令人觉得有些绝望，利用的第一步就被卡住了。
+那么我们还有什么思路呢，一个想法是使用可变长的对象，如Man Yue Mo提到过的AudioArray，但是这个对象是纯数据，被改掉也没有用。查看所有FastMalloc的调用，最终我们发现了这个对象
+class CORE_EXPORT CSSVariableData : public RefCounted&amp;lt;CSSVariableData&amp;gt; { USING_FAST_MALLOC(CSSVariableData); 此对象的大小为动态的
+wtf_size_t bytes_needed = sizeof(CSSVariableData) + (original_text.Is8Bit() ? original_text.length() : 2 * original_text.length()); // ... snip ... void* buf = WTF::Partitions::FastMalloc( bytes_needed, WTF::GetStringWithTypeName&amp;lt;CSSVariableData&amp;gt;()); 该对象代表了CSS中的变量，可以通过以下方式来定义
+element { foo: var(--my-var, bar); } blink会根据CSS变量的内容动态分配CSSVariableData的内存。还有一个好消息是，JavaScript中也可以便捷地操作CSS变量。
+// add a CSS variable element.</description>
+    </item>
+    
+    <item>
+      <title>Exploiting the libwebp Vulnerability, Part 1: Playing with Huffman Code</title>
+      <link>https://darknavysecurity.github.io/blog_cn/exploiting_the_libwebp_vulnerability_part_1/</link>
+      <pubDate>Fri, 03 Nov 2023 14:10:24 +0800</pubDate>
+      
+      <guid>https://darknavysecurity.github.io/blog_cn/exploiting_the_libwebp_vulnerability_part_1/</guid>
+      <description>漏洞定位 在初始的漏洞分析阶段，由于缺少现成的PoC或详细分析报告，我们首先尝试阅读并理解webmproject/libwebp上游仓库针对CVE-2023-4863的修复代码。然而，WebM Project官方的修补过程相对复杂，这使得我们难以精确地锁定漏洞的原始触发点。
+于是，我们将目光转向了Apple对CVE-2023-41064的官方补丁，并使用BinDiff对更新前后的ImageIO组件进行了对比。我们注意到Apple的补丁代码变更相对较少，易于理解，并且非常“简单粗暴”:
+简而言之，Apple的修复方案是在WebP解码器中增加了一项检查：如果在构建霍夫曼编码表 (Huffman Table) 时越界，就会直接返回错误，而不是继续解码。
+diff --git a/src/dec/vp8l_dec.c b/src/dec/vp8l_dec.c index 45012162..06b142bc 100644 --- a/src/dec/vp8l_dec.c +++ b/src/dec/vp8l_dec.c @@ -438,6 +438,7 @@ static int ReadHuffmanCodes(VP8LDecoder* const dec, int xsize, int ysize, goto Error; } + bound = &amp;amp;huffman_tables[num_htree_groups * table_size]; huffman_table = huffman_tables; for (i = 0; i &amp;lt; num_htree_groups_max; ++i) { // If the index &amp;#34;i&amp;#34; is unused in the Huffman image, just make sure the diff --git a/src/utils/huffman_utils.</description>
+    </item>
+    
   </channel>
 </rss>
