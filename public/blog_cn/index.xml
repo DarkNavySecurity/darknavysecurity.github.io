@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Blog CN on DARKNAVY</title>
-    <link>https://blog.darknavy.com/blog_cn/</link>
+    <link>https://www.darknavy.org/blog_cn/</link>
     <description>Recent content in Blog CN on DARKNAVY</description>
     <image>
       <title>DARKNAVY</title>
-      <url>https://blog.darknavy.com/papermod-cover.png</url>
-      <link>https://blog.darknavy.com/papermod-cover.png</link>
+      <url>https://www.darknavy.org/papermod-cover.png</url>
+      <link>https://www.darknavy.org/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 03 Nov 2023 14:10:29 +0800</lastBuildDate><atom:link href="https://blog.darknavy.com/blog_cn/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 03 Nov 2023 14:10:29 +0800</lastBuildDate><atom:link href="https://www.darknavy.org/blog_cn/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Exploiting the libwebp Vulnerability, Part 2: Diving into Chrome Blink</title>
-      <link>https://blog.darknavy.com/blog_cn/exploiting_the_libwebp_vulnerability_part_2/</link>
+      <link>https://www.darknavy.org/blog_cn/exploiting_the_libwebp_vulnerability_part_2/</link>
       <pubDate>Fri, 03 Nov 2023 14:10:29 +0800</pubDate>
       
-      <guid>https://blog.darknavy.com/blog_cn/exploiting_the_libwebp_vulnerability_part_2/</guid>
+      <guid>https://www.darknavy.org/blog_cn/exploiting_the_libwebp_vulnerability_part_2/</guid>
       <description>前言 当我们把这样一个在三方库中的漏洞放到真实的环境中再看时，会发现漏洞所处的环境往往有很多复杂的变量，想要利用这个漏洞并非想象般那么容易。
 我们所已知的信息有：
 我们溢出的变量huffman_tables，大小为0x2f28 该堆块在renderer的ThreadPool中分配，而大多数对象在主线程中分配 我们可以以8字节倍数的offset，写入一个部分可控的4字节int Chrome中不同大小的堆块被存储在不同的bucket当中，不同大小的对象因为这个机制被安全地隔离开。通常来说，在chrome中的堆利用需要找到同样大小的对象进行布局，再通过UAF或是OOB篡改其他的对象，从而造成信息泄露或者控制流劫持。接下来我们会分享我们所发现的对象，同时试图去绕过这个机制。
@@ -33,10 +33,10 @@ element { foo: var(--my-var, bar); } blink会根据CSS变量的内容动态分�
     
     <item>
       <title>Exploiting the libwebp Vulnerability, Part 1: Playing with Huffman Code</title>
-      <link>https://blog.darknavy.com/blog_cn/exploiting_the_libwebp_vulnerability_part_1/</link>
+      <link>https://www.darknavy.org/blog_cn/exploiting_the_libwebp_vulnerability_part_1/</link>
       <pubDate>Fri, 03 Nov 2023 14:10:24 +0800</pubDate>
       
-      <guid>https://blog.darknavy.com/blog_cn/exploiting_the_libwebp_vulnerability_part_1/</guid>
+      <guid>https://www.darknavy.org/blog_cn/exploiting_the_libwebp_vulnerability_part_1/</guid>
       <description>漏洞定位 在初始的漏洞分析阶段，由于缺少现成的PoC或详细分析报告，我们首先尝试阅读并理解webmproject/libwebp上游仓库针对CVE-2023-4863的修复代码。然而，WebM Project官方的修补过程相对复杂，这使得我们难以精确地锁定漏洞的原始触发点。
 于是，我们将目光转向了Apple对CVE-2023-41064的官方补丁，并使用BinDiff对更新前后的ImageIO组件进行了对比。我们注意到Apple的补丁代码变更相对较少，易于理解，并且非常“简单粗暴”:
 简而言之，Apple的修复方案是在WebP解码器中增加了一项检查：如果在构建霍夫曼编码表 (Huffman Table) 时越界，就会直接返回错误，而不是继续解码。
