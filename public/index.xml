@@ -11,7 +11,35 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 03 Nov 2023 14:10:29 +0800</lastBuildDate><atom:link href="https://www.darknavy.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 Jan 2024 16:19:13 +0800</lastBuildDate><atom:link href="https://www.darknavy.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Strengthening the Shield: MTE in Heap Allocators</title>
+      <link>https://www.darknavy.org/blog/strengthening_the_shield_mte_in_memory_allocators/</link>
+      <pubDate>Wed, 03 Jan 2024 16:19:13 +0800</pubDate>
+      
+      <guid>https://www.darknavy.org/blog/strengthening_the_shield_mte_in_memory_allocators/</guid>
+      <description>Introduction In 2018, with the release of ARMv8.5-A, a brand new chip security feature MTE (Memory Tagging Extensions) emerged. Five years later, in 2023, the first smartphone to support this feature was released — Google Pixel 8 — marking the official entry of MTE into the consumer market. Although this feature is not yet enabled by default, developers can turn it on themselves for testing.
+As a powerful defense against memory corruption, there has not yet been a comprehensive analysis of MTE&amp;rsquo;s defensive boundaries, capabilities, and its impact on performance on the internet.</description>
+    </item>
+    
+    <item>
+      <title>填补盾牌的裂缝：堆分配器中的MTE</title>
+      <link>https://www.darknavy.org/blog_cn/strengthening_the_shield_mte_in_memory_allocators/</link>
+      <pubDate>Wed, 03 Jan 2024 16:14:27 +0800</pubDate>
+      
+      <guid>https://www.darknavy.org/blog_cn/strengthening_the_shield_mte_in_memory_allocators/</guid>
+      <description>前言 2018年，随着ARMv8.5-A的发布，一个全新的芯片安全特性MTE(Memory Tagging Extensions) 横空出世。时隔五年后的2023年，市场上第一款支持此特性的手机发布 —— Google Pixel 8，宣告着MTE正式走入了消费者群体。虽然该特性在手机上还未默认启用，但开发者可以自行开启体验。
+MTE作为一个强大的内存破坏防御手段，对于它的防御边界、防御能力，和它对性能的影响，目前网上还未有对其全面的分析。此前，Google Project Zero发表了一系列关于MTE的文章，其聚焦于较为底层的MTE安全性。然而MTE对于真实的软件安全性究竟有多大的影响仍是个未解之谜。想要讨论这个话题，各大堆分配器是一个很好的切入点。堆上的内存破坏问题已经逐渐成为二进制漏洞中的主流类型，参考MSRC于CppCon2019的议题内容：
+通常普通开发者并不会直接使用MTE相关的汇编指令，而是依靠堆分配器自带的MTE支持间接使用，堆分配器就像盾牌一样，扛起了保护软件的任务。MTE提供了细颗粒管控内存的基础支持，如何基于硬件MTE能力实现高级安全功能的重任，留给了软件开发者。开源社区主流堆分配器积极响应，实现了基于MTE特性的安全增强，提高了堆空间的内存安全性。
+本文将以MTE的三个主要玩家：Chrome中的PartitionAlloc、Glibc中的Ptmalloc、Android中的Scudo为目标，对其中MTE相关的实现分别进行讨论，并对它们进行对比。我们在研究中发现了PartitionAlloc中实现的问题，并将此问题报告给了Google，得到了Chrome团队的确认。
+MTE概述 已了解MTE原理的读者可跳过此章节。
+MTE利用ARMv8的TBI (Top-Byte Ignore) 特性，使用指针的高4 bits存储tag，在每个进程中有一段专用的内存用于存储tag。当为内存指定了某个tag后，程序必须带上正确的tag访问内存，若tag错误，程序抛出错误信号SIGSEGV，如下图所示：
+指令集提供了系列指令来操作tag，此处举例说明MTE的基本用法：
+; x0 is a pointer irg x1, x0 stg x1, [x1] ldr x0, [x1] IRG (Insert Random Tag) 指令为指针x0生成一个随机tag，将结果保存至x1中。 STG (Store Allocation Tag) 指令将tag应用至内存中，生效的长度取决于颗粒度，一般为16字节。 LDR (Load Register) 使用带有tag的指针读取内存。 可以看到指令集中提供了底层的支持，但各个指令的使用有很大的自由度，MTE具体如何使用，很大程度上仍然取决于软件开发者。
+Allocator Chrome - PartitionAlloc 分配 PartitionAlloc中的分配可以大致分为三种情况：
+从ThreadCache中分配，不变动tag直接返回。 从空闲的SlotSpan中分配，不变动tag直接返回。 若以上两种情况均不满足，分配一个新的SlotSpan，对其中所有空闲的堆块打上随机的tag if (PA_LIKELY(use_tagging)) { // Ensure the MTE-tag of the memory pointed by other provisioned slot is // unguessable.</description>
+    </item>
+    
     <item>
       <title>Exploiting the libwebp Vulnerability, Part 2: Diving into Chrome Blink</title>
       <link>https://www.darknavy.org/blog_cn/exploiting_the_libwebp_vulnerability_part_2/</link>
