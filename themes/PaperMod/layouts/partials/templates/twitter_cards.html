@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="{{ $featured.Permalink }}"/>
 {{- else -}}
 {{- with site.Params.images -}}
-<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:image" content="{{ index . 0 | absURL }}"/>
 {{ else -}}
 <meta name="twitter:card" content="summary"/>
