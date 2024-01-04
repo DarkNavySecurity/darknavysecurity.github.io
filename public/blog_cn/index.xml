@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blog CN on DARKNAVY</title>
+    <title>BlogCN on DARKNAVY</title>
     <link>https://www.darknavy.org/blog_cn/</link>
-    <description>Recent content in Blog CN on DARKNAVY</description>
-    <image>
-      <title>DARKNAVY</title>
-      <url>https://www.darknavy.org/papermod-cover.png</url>
-      <link>https://www.darknavy.org/papermod-cover.png</link>
-    </image>
+    <description>Recent content in BlogCN on DARKNAVY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 03 Jan 2024 16:14:27 +0800</lastBuildDate><atom:link href="https://www.darknavy.org/blog_cn/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 Jan 2024 16:14:27 +0800</lastBuildDate>
+    <atom:link href="https://www.darknavy.org/blog_cn/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>填补盾牌的裂缝：堆分配器中的MTE</title>
       <link>https://www.darknavy.org/blog_cn/strengthening_the_shield_mte_in_memory_allocators/</link>
       <pubDate>Wed, 03 Jan 2024 16:14:27 +0800</pubDate>
-      
       <guid>https://www.darknavy.org/blog_cn/strengthening_the_shield_mte_in_memory_allocators/</guid>
       <description>前言 2018年，随着ARMv8.5-A的发布，一个全新的芯片安全特性MTE(Memory Tagging Extensions) 横空出世。时隔五年后的2023年，市场上第一款支持此特性的手机发布 —— Google Pixel 8，宣告着MTE正式走入了消费者群体。虽然该特性在手机上还未默认启用，但开发者可以自行开启体验。
 MTE作为一个强大的内存破坏防御手段，对于它的防御边界、防御能力，和它对性能的影响，目前网上还未有对其全面的分析。此前，Google Project Zero发表了一系列关于MTE的文章，其聚焦于较为底层的MTE安全性。然而MTE对于真实的软件安全性究竟有多大的影响仍是个未解之谜。想要讨论这个话题，各大堆分配器是一个很好的切入点。堆上的内存破坏问题已经逐渐成为二进制漏洞中的主流类型，参考MSRC于CppCon2019的议题内容：
@@ -29,12 +24,10 @@ MTE利用ARMv8的TBI (Top-Byte Ignore) 特性，使用指针的高4 bits存储ta
 Allocator Chrome - PartitionAlloc 分配 PartitionAlloc中的分配可以大致分为三种情况：
 从ThreadCache中分配，不变动tag直接返回。 从空闲的SlotSpan中分配，不变动tag直接返回。 若以上两种情况均不满足，分配一个新的SlotSpan，对其中所有空闲的堆块打上随机的tag if (PA_LIKELY(use_tagging)) { // Ensure the MTE-tag of the memory pointed by other provisioned slot is // unguessable.</description>
     </item>
-    
     <item>
       <title>Exploiting the libwebp Vulnerability, Part 2: Diving into Chrome Blink</title>
       <link>https://www.darknavy.org/blog_cn/exploiting_the_libwebp_vulnerability_part_2/</link>
       <pubDate>Fri, 03 Nov 2023 14:10:29 +0800</pubDate>
-      
       <guid>https://www.darknavy.org/blog_cn/exploiting_the_libwebp_vulnerability_part_2/</guid>
       <description>前言 当我们把这样一个在三方库中的漏洞放到真实的环境中再看时，会发现漏洞所处的环境往往有很多复杂的变量，想要利用这个漏洞并非想象般那么容易。
 我们所已知的信息有：
@@ -48,18 +41,15 @@ wtf_size_t bytes_needed = sizeof(CSSVariableData) + (original_text.Is8Bit() ? or
 element { foo: var(--my-var, bar); } blink会根据CSS变量的内容动态分配CSSVariableData的内存。还有一个好消息是，JavaScript中也可以便捷地操作CSS变量。
 // add a CSS variable element.</description>
     </item>
-    
     <item>
       <title>Exploiting the libwebp Vulnerability, Part 1: Playing with Huffman Code</title>
       <link>https://www.darknavy.org/blog_cn/exploiting_the_libwebp_vulnerability_part_1/</link>
       <pubDate>Fri, 03 Nov 2023 14:10:24 +0800</pubDate>
-      
       <guid>https://www.darknavy.org/blog_cn/exploiting_the_libwebp_vulnerability_part_1/</guid>
       <description>漏洞定位 在初始的漏洞分析阶段，由于缺少现成的PoC或详细分析报告，我们首先尝试阅读并理解webmproject/libwebp上游仓库针对CVE-2023-4863的修复代码。然而，WebM Project官方的修补过程相对复杂，这使得我们难以精确地锁定漏洞的原始触发点。
 于是，我们将目光转向了Apple对CVE-2023-41064的官方补丁，并使用BinDiff对更新前后的ImageIO组件进行了对比。我们注意到Apple的补丁代码变更相对较少，易于理解，并且非常“简单粗暴”:
 简而言之，Apple的修复方案是在WebP解码器中增加了一项检查：如果在构建霍夫曼编码表 (Huffman Table) 时越界，就会直接返回错误，而不是继续解码。
 diff --git a/src/dec/vp8l_dec.c b/src/dec/vp8l_dec.c index 45012162..06b142bc 100644 --- a/src/dec/vp8l_dec.c +++ b/src/dec/vp8l_dec.c @@ -438,6 +438,7 @@ static int ReadHuffmanCodes(VP8LDecoder* const dec, int xsize, int ysize, goto Error; } + bound = &amp;amp;huffman_tables[num_htree_groups * table_size]; huffman_table = huffman_tables; for (i = 0; i &amp;lt; num_htree_groups_max; ++i) { // If the index &amp;#34;i&amp;#34; is unused in the Huffman image, just make sure the diff --git a/src/utils/huffman_utils.</description>
     </item>
-    
   </channel>
 </rss>
