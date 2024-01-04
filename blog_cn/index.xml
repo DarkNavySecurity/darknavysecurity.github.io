@@ -4,6 +4,11 @@
     <title>BlogCN on DARKNAVY</title>
     <link>https://www.darknavy.org/blog_cn/</link>
     <description>Recent content in BlogCN on DARKNAVY</description>
+    <image>
+      <title>DARKNAVY</title>
+      <url>https://www.darknavy.org/images/white_logo.png</url>
+      <link>https://www.darknavy.org/images/white_logo.png</link>
+    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Wed, 03 Jan 2024 16:14:27 +0800</lastBuildDate>
