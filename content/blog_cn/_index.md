@@ -1,5 +1,5 @@
 ---
-title: Blog CN
+title: BlogCN
 summary: ""
 description: ""
 ---
