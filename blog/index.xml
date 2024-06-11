@@ -11,8 +11,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 03 Jan 2024 16:19:13 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 11 Jun 2024 15:40:57 +0800</lastBuildDate>
     <atom:link href="https://www.darknavy.org/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AVSS Report: System Security Adversarial Capability Preliminary Evaluation of iOS, Android, and HarmonyOS - Kernel</title>
+      <link>https://www.darknavy.org/blog/avss_report_kernel/</link>
+      <pubDate>Tue, 11 Jun 2024 15:40:57 +0800</pubDate>
+      <guid>https://www.darknavy.org/blog/avss_report_kernel/</guid>
+      <description>As consumers, when faced with five different brands and models of smartphones or ten different smart cars, it&amp;rsquo;s difficult for us to determine which one can effectively prevent our privacy from being stolen or maliciously accessed, such as our location or even hearing our conversations inside the car.
+Even as ordinary consumers, we currently have no way of knowing. As technology professionals who have long studied in APT(Advanced Persistent Threat) attacks, we understand that these devices can ultimately be compromised in the face of advanced persistent attacks.</description>
+    </item>
     <item>
       <title>Strengthening the Shield: MTE in Heap Allocators</title>
       <link>https://www.darknavy.org/blog/strengthening_the_shield_mte_in_memory_allocators/</link>
