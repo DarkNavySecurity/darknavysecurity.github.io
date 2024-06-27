@@ -11,8 +11,34 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 11 Jun 2024 15:40:57 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 27 Jun 2024 11:39:37 +0800</lastBuildDate>
     <atom:link href="https://www.darknavy.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Steam漏洞利用：CEF框架应用下的常规与非常规利用手段</title>
+      <link>https://www.darknavy.org/blog_cn/exploiting_steam_usual_and_unusual_ways_in_the_cef_framework/</link>
+      <pubDate>Thu, 27 Jun 2024 11:39:37 +0800</pubDate>
+      <guid>https://www.darknavy.org/blog_cn/exploiting_steam_usual_and_unusual_ways_in_the_cef_framework/</guid>
+      <description>前言 Chromium Embedded Framework(CEF)是一个开源框架，开发者可以将Chromium引擎嵌入至他们的应用程序中。尽管CEF被广泛应用于诸如微信和Epic Games Launcher等流行软件中，但对其安全性的研究却甚少。在本文中，我们将以Steam客户端浏览器（一款基于CEF的应用程序）为例，介绍我们发现的漏洞及其利用方式，展示我们如何构建了三个远程代码执行（RCE）链。
+RCE#1：steamwebhelper中多个问题导致RCE steamwebhelper是Steam客户端内置的浏览器，用于渲染商店、社区、好友等页面。其基于CEF开发，并在CEF的基础上添加了一些功能。我们在这些额外的功能中找到了一系列逻辑漏洞以及特性导致的问题，最终完成了RCE。
+在外部页面中获取SteamClient对象 steamwebhelper在加载一些特定的页面，例如steampowered.com 、 steamloopback.host等页面时，会在JavaScript运行环境中加入一个特权对象SteamClient。对该过程进行逆向后，我们发现，对有域名的url，steamwebhelper会调用BIsTrustedDomain检查其域名是否在白名单中，而对于没有域名的url，会检查其是否为data或about协议。
+在外部页面中打开白名单中的域名会被同源策略限制，然而打开about:blank等页面并不会，因此我们可以在自己可控的页面中打开&amp;quot;about:blank&amp;quot;，获取并使用其SteamClient。
+PoC:
+ab_page = open(&amp;#34;about:blank&amp;#34;); s_client = ab_page.SteamClient; alert(s_client); 使用BrowserView加载file协议 SteamClient是steam中内部页面所使用的特权对象，它有很多特权功能，如操作当前的Browser对象、操作窗口位置、下载任意文件等。
+通过SteamClient.BrowserView，我们可以创建并管理BrowserView。经过测试发现，BrowserView是一个嵌入在原始网页中的子页面，类似于普通web页面中的一个iframe，但与此对象的交互都是由Steam自身实现。
+在测试BrowserView的功能时，我们发现BrowserView.LoadURL调用不会受到任何安全策略的限制，可以加载任意协议任意域名的url，包括chrome://、file://等权限较高的协议。
+PoC:
+b_view = s_client.BrowserView.Create(); b_view.LoadURL(&amp;#34;file:///etc/passwd&amp;#34;); b_view.SetBounds(0, 0, 1000, 1000); b_view.SetVisible(true); 获取BrowserView中加载的页面内容，实现任意文件读 至此我们已可以通过LoadURL加载到本地的任意文件，但是还没有办法直接读取到页面内容。通过测试逆向BrowserView对象，发现其提供了FindInPage功能可以在页面中搜索特定字符串，并且通过调用BrowserView.on(&amp;quot;find-in-page-results&amp;quot;, callback)可以注册一个回调函数来处理搜索的结果。那么问题变成了：如果可以在页面内搜索一个可控字符串并获取到搜索结果，能否获取到页面的内容？（听起来像是一道CTF题目）
+答案是肯定的，最终通过逐字节爆破搜索，我们可以做到任意文件读的效果。
+PoC（通过读file:///home/获取用户名）:
+async function is_str_in_bv(bv, s, count) { window.stage = 0; bv.FindInPage(s, true, true); while (window.stage &amp;lt; 3) { await sleep(10); } return window.count &amp;gt; count; } b_view.on(&amp;#34;find-in-page-results&amp;#34;, (a, b) =&amp;gt; { if (window.</description>
+    </item>
+    <item>
+      <title>Exploiting Steam: Usual and Unusual Ways in the CEF Framework</title>
+      <link>https://www.darknavy.org/blog/exploiting_steam_usual_and_unusual_ways_in_the_cef_framework/</link>
+      <pubDate>Thu, 27 Jun 2024 11:39:32 +0800</pubDate>
+      <guid>https://www.darknavy.org/blog/exploiting_steam_usual_and_unusual_ways_in_the_cef_framework/</guid>
+      <description>Introduction The Chromium Embedded Framework (CEF) is an open-source framework that allows developers to embed the Chromium engine in their applications. Although CEF is widely employed in a range of popular software, including WeChat and the Epic Games Launcher, there has been little security research on it. In this article, we will use the Steam Client Browser (a CEF-based application) as an example to present the vulnerabilities we found and how we exploited them to build three Remote Code Execution (RCE) chains.</description>
+    </item>
     <item>
       <title>AVSS Report: System Security Adversarial Capability Preliminary Evaluation of iOS, Android, and HarmonyOS - Kernel</title>
       <link>https://www.darknavy.org/blog/avss_report_kernel/</link>

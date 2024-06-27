@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 11 Jun 2024 15:40:57 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 27 Jun 2024 11:39:32 +0800</lastBuildDate>
     <atom:link href="https://www.darknavy.org/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exploiting Steam: Usual and Unusual Ways in the CEF Framework</title>
+      <link>https://www.darknavy.org/blog/exploiting_steam_usual_and_unusual_ways_in_the_cef_framework/</link>
+      <pubDate>Thu, 27 Jun 2024 11:39:32 +0800</pubDate>
+      <guid>https://www.darknavy.org/blog/exploiting_steam_usual_and_unusual_ways_in_the_cef_framework/</guid>
+      <description>Introduction The Chromium Embedded Framework (CEF) is an open-source framework that allows developers to embed the Chromium engine in their applications. Although CEF is widely employed in a range of popular software, including WeChat and the Epic Games Launcher, there has been little security research on it. In this article, we will use the Steam Client Browser (a CEF-based application) as an example to present the vulnerabilities we found and how we exploited them to build three Remote Code Execution (RCE) chains.</description>
+    </item>
     <item>
       <title>AVSS Report: System Security Adversarial Capability Preliminary Evaluation of iOS, Android, and HarmonyOS - Kernel</title>
       <link>https://www.darknavy.org/blog/avss_report_kernel/</link>
