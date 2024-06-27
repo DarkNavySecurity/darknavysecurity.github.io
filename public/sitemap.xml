@@ -2,20 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.darknavy.org/blog/avss_report_kernel/</loc>
-    <lastmod>2024-06-11T15:40:57+08:00</lastmod>
-  </url><url>
-    <loc>https://www.darknavy.org/blog/</loc>
-    <lastmod>2024-06-11T15:40:57+08:00</lastmod>
+    <loc>https://www.darknavy.org/blog_cn/</loc>
+    <lastmod>2024-06-27T11:39:37+08:00</lastmod>
   </url><url>
     <loc>https://www.darknavy.org/</loc>
+    <lastmod>2024-06-27T11:39:37+08:00</lastmod>
+  </url><url>
+    <loc>https://www.darknavy.org/blog_cn/exploiting_steam_usual_and_unusual_ways_in_the_cef_framework/</loc>
+    <lastmod>2024-06-27T11:39:37+08:00</lastmod>
+  </url><url>
+    <loc>https://www.darknavy.org/blog/</loc>
+    <lastmod>2024-06-27T11:39:32+08:00</lastmod>
+  </url><url>
+    <loc>https://www.darknavy.org/blog/exploiting_steam_usual_and_unusual_ways_in_the_cef_framework/</loc>
+    <lastmod>2024-06-27T11:39:32+08:00</lastmod>
+  </url><url>
+    <loc>https://www.darknavy.org/blog/avss_report_kernel/</loc>
     <lastmod>2024-06-11T15:40:57+08:00</lastmod>
   </url><url>
     <loc>https://www.darknavy.org/blog/strengthening_the_shield_mte_in_memory_allocators/</loc>
     <lastmod>2024-01-03T16:19:13+08:00</lastmod>
-  </url><url>
-    <loc>https://www.darknavy.org/blog_cn/</loc>
-    <lastmod>2024-01-03T16:14:27+08:00</lastmod>
   </url><url>
     <loc>https://www.darknavy.org/blog_cn/strengthening_the_shield_mte_in_memory_allocators/</loc>
     <lastmod>2024-01-03T16:14:27+08:00</lastmod>
