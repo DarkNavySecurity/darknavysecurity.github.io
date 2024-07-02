@@ -52,7 +52,7 @@ params:
   # to support ShowPostNavLinks, but they will show up in home page...
   mainSections:
     - blog
-    # - blog_cn
+    # - blog_zh
 
   assets:
     # disableHLJS: true # to disable highlight.js
@@ -129,6 +129,21 @@ params:
   #   minMatchCharLength: 0
   #   keys: ["title", "permalink", "summary", "content"]
 
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: false
+
+languages:
+  en:
+    contentDir: content/en
+    disabled: false
+    languageName: English
+    weight: 1
+  zh:
+    contentDir: content/zh
+    disabled: false
+    languageName: Chinese
+    weight: 2
+
 menu:
   main:
     - name: Home
@@ -137,9 +152,6 @@ menu:
     - name: Blog
       url: /blog/
       weight: 20
-    - name: BlogCN
-      url: /blog_cn/
-      weight: 30
     - name: About
       url: /about/
       weight: 40
