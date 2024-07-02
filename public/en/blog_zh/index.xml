@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>BlogZH on </title>
+    <link>http://127.0.0.1:1313/en/blog_zh/</link>
+    <description>Recent content in BlogZH on </description>
+    <image>
+      <title></title>
+      <url>http://127.0.0.1:1313/images/white_logo.png</url>
+      <link>http://127.0.0.1:1313/images/white_logo.png</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 27 Jun 2024 11:39:37 +0800</lastBuildDate>
+    <atom:link href="http://127.0.0.1:1313/en/blog_zh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Steam漏洞利用：CEF框架应用下的常规与非常规利用手段</title>
+      <link>http://127.0.0.1:1313/en/blog_zh/exploiting_steam_usual_and_unusual_ways_in_the_cef_framework/</link>
+      <pubDate>Thu, 27 Jun 2024 11:39:37 +0800</pubDate>
+      <guid>http://127.0.0.1:1313/en/blog_zh/exploiting_steam_usual_and_unusual_ways_in_the_cef_framework/</guid>
+      <description>前言 Chromium Embedded Framework(CEF)是一个开源框架，开发者可以将Chromium引擎嵌入至他们的应用程序中。尽管CEF被广泛应用于诸如微信和Epic Games Launcher等流行软件中，但对其安全性的研究却甚少。在本文中，我们将以Steam客户端浏览器（一款基于CEF的应用程序）为例，介绍我们发现的漏洞及其利用方式，展示我们如何构建了三个远程代码执行（RCE）链。
+RCE#1：steamwebhelper中多个问题导致RCE steamwebhelper是Steam客户端内置的浏览器，用于渲染商店、社区、好友等页面。其基于CEF开发，并在CEF的基础上添加了一些功能。我们在这些额外的功能中找到了一系列逻辑漏洞以及特性导致的问题，最终完成了RCE。
+在外部页面中获取SteamClient对象 steamwebhelper在加载一些特定的页面，例如steampowered.com 、 steamloopback.host等页面时，会在JavaScript运行环境中加入一个特权对象SteamClient。对该过程进行逆向后，我们发现，对有域名的url，steamwebhelper会调用BIsTrustedDomain检查其域名是否在白名单中，而对于没有域名的url，会检查其是否为data或about协议。
+在外部页面中打开白名单中的域名会被同源策略限制，然而打开about:blank等页面并不会，因此我们可以在自己可控的页面中打开&amp;quot;about:blank&amp;quot;，获取并使用其SteamClient。
+PoC:
+ab_page = open(&amp;#34;about:blank&amp;#34;); s_client = ab_page.SteamClient; alert(s_client); 使用BrowserView加载file协议 SteamClient是steam中内部页面所使用的特权对象，它有很多特权功能，如操作当前的Browser对象、操作窗口位置、下载任意文件等。
+通过SteamClient.BrowserView，我们可以创建并管理BrowserView。经过测试发现，BrowserView是一个嵌入在原始网页中的子页面，类似于普通web页面中的一个iframe，但与此对象的交互都是由Steam自身实现。
+在测试BrowserView的功能时，我们发现BrowserView.LoadURL调用不会受到任何安全策略的限制，可以加载任意协议任意域名的url，包括chrome://、file://等权限较高的协议。
+PoC:
+b_view = s_client.BrowserView.Create(); b_view.LoadURL(&amp;#34;file:///etc/passwd&amp;#34;); b_view.SetBounds(0, 0, 1000, 1000); b_view.SetVisible(true); 获取BrowserView中加载的页面内容，实现任意文件读 至此我们已可以通过LoadURL加载到本地的任意文件，但是还没有办法直接读取到页面内容。通过测试逆向BrowserView对象，发现其提供了FindInPage功能可以在页面中搜索特定字符串，并且通过调用BrowserView.on(&amp;quot;find-in-page-results&amp;quot;, callback)可以注册一个回调函数来处理搜索的结果。那么问题变成了：如果可以在页面内搜索一个可控字符串并获取到搜索结果，能否获取到页面的内容？（听起来像是一道CTF题目）
+答案是肯定的，最终通过逐字节爆破搜索，我们可以做到任意文件读的效果。
+PoC（通过读file:///home/获取用户名）:
+async function is_str_in_bv(bv, s, count) { window.stage = 0; bv.FindInPage(s, true, true); while (window.stage &amp;lt; 3) { await sleep(10); } return window.count &amp;gt; count; } b_view.on(&amp;#34;find-in-page-results&amp;#34;, (a, b) =&amp;gt; { if (window.</description>
+    </item>
+    <item>
+      <title>填补盾牌的裂缝：堆分配器中的MTE</title>
+      <link>http://127.0.0.1:1313/en/blog_zh/strengthening_the_shield_mte_in_memory_allocators/</link>
+      <pubDate>Wed, 03 Jan 2024 16:14:27 +0800</pubDate>
+      <guid>http://127.0.0.1:1313/en/blog_zh/strengthening_the_shield_mte_in_memory_allocators/</guid>
+      <description>前言 2018年，随着ARMv8.5-A的发布，一个全新的芯片安全特性MTE(Memory Tagging Extensions) 横空出世。时隔五年后的2023年，市场上第一款支持此特性的手机发布 —— Google Pixel 8，宣告着MTE正式走入了消费者群体。虽然该特性在手机上还未默认启用，但开发者可以自行开启体验。
+MTE作为一个强大的内存破坏防御手段，对于它的防御边界、防御能力，和它对性能的影响，目前网上还未有对其全面的分析。此前，Google Project Zero发表了一系列关于MTE的文章，其聚焦于较为底层的MTE安全性。然而MTE对于真实的软件安全性究竟有多大的影响仍是个未解之谜。想要讨论这个话题，各大堆分配器是一个很好的切入点。堆上的内存破坏问题已经逐渐成为二进制漏洞中的主流类型，参考MSRC于CppCon2019的议题内容：
+通常普通开发者并不会直接使用MTE相关的汇编指令，而是依靠堆分配器自带的MTE支持间接使用，堆分配器就像盾牌一样，扛起了保护软件的任务。MTE提供了细颗粒管控内存的基础支持，如何基于硬件MTE能力实现高级安全功能的重任，留给了软件开发者。开源社区主流堆分配器积极响应，实现了基于MTE特性的安全增强，提高了堆空间的内存安全性。
+本文将以MTE的三个主要玩家：Chrome中的PartitionAlloc、Glibc中的Ptmalloc、Android中的Scudo为目标，对其中MTE相关的实现分别进行讨论，并对它们进行对比。我们在研究中发现了PartitionAlloc中实现的问题，并将此问题报告给了Google，得到了Chrome团队的确认。
+MTE概述 已了解MTE原理的读者可跳过此章节。
+MTE利用ARMv8的TBI (Top-Byte Ignore) 特性，使用指针的高4 bits存储tag，在每个进程中有一段专用的内存用于存储tag。当为内存指定了某个tag后，程序必须带上正确的tag访问内存，若tag错误，程序抛出错误信号SIGSEGV，如下图所示：
+指令集提供了系列指令来操作tag，此处举例说明MTE的基本用法：
+; x0 is a pointer irg x1, x0 stg x1, [x1] ldr x0, [x1] IRG (Insert Random Tag) 指令为指针x0生成一个随机tag，将结果保存至x1中。 STG (Store Allocation Tag) 指令将tag应用至内存中，生效的长度取决于颗粒度，一般为16字节。 LDR (Load Register) 使用带有tag的指针读取内存。 可以看到指令集中提供了底层的支持，但各个指令的使用有很大的自由度，MTE具体如何使用，很大程度上仍然取决于软件开发者。
+Allocator Chrome - PartitionAlloc 分配 PartitionAlloc中的分配可以大致分为三种情况：
+从ThreadCache中分配，不变动tag直接返回。 从空闲的SlotSpan中分配，不变动tag直接返回。 若以上两种情况均不满足，分配一个新的SlotSpan，对其中所有空闲的堆块打上随机的tag if (PA_LIKELY(use_tagging)) { // Ensure the MTE-tag of the memory pointed by other provisioned slot is // unguessable.</description>
+    </item>
+    <item>
+      <title>Exploiting the libwebp Vulnerability, Part 2: Diving into Chrome Blink</title>
+      <link>http://127.0.0.1:1313/en/blog_zh/exploiting_the_libwebp_vulnerability_part_2/</link>
+      <pubDate>Fri, 03 Nov 2023 14:10:29 +0800</pubDate>
+      <guid>http://127.0.0.1:1313/en/blog_zh/exploiting_the_libwebp_vulnerability_part_2/</guid>
+      <description>前言 当我们把这样一个在三方库中的漏洞放到真实的环境中再看时，会发现漏洞所处的环境往往有很多复杂的变量，想要利用这个漏洞并非想象般那么容易。
+我们所已知的信息有：
+我们溢出的变量huffman_tables，大小为0x2f28 该堆块在renderer的ThreadPool中分配，而大多数对象在主线程中分配 我们可以以8字节倍数的offset，写入一个部分可控的4字节int Chrome中不同大小的堆块被存储在不同的bucket当中，不同大小的对象因为这个机制被安全地隔离开。通常来说，在chrome中的堆利用需要找到同样大小的对象进行布局，再通过UAF或是OOB篡改其他的对象，从而造成信息泄露或者控制流劫持。接下来我们会分享我们所发现的对象，同时试图去绕过这个机制。
+信息泄露 寻找对象 我们首先想要寻找的是一个合适的对象能够被OOB所改写，由于我们的越界写并不能很好地控制值，所以写指针基本被排除，最好的情况是能够改掉类似length这样的字段，对于值没有精确的要求，但是能够引发进一步更好利用的内存问题。
+HuffmanCode在libwebp中是用malloc分配的，在chrome中实际是被PartitionAlloc最终接管分配。在renderer中一共有四个partition，LayoutObject partition, Buffer partition, ArrayBuffer partition, FastMalloc partition。FastMalloc实际上最终调用的就是malloc，因此我们想要找的对象可以用FastMalloc来分配。
+我们首先用了Man Yue Mo在博客中提到的codeql查询，由于溢出在0x3000的bucket当中，可以选择的对象大小范围为0x2800 - 0x3000。但非常遗憾的是，查询结果为空，这个size下的对象几乎完全不存在。另一个思路是用溢出对象本身，但是这个对象被改掉后不会产生特别的破坏效果，libwebp中也没有其他好的候选对象。到了这里似乎令人觉得有些绝望，利用的第一步就被卡住了。
+那么我们还有什么思路呢，一个想法是使用可变长的对象，如Man Yue Mo提到过的AudioArray，但是这个对象是纯数据，被改掉也没有用。查看所有FastMalloc的调用，最终我们发现了这个对象
+class CORE_EXPORT CSSVariableData : public RefCounted&amp;lt;CSSVariableData&amp;gt; { USING_FAST_MALLOC(CSSVariableData); 此对象的大小为动态的
+wtf_size_t bytes_needed = sizeof(CSSVariableData) + (original_text.Is8Bit() ? original_text.length() : 2 * original_text.length()); // ... snip ... void* buf = WTF::Partitions::FastMalloc( bytes_needed, WTF::GetStringWithTypeName&amp;lt;CSSVariableData&amp;gt;()); 该对象代表了CSS中的变量，可以通过以下方式来定义
+element { foo: var(--my-var, bar); } blink会根据CSS变量的内容动态分配CSSVariableData的内存。还有一个好消息是，JavaScript中也可以便捷地操作CSS变量。
+// add a CSS variable element.</description>
+    </item>
+    <item>
+      <title>Exploiting the libwebp Vulnerability, Part 1: Playing with Huffman Code</title>
+      <link>http://127.0.0.1:1313/en/blog_zh/exploiting_the_libwebp_vulnerability_part_1/</link>
+      <pubDate>Fri, 03 Nov 2023 14:10:24 +0800</pubDate>
+      <guid>http://127.0.0.1:1313/en/blog_zh/exploiting_the_libwebp_vulnerability_part_1/</guid>
+      <description>漏洞定位 在初始的漏洞分析阶段，由于缺少现成的PoC或详细分析报告，我们首先尝试阅读并理解webmproject/libwebp上游仓库针对CVE-2023-4863的修复代码。然而，WebM Project官方的修补过程相对复杂，这使得我们难以精确地锁定漏洞的原始触发点。
+于是，我们将目光转向了Apple对CVE-2023-41064的官方补丁，并使用BinDiff对更新前后的ImageIO组件进行了对比。我们注意到Apple的补丁代码变更相对较少，易于理解，并且非常“简单粗暴”:
+简而言之，Apple的修复方案是在WebP解码器中增加了一项检查：如果在构建霍夫曼编码表 (Huffman Table) 时越界，就会直接返回错误，而不是继续解码。
+diff --git a/src/dec/vp8l_dec.c b/src/dec/vp8l_dec.c index 45012162..06b142bc 100644 --- a/src/dec/vp8l_dec.c +++ b/src/dec/vp8l_dec.c @@ -438,6 +438,7 @@ static int ReadHuffmanCodes(VP8LDecoder* const dec, int xsize, int ysize, goto Error; } + bound = &amp;amp;huffman_tables[num_htree_groups * table_size]; huffman_table = huffman_tables; for (i = 0; i &amp;lt; num_htree_groups_max; ++i) { // If the index &amp;#34;i&amp;#34; is unused in the Huffman image, just make sure the diff --git a/src/utils/huffman_utils.</description>
+    </item>
+  </channel>
+</rss>

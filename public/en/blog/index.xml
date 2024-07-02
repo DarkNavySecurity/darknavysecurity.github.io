@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Blog on </title>
+    <link>http://127.0.0.1:1313/en/blog/</link>
+    <description>Recent content in Blog on </description>
+    <image>
+      <title></title>
+      <url>http://127.0.0.1:1313/images/white_logo.png</url>
+      <link>http://127.0.0.1:1313/images/white_logo.png</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 27 Jun 2024 11:39:32 +0800</lastBuildDate>
+    <atom:link href="http://127.0.0.1:1313/en/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exploiting Steam: Usual and Unusual Ways in the CEF Framework</title>
+      <link>http://127.0.0.1:1313/en/blog/exploiting_steam_usual_and_unusual_ways_in_the_cef_framework/</link>
+      <pubDate>Thu, 27 Jun 2024 11:39:32 +0800</pubDate>
+      <guid>http://127.0.0.1:1313/en/blog/exploiting_steam_usual_and_unusual_ways_in_the_cef_framework/</guid>
+      <description>Introduction The Chromium Embedded Framework (CEF) is an open-source framework that allows developers to embed the Chromium engine in their applications. Although CEF is widely employed in a range of popular software, including WeChat and the Epic Games Launcher, there has been little security research on it. In this article, we will use the Steam Client Browser (a CEF-based application) as an example to present the vulnerabilities we found and how we exploited them to build three Remote Code Execution (RCE) chains.</description>
+    </item>
+    <item>
+      <title>AVSS Report: System Security Adversarial Capability Preliminary Evaluation of iOS, Android, and HarmonyOS - Kernel</title>
+      <link>http://127.0.0.1:1313/en/blog/avss_report_kernel/</link>
+      <pubDate>Tue, 11 Jun 2024 15:40:57 +0800</pubDate>
+      <guid>http://127.0.0.1:1313/en/blog/avss_report_kernel/</guid>
+      <description>As consumers, when faced with five different brands and models of smartphones or ten different smart cars, it&amp;rsquo;s difficult for us to determine which one can effectively prevent our privacy from being stolen or maliciously accessed, such as our location or even hearing our conversations inside the car.
+Even as ordinary consumers, we currently have no way of knowing. As technology professionals who have long studied in APT(Advanced Persistent Threat) attacks, we understand that these devices can ultimately be compromised in the face of advanced persistent attacks.</description>
+    </item>
+    <item>
+      <title>Strengthening the Shield: MTE in Heap Allocators</title>
+      <link>http://127.0.0.1:1313/en/blog/strengthening_the_shield_mte_in_memory_allocators/</link>
+      <pubDate>Wed, 03 Jan 2024 16:19:13 +0800</pubDate>
+      <guid>http://127.0.0.1:1313/en/blog/strengthening_the_shield_mte_in_memory_allocators/</guid>
+      <description>Introduction In 2018, with the release of ARMv8.5-A, a brand new chip security feature MTE (Memory Tagging Extensions) emerged. Five years later, in 2023, the first smartphone to support this feature was released — Google Pixel 8 — marking the official entry of MTE into the consumer market. Although this feature is not yet enabled by default, developers can turn it on themselves for testing.
+As a powerful defense against memory corruption, there has not yet been a comprehensive analysis of MTE&amp;rsquo;s defensive boundaries, capabilities, and its impact on performance on the internet.</description>
+    </item>
+    <item>
+      <title>Exploiting the libwebp Vulnerability, Part 2: Diving into Chrome Blink</title>
+      <link>http://127.0.0.1:1313/en/blog/exploiting_the_libwebp_vulnerability_part_2/</link>
+      <pubDate>Fri, 03 Nov 2023 14:10:17 +0800</pubDate>
+      <guid>http://127.0.0.1:1313/en/blog/exploiting_the_libwebp_vulnerability_part_2/</guid>
+      <description>Introduction When we examine a third-party library vulnerability in a real environment, we often encounter numerous complex variables that exist within the vulnerability&amp;rsquo;s context. Exploiting such a vulnerability is not as easy as one might imagine.
+Here is the information we know:
+The overflowed variable huffman_tables, has a size of 0x2f28. The heap chunk is allocated in the renderer&amp;rsquo;s ThreadPool, while most objects are allocated in the main thread. We can write a partially controlled 4-byte integer with an offset that is a multiple of 8 bytes.</description>
+    </item>
+    <item>
+      <title>Exploiting the libwebp Vulnerability, Part 1: Playing with Huffman Code</title>
+      <link>http://127.0.0.1:1313/en/blog/exploiting_the_libwebp_vulnerability_part_1/</link>
+      <pubDate>Fri, 03 Nov 2023 14:10:12 +0800</pubDate>
+      <guid>http://127.0.0.1:1313/en/blog/exploiting_the_libwebp_vulnerability_part_1/</guid>
+      <description>Vulnerability Localization In the initial phase of vulnerability analysis, due to the absence of readily available PoCs or detailed analysis reports, we first attempted to read and understand the patch code for CVE-2023-4863 in the upstream repository of webmproject/libwebp. However, the WebM Project&amp;rsquo;s official patch was relatively complex, making it difficult for us to accurately pinpoint the root cause of the vulnerability.
+Thus, we turned our attention to Apple&amp;rsquo;s official patch for CVE-2023-41064, and performed a comparison of the ImageIO framework before and after the update using BinDiff.</description>
+    </item>
+  </channel>
+</rss>
