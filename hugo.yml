@@ -96,7 +96,7 @@ params:
     - name: github
       url: "https://github.com/DarkNavySecurity"
     - name: twitter
-      url: "https://twitter.com/DarkNavyOrg"
+      url: "https://x.com/DarkNavyOrg"
     - name: rss
       url: "index.xml"
 
