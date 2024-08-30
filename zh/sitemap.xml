@@ -2,8 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.darknavy.org/zh/blog/cve_2024_5274_a_minor_flaw_in_v8_parser_leading_to_catastrophe/</loc>
+    <lastmod>2024-08-30T10:09:29+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.darknavy.org/blog/cve_2024_5274_a_minor_flaw_in_v8_parser_leading_to_catastrophe/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://www.darknavy.org/zh/blog/cve_2024_5274_a_minor_flaw_in_v8_parser_leading_to_catastrophe/"
+                />
+  </url><url>
     <loc>https://www.darknavy.org/zh/</loc>
-    <lastmod>2024-06-27T11:39:37+08:00</lastmod>
+    <lastmod>2024-08-30T10:09:29+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -13,6 +26,19 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://www.darknavy.org/zh/"
+                />
+  </url><url>
+    <loc>https://www.darknavy.org/zh/blog/</loc>
+    <lastmod>2024-08-30T10:09:29+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.darknavy.org/blog/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://www.darknavy.org/zh/blog/"
                 />
   </url><url>
     <loc>https://www.darknavy.org/zh/blog/exploiting_steam_usual_and_unusual_ways_in_the_cef_framework/</loc>
@@ -26,19 +52,6 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://www.darknavy.org/zh/blog/exploiting_steam_usual_and_unusual_ways_in_the_cef_framework/"
-                />
-  </url><url>
-    <loc>https://www.darknavy.org/zh/blog/</loc>
-    <lastmod>2024-06-27T11:39:37+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.darknavy.org/blog/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://www.darknavy.org/zh/blog/"
                 />
   </url><url>
     <loc>https://www.darknavy.org/zh/blog/strengthening_the_shield_mte_in_memory_allocators/</loc>

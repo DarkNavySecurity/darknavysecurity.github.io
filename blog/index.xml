@@ -9,10 +9,19 @@
       <url>https://www.darknavy.org/images/white_logo.png</url>
       <link>https://www.darknavy.org/images/white_logo.png</link>
     </image>
-    <generator>Hugo -- 0.128.0</generator>
+    <generator>Hugo -- 0.133.1</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 27 Jun 2024 11:39:32 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 30 Aug 2024 10:09:29 +0800</lastBuildDate>
     <atom:link href="https://www.darknavy.org/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CVE-2024-5274: A Minor Flaw in V8 Parser Leading to Catastrophes</title>
+      <link>https://www.darknavy.org/blog/cve_2024_5274_a_minor_flaw_in_v8_parser_leading_to_catastrophe/</link>
+      <pubDate>Fri, 30 Aug 2024 10:09:29 +0800</pubDate>
+      <guid>https://www.darknavy.org/blog/cve_2024_5274_a_minor_flaw_in_v8_parser_leading_to_catastrophe/</guid>
+      <description>In May of this year, we noticed that Chrome fixed a V8 vulnerability that was being exploited in the wild in this update. We quickly pinpointed the fix for this vulnerability and discovered that it was a rare bug in the Parser module, which piqued our interest greatly. This led to the following research.
+From Patch to PoC First, let&amp;rsquo;s take a look at the patch for this vulnerability:
+diff --git a/src/ast/scopes.</description>
+    </item>
     <item>
       <title>Exploiting Steam: Usual and Unusual Ways in the CEF Framework</title>
       <link>https://www.darknavy.org/blog/exploiting_steam_usual_and_unusual_ways_in_the_cef_framework/</link>
