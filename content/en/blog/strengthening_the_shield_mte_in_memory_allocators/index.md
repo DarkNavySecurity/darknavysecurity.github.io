@@ -140,7 +140,7 @@ In comparison, the implementation in Scudo is the most complex.
 ### Allocation
 
 1. Scudo only tags chunks of the Primary type (size < 0x10000). For the larger Secondary type, it allocates space through memory mapping, and currently does not support tagging such spaces.
-2. When Scudo reuses a freed chunk, it directly retains and uses the UAF tag assigned to it at the time of release. Otherwise, it will allocate a random tag.
+2. When Scudo reuses a freed chunk, it directly retains and uses the tag assigned to it at the time of release. Otherwise, it will allocate a random tag.
 
 ### Release
 
