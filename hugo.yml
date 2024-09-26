@@ -1,6 +1,7 @@
 baseURL: "https://www.darknavy.org"
 title: "DARKNAVY"
-paginate: 10
+pagination:
+  pagerSize: 10
 theme: PaperMod
 
 enableRobotsTXT: true
