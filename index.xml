@@ -9,7 +9,7 @@
       <url>https://www.darknavy.org/images/white_logo.png</url>
       <link>https://www.darknavy.org/images/white_logo.png</link>
     </image>
-    <generator>Hugo -- 0.133.1</generator>
+    <generator>Hugo -- 0.134.3</generator>
     <language>en</language>
     <lastBuildDate>Fri, 30 Aug 2024 10:09:29 +0800</lastBuildDate>
     <atom:link href="https://www.darknavy.org/index.xml" rel="self" type="application/rss+xml" />
@@ -18,57 +18,92 @@
       <link>https://www.darknavy.org/blog/cve_2024_5274_a_minor_flaw_in_v8_parser_leading_to_catastrophes/</link>
       <pubDate>Fri, 30 Aug 2024 10:09:29 +0800</pubDate>
       <guid>https://www.darknavy.org/blog/cve_2024_5274_a_minor_flaw_in_v8_parser_leading_to_catastrophes/</guid>
-      <description>In May of this year, we noticed that Chrome fixed a V8 vulnerability that was being exploited in the wild in this update. We quickly pinpointed the fix for this vulnerability and discovered that it was a rare bug in the Parser module, which piqued our interest greatly. This led to the following research.
-From Patch to PoC First, let&amp;rsquo;s take a look at the patch for this vulnerability:
-diff --git a/src/ast/scopes.</description>
+      <description>&lt;p&gt;In May of this year, we noticed that Chrome fixed a V8 vulnerability that was being exploited in the wild in &lt;a href=&#34;https://chromereleases.googleblog.com/2024/05/stable-channel-update-for-desktop_23.html&#34;&gt;this update&lt;/a&gt;. We quickly pinpointed the fix for this vulnerability and discovered that it was a rare bug in the Parser module, which piqued our interest greatly. This led to the following research.&lt;/p&gt;
+&lt;h2 id=&#34;from-patch-to-poc&#34;&gt;From Patch to PoC&lt;/h2&gt;
+&lt;p&gt;First, let&amp;rsquo;s take a look at the &lt;a href=&#34;https://chromium-review.googlesource.com/c/v8/v8/+/5553030&#34;&gt;patch&lt;/a&gt; for this vulnerability:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-diff&#34; data-lang=&#34;diff&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;diff --git a/src/ast/scopes.cc b/src/ast/scopes.cc
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;index 660fdd2e9ad..de4df35c0ad 100644
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;&lt;/span&gt;&lt;span class=&#34;gd&#34;&gt;--- a/src/ast/scopes.cc
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gd&#34;&gt;&lt;/span&gt;&lt;span class=&#34;gi&#34;&gt;+++ b/src/ast/scopes.cc
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gi&#34;&gt;&lt;/span&gt;&lt;span class=&#34;gu&#34;&gt;@@ -2447,7 +2447,7 @@ bool Scope::MustAllocate(Variable* var) {
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;&lt;/span&gt;     var-&amp;gt;set_is_used();
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     if (inner_scope_calls_eval_ &amp;amp;&amp;amp; !var-&amp;gt;is_this()) var-&amp;gt;SetMaybeAssigned();
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gd&#34;&gt;-  DCHECK(!var-&amp;gt;has_forced_context_allocation() || var-&amp;gt;is_used());
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gd&#34;&gt;&lt;/span&gt;&lt;span class=&#34;gi&#34;&gt;+  CHECK(!var-&amp;gt;has_forced_context_allocation() || var-&amp;gt;is_used());
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gi&#34;&gt;&lt;/span&gt;   // Global variables do not need to be allocated.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   return !var-&amp;gt;IsGlobalObjectProperty() &amp;amp;&amp;amp; var-&amp;gt;is_used();
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;diff --git a/src/parsing/parser-base.h b/src/parsing/parser-base.h
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;index 40914d39a4f..65c338f343f 100644
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;&lt;/span&gt;&lt;span class=&#34;gd&#34;&gt;--- a/src/parsing/parser-base.h
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gd&#34;&gt;&lt;/span&gt;&lt;span class=&#34;gi&#34;&gt;+++ b/src/parsing/parser-base.h
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gi&#34;&gt;&lt;/span&gt;&lt;span class=&#34;gu&#34;&gt;@@ -2661,6 +2661,7 @@ typename ParserBase&amp;lt;Impl&amp;gt;::BlockT ParserBase&amp;lt;Impl&amp;gt;::ParseClassStaticBlock(
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gu&#34;&gt;&lt;/span&gt;   }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   FunctionState initializer_state(&amp;amp;function_state_, &amp;amp;scope_, initializer_scope);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gi&#34;&gt;+  FunctionParsingScope body_parsing_scope(impl());
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gi&#34;&gt;&lt;/span&gt;   AcceptINScope accept_in(this, true);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   // Each static block has its own var and lexical scope, so make a new var
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The patch is very simple, the actual effective fix is just one line of code. This line introduces a variable of type &lt;code&gt;FunctionParsingScope&lt;/code&gt; when parsing the &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks&#34;&gt;static initialization block&lt;/a&gt; of a class. Let&amp;rsquo;s examine what this newly introduced variable does:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Exploiting Steam: Usual and Unusual Ways in the CEF Framework</title>
       <link>https://www.darknavy.org/blog/exploiting_steam_usual_and_unusual_ways_in_the_cef_framework/</link>
       <pubDate>Thu, 27 Jun 2024 11:39:32 +0800</pubDate>
       <guid>https://www.darknavy.org/blog/exploiting_steam_usual_and_unusual_ways_in_the_cef_framework/</guid>
-      <description>Introduction The Chromium Embedded Framework (CEF) is an open-source framework that allows developers to embed the Chromium engine in their applications. Although CEF is widely employed in a range of popular software, including WeChat and the Epic Games Launcher, there has been little security research on it. In this article, we will use the Steam Client Browser (a CEF-based application) as an example to present the vulnerabilities we found and how we exploited them to build three Remote Code Execution (RCE) chains.</description>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;The Chromium Embedded Framework (CEF) is an open-source framework that allows developers to embed the Chromium engine in their applications. Although CEF is widely employed in a range of popular software, including WeChat and the Epic Games Launcher, there has been little security research on it. In this article, we will use the Steam Client Browser (a CEF-based application) as an example to present the vulnerabilities we found and how we exploited them to build three Remote Code Execution (RCE) chains.&lt;/p&gt;</description>
     </item>
     <item>
       <title>AVSS Report: System Security Adversarial Capability Preliminary Evaluation of iOS, Android, and HarmonyOS - Kernel</title>
       <link>https://www.darknavy.org/blog/avss_report_kernel/</link>
       <pubDate>Tue, 11 Jun 2024 15:40:57 +0800</pubDate>
       <guid>https://www.darknavy.org/blog/avss_report_kernel/</guid>
-      <description>As consumers, when faced with five different brands and models of smartphones or ten different smart cars, it&amp;rsquo;s difficult for us to determine which one can effectively prevent our privacy from being stolen or maliciously accessed, such as our location or even hearing our conversations inside the car.
-Even as ordinary consumers, we currently have no way of knowing. As technology professionals who have long studied in APT(Advanced Persistent Threat) attacks, we understand that these devices can ultimately be compromised in the face of advanced persistent attacks.</description>
+      <description>&lt;p&gt;As consumers, when faced with five different brands and models of smartphones or ten different smart cars, it&amp;rsquo;s difficult for us to determine which one can effectively prevent our privacy from being stolen or maliciously accessed, such as our location or even hearing our conversations inside the car.&lt;/p&gt;
+&lt;p&gt;Even as ordinary consumers, we currently have no way of knowing. As technology professionals who have long studied in APT(Advanced Persistent Threat) attacks, we understand that these devices can ultimately be compromised in the face of advanced persistent attacks.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Strengthening the Shield: MTE in Heap Allocators</title>
       <link>https://www.darknavy.org/blog/strengthening_the_shield_mte_in_memory_allocators/</link>
       <pubDate>Wed, 03 Jan 2024 16:19:13 +0800</pubDate>
       <guid>https://www.darknavy.org/blog/strengthening_the_shield_mte_in_memory_allocators/</guid>
-      <description>Introduction In 2018, with the release of ARMv8.5-A, a brand new chip security feature MTE (Memory Tagging Extensions) emerged. Five years later, in 2023, the first smartphone to support this feature was released — Google Pixel 8 — marking the official entry of MTE into the consumer market. Although this feature is not yet enabled by default, developers can turn it on themselves for testing.
-As a powerful defense against memory corruption, there has not yet been a comprehensive analysis of MTE&amp;rsquo;s defensive boundaries, capabilities, and its impact on performance on the internet.</description>
+      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;In 2018, with the release of ARMv8.5-A, a brand new chip security feature &lt;a href=&#34;https://developer.arm.com/-/media/Arm%20Developer%20Community/PDF/Arm_Memory_Tagging_Extension_Whitepaper.pdf&#34;&gt;MTE&lt;/a&gt; (Memory Tagging Extensions) emerged. Five years later, in 2023, the first smartphone to support this feature was released — &lt;a href=&#34;https://blog.google/products/pixel/google-pixel-8-pro/&#34;&gt;Google Pixel 8&lt;/a&gt; — marking the official entry of MTE into the consumer market. Although this feature is not yet enabled by default, developers can &lt;a href=&#34;https://googleprojectzero.blogspot.com/2023/11/first-handset-with-mte-on-market.html&#34;&gt;turn it on&lt;/a&gt; themselves for testing.&lt;/p&gt;
+&lt;p&gt;As a powerful defense against memory corruption, there has not yet been a comprehensive analysis of MTE&amp;rsquo;s defensive boundaries, capabilities, and its impact on performance on the internet. Previously, Google Project Zero published a series of &lt;a href=&#34;https://googleprojectzero.blogspot.com/2023/08/mte-as-implemented-part-1.html&#34;&gt;articles about MTE&lt;/a&gt;, focusing on the more low-level security aspects of MTE. However, the actual impact of MTE on real software security remains a mystery. To discuss this topic, heap allocators provide an excellent starting point. Heap memory corruption issues have gradually become the mainstream type of binary vulnerabilities. For reference, see the &lt;a href=&#34;https://github.com/microsoft/MSRC-Security-Research/blob/master/presentations/2019_09_CppCon/CppCon2019%20-%20Killing%20Uninitialized%20Memory.pdf&#34;&gt;presentation&lt;/a&gt; by MSRC at CppCon 2019:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Exploiting the libwebp Vulnerability, Part 2: Diving into Chrome Blink</title>
       <link>https://www.darknavy.org/blog/exploiting_the_libwebp_vulnerability_part_2/</link>
       <pubDate>Fri, 03 Nov 2023 14:10:17 +0800</pubDate>
       <guid>https://www.darknavy.org/blog/exploiting_the_libwebp_vulnerability_part_2/</guid>
-      <description>Introduction When we examine a third-party library vulnerability in a real environment, we often encounter numerous complex variables that exist within the vulnerability&amp;rsquo;s context. Exploiting such a vulnerability is not as easy as one might imagine.
-Here is the information we know:
-The overflowed variable huffman_tables, has a size of 0x2f28. The heap chunk is allocated in the renderer&amp;rsquo;s ThreadPool, while most objects are allocated in the main thread. We can write a partially controlled 4-byte integer with an offset that is a multiple of 8 bytes.</description>
+      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;When we examine a third-party library vulnerability in a real environment, we often encounter numerous complex variables that exist within the vulnerability&amp;rsquo;s context. Exploiting such a vulnerability is not as easy as one might imagine.&lt;/p&gt;
+&lt;p&gt;Here is the information we know:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The overflowed variable &lt;a href=&#34;https://source.chromium.org/chromium/chromium/src/+/d53886d694334f194b267db3af165e5cd61ef489:third_party/libwebp/src/src/dec/vp8l_dec.c;l=437&#34;&gt;huffman_tables&lt;/a&gt;, has a size of 0x2f28.&lt;/li&gt;
+&lt;li&gt;The heap chunk is allocated in the renderer&amp;rsquo;s ThreadPool, while most objects are allocated in the main thread.&lt;/li&gt;
+&lt;li&gt;We can write a partially controlled 4-byte integer with an offset that is a multiple of 8 bytes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In Chrome, different-sized heap chunks are stored in separate buckets, isolating objects of different sizes to ensure &lt;strong&gt;security&lt;/strong&gt;. Typically, achieving heap exploitation in Chrome requires identifying objects of the same size for layout purposes and then utilizing Use-After-Free (UAF) or Out-of-Bounds (OOB) techniques to manipulate other objects, leading to information disclosure or control-flow hijacking. In the following, we will share the objects we have discovered, as well as attempting to bypass this mechanism.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Exploiting the libwebp Vulnerability, Part 1: Playing with Huffman Code</title>
       <link>https://www.darknavy.org/blog/exploiting_the_libwebp_vulnerability_part_1/</link>
       <pubDate>Fri, 03 Nov 2023 14:10:12 +0800</pubDate>
       <guid>https://www.darknavy.org/blog/exploiting_the_libwebp_vulnerability_part_1/</guid>
-      <description>Vulnerability Localization In the initial phase of vulnerability analysis, due to the absence of readily available PoCs or detailed analysis reports, we first attempted to read and understand the patch code for CVE-2023-4863 in the upstream repository of webmproject/libwebp. However, the WebM Project&amp;rsquo;s official patch was relatively complex, making it difficult for us to accurately pinpoint the root cause of the vulnerability.
-Thus, we turned our attention to Apple&amp;rsquo;s official patch for CVE-2023-41064, and performed a comparison of the ImageIO framework before and after the update using BinDiff.</description>
+      <description>&lt;h2 id=&#34;vulnerability-localization&#34;&gt;Vulnerability Localization&lt;/h2&gt;
+&lt;p&gt;In the initial phase of vulnerability analysis, due to the absence of readily available PoCs or detailed analysis reports, we first attempted to read and understand the &lt;a href=&#34;https://github.com/webmproject/libwebp/commit/902bc9190331343b2017211debcec8d2ab87e17a&#34;&gt;patch code&lt;/a&gt; for CVE-2023-4863 in the upstream repository of webmproject/libwebp. However, the WebM Project&amp;rsquo;s official patch was relatively complex, making it difficult for us to accurately pinpoint the root cause of the vulnerability.&lt;/p&gt;
+&lt;p&gt;Thus, we turned our attention to Apple&amp;rsquo;s official patch for CVE-2023-41064, and performed a comparison of the ImageIO framework before and after the update using BinDiff. We noticed that Apple&amp;rsquo;s patch involved fewer code changes and was much easier to understand.&lt;/p&gt;</description>
     </item>
     <item>
       <title>About</title>
       <link>https://www.darknavy.org/about/</link>
       <pubDate>Thu, 02 Nov 2023 17:11:58 +0800</pubDate>
       <guid>https://www.darknavy.org/about/</guid>
-      <description>We are DARKNAVY, an independent and free-spirited security research team and service provider. We have established AVSS (Adversarial Vulnerability Scoring System) to evaluate vulnerabilities and the effectiveness of system mitigation mechanisms in real adversarial environments.
-Over the past 20 years, we have been at the forefront of cybersecurity research and application, winning multiple world championships. We have also established GEEKCON, a unique and top-class security geek competition, and responsibly disclosed over 1000 severe vulnerabilities.</description>
+      <description>&lt;p&gt;We are DARKNAVY, an independent and free-spirited security research team and service provider. We have established AVSS (Adversarial Vulnerability Scoring System) to evaluate vulnerabilities and the effectiveness of system mitigation mechanisms in real adversarial environments.&lt;/p&gt;
+&lt;p&gt;Over the past 20 years, we have been at the forefront of cybersecurity research and application, winning multiple world championships. We have also established GEEKCON, a unique and top-class security geek competition, and responsibly disclosed over 1000 severe vulnerabilities. With relentless efforts, we have helped over 100 companies worldwide address security issues, contributing to the growth of the cybersecurity industry.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
