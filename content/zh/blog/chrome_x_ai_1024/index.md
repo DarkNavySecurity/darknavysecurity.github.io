@@ -128,7 +128,7 @@ Gemini回答（部分）：
 ---
 
 
-这是个典型的”看似“正确的回答，实际上大模型并不清楚，renderer和browser是两个进程，前两个对象都是在renderer进程内分配，不能影响到我们的目标进程，只有最后一个对象是可行的。此问题上，Claude只回答了ArrayBuffer，而ChatGPT则与Gemini差不多。
+这是个典型的“看似”正确的回答，实际上大模型并不清楚，renderer和browser是两个进程，前两个对象都是在renderer进程内分配，不能影响到我们的目标进程，只有最后一个对象是可行的。此问题上，Claude只回答了ArrayBuffer，而ChatGPT则与Gemini差不多。
 
 当我们再直接了当地问一个已知的公开对象时，Gemini倒也老实地回答了他不知道：
 
