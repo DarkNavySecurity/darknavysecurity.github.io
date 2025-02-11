@@ -96,7 +96,7 @@ params:
   socialIcons:
     - name: github
       url: "https://github.com/DarkNavySecurity"
-    - name: twitter
+    - name: x
       url: "https://x.com/DarkNavyOrg"
     - name: rss
       url: "index.xml"
