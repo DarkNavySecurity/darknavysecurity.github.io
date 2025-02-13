@@ -153,6 +153,9 @@ menu:
     - name: Blog
       url: /blog/
       weight: 20
+    - name: Insight
+      url: /darknavy_insight/
+      weight: 30
     - name: About
       url: /about/
       weight: 40
