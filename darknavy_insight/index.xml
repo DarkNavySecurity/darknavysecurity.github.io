@@ -11,8 +11,23 @@
     </image>
     <generator>Hugo -- 0.142.0</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 08 Feb 2025 17:10:13 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 09 Feb 2025 17:13:30 +0800</lastBuildDate>
     <atom:link href="https://www.darknavy.org/darknavy_insight/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Most &#34;Golden&#34; Bypass of 2024</title>
+      <link>https://www.darknavy.org/darknavy_insight/the_most_golden_bypass_of_2024/</link>
+      <pubDate>Sun, 09 Feb 2025 17:13:30 +0800</pubDate>
+      <guid>https://www.darknavy.org/darknavy_insight/the_most_golden_bypass_of_2024/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;attachments/2.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;Since the early 2000s, attacks based on browser vulnerabilities have remained a mainstream, effective, and versatile attack method. The following is the second article from the &amp;ldquo;DARKNAVY INSIGHT | 2024 Annual Security Report&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;attachments/640.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;According to the latest report from market research firm Statcounter, Chrome has unquestionably secured its position as the most dominant browser in terms of market share.&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;attachments/085f2c36-5c81-4182-b887-93394febe001.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;Chrome is renowned for its exceptional security, with the Google security team continuously researching and implementing cutting-edge vulnerability mitigation mechanisms. One of the most well-known among them is MiraclePtr, designed to prevent attackers from exploiting Use-After-Free (UAF) vulnerabilities in the browser.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>The Most Groundbreaking New Security Ecosystem of 2024</title>
       <link>https://www.darknavy.org/darknavy_insight/the_most_groundbreaking_new_security_ecosystem_of_2024/</link>
