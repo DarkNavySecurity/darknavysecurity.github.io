@@ -31,39 +31,22 @@ DARKNAVY发现此问题后，意识到漏洞危害极高，迅速报告并协助
 吾矛之利，物无不陷
 发现漏洞后，思路自然地转向了研究此漏洞的可利用性。正如前文所述，AI能否在此研究过程中给予人类有力的援助？AI之于安全研究员，是一把趁手的武器，还是一堆废铜烂铁？
 在今年GeekCon 2024新加坡站的舞台上，有多个有关此话题的安全研究亮相。
-来自清华的张超教授，展示了他们团队将大模型应用于二进制分析领域的成果，成功地应用于二进制代码相似性检测、patch补丁检测等场景；"><meta name=author content="DARKNAVY"><link rel=canonical href=https://www.darknavy.org/zh/blog/chrome_x_ai_1024/><link crossorigin=anonymous href=/assets/css/stylesheet.38a584f0fc0f77186c8518d4117588a5b01cffe28707e993a6ae5cd5e2b0c5d0.css integrity="sha256-OKWE8PwPdxhshRjUEXWIpbAc/+KHB+mTpq5c1eKwxdA=" rel="preload stylesheet" as=style><link rel=icon href=https://www.darknavy.org/images/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://www.darknavy.org/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://www.darknavy.org/favicon-32x32.png><link rel=apple-touch-icon href=https://www.darknavy.org/apple-touch-icon.png><link rel=mask-icon href=https://www.darknavy.org/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://www.darknavy.org/zh/blog/chrome_x_ai_1024/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script async src="https://www.googletagmanager.com/gtag/js?id=G-LR4ZN1LSPS"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-LR4ZN1LSPS")}</script><meta property="og:title" content="以子之矛陷子之盾 · 用AI对AI漏洞的利用探索"><meta property="og:description" content="2024年9月24日，OpenAI的CEO Sam Altman发表文章《The Intelligence Age》，大胆地宣告了AI时代的到来。
-
+来自清华的张超教授，展示了他们团队将大模型应用于二进制分析领域的成果，成功地应用于二进制代码相似性检测、patch补丁检测等场景；"><meta name=author content="DARKNAVY"><link rel=canonical href=https://www.darknavy.org/zh/blog/chrome_x_ai_1024/><link crossorigin=anonymous href=/assets/css/stylesheet.86b34fc8709322911fa9e50a0b6fbe57a1a032cdd591c9f647724be25533842d.css integrity="sha256-hrNPyHCTIpEfqeUKC2++V6GgMs3Vkcn2R3JL4lUzhC0=" rel="preload stylesheet" as=style><link rel=icon href=https://www.darknavy.org/images/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://www.darknavy.org/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://www.darknavy.org/favicon-32x32.png><link rel=apple-touch-icon href=https://www.darknavy.org/apple-touch-icon.png><link rel=mask-icon href=https://www.darknavy.org/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://www.darknavy.org/zh/blog/chrome_x_ai_1024/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script async src="https://www.googletagmanager.com/gtag/js?id=G-LR4ZN1LSPS"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-LR4ZN1LSPS")}</script><meta property="og:url" content="https://www.darknavy.org/zh/blog/chrome_x_ai_1024/"><meta property="og:site_name" content="DARKNAVY"><meta property="og:title" content="以子之矛陷子之盾 · 用AI对AI漏洞的利用探索"><meta property="og:description" content="2024年9月24日，OpenAI的CEO Sam Altman发表文章《The Intelligence Age》，大胆地宣告了AI时代的到来。
 给予文章强有力支撑的是ChatGPT-o1的发布，这是一次里程碑式的事件，在深度学习的加成下，大模型如虎添翼，表现强劲。
 身处时代浪潮之中，DARKNAVY也积极拥抱AI，探索AI和安全的关系。AI能否在发现和利用漏洞时，再现人类的方法论？AI会不会带来新的安全问题？
-
 楚人有鬻盾与矛者，誉之曰：“吾盾之坚，物莫能陷之。”以誉其矛曰：“吾矛之利，于物无不陷也。”或曰：“以子之矛陷子之盾，何如？”其人弗能应也。夫不可陷之盾与无不陷之矛，不可同世而立。
-
-吾盾之坚，物莫能陷
-AI时代下，各大厂商纷纷推出了全新的AI产品、大模型，而对现存的产品，在迭代更新中，不少也加入了AI powered功能。AI已逐渐在无形之中成为了产品安全的一部分。新的代码也意味着新的攻击面，对于AI类的功能，更为特殊。
+吾盾之坚，物莫能陷 AI时代下，各大厂商纷纷推出了全新的AI产品、大模型，而对现存的产品，在迭代更新中，不少也加入了AI powered功能。AI已逐渐在无形之中成为了产品安全的一部分。新的代码也意味着新的攻击面，对于AI类的功能，更为特殊。
 新增的代码仍受到传统攻击手法的威胁，从审计的角度来看，AI代码除了功能的不同，本质上还是代码中的一个子模块，内存溢出、越界等内存破坏漏洞皆有可能存在。而除了传统的代码攻击面外，还存在着特定于AI类别的攻击面，例如模型越狱、对抗样本攻击等等。
 带着这样的思考，DARKNAVY的研究员将目光瞄准了Chrome的新增功能——AI Manager模块上。此模块是Google于今年新推出的，主要用于帮助用户更快捷地写作。
-
 此模块的架构和传统的Chrome模块大同小异，模块的主服务AIManagerKeyedService继承自基类KeyedService。关于这个类的生命周期，在类的声明处有注释说明：
-// The browser-side implementation of `blink::mojom::AIManager`. There should
-// be one shared AIManagerKeyedService per BrowserContext.
-当renderer试图获取此接口时，会调用到此函数
-void AIManagerKeyedService::AddReceiver(
-    mojo::PendingReceiver<blink::mojom::AIManager> receiver,
-    AIContextBoundObjectSet::ReceiverContext context) {
-  receivers_.Add(this, std::move(receiver), context);
-}
-其中context的类型定义为：
-  using ReceiverContext =
-      std::variant<content::RenderFrameHost*, base::SupportsUserData*>;
-也就是说，AIManager服务中保存的context实际是来自frame的RenderFrameHost对象，而此服务的生命周期和frame的生命周期并无关系。熟悉浏览器沙箱的朋友读至此，应该已经意识到了问题。若攻击者在子frame中先绑定AIManager接口，将此接口传递出去，再销毁子frame，那么此时对应接口的RenderFrameHost已经被free，外部使用接口的功能将触发RenderFrameHost的UAF。
+// The browser-side implementation of `blink::mojom::AIManager`. There should // be one shared AIManagerKeyedService per BrowserContext. 当renderer试图获取此接口时，会调用到此函数
+void AIManagerKeyedService::AddReceiver( mojo::PendingReceiver<blink::mojom::AIManager> receiver, AIContextBoundObjectSet::ReceiverContext context) { receivers_.Add(this, std::move(receiver), context); } 其中context的类型定义为：
+using ReceiverContext = std::variant<content::RenderFrameHost*, base::SupportsUserData*>; 也就是说，AIManager服务中保存的context实际是来自frame的RenderFrameHost对象，而此服务的生命周期和frame的生命周期并无关系。熟悉浏览器沙箱的朋友读至此，应该已经意识到了问题。若攻击者在子frame中先绑定AIManager接口，将此接口传递出去，再销毁子frame，那么此时对应接口的RenderFrameHost已经被free，外部使用接口的功能将触发RenderFrameHost的UAF。
 值得一提的是，此漏洞还是难得的不被MiraclePtr所保护的UAF漏洞:
-MiraclePtr Status: NOT PROTECTED
-DARKNAVY发现此问题后，意识到漏洞危害极高，迅速报告并协助了Google进行修复。Google于10月15日发布新版本修复了此漏洞。
-
-吾矛之利，物无不陷
-发现漏洞后，思路自然地转向了研究此漏洞的可利用性。正如前文所述，AI能否在此研究过程中给予人类有力的援助？AI之于安全研究员，是一把趁手的武器，还是一堆废铜烂铁？
+MiraclePtr Status: NOT PROTECTED DARKNAVY发现此问题后，意识到漏洞危害极高，迅速报告并协助了Google进行修复。Google于10月15日发布新版本修复了此漏洞。
+吾矛之利，物无不陷 发现漏洞后，思路自然地转向了研究此漏洞的可利用性。正如前文所述，AI能否在此研究过程中给予人类有力的援助？AI之于安全研究员，是一把趁手的武器，还是一堆废铜烂铁？
 在今年GeekCon 2024新加坡站的舞台上，有多个有关此话题的安全研究亮相。
-来自清华的张超教授，展示了他们团队将大模型应用于二进制分析领域的成果，成功地应用于二进制代码相似性检测、patch补丁检测等场景；"><meta property="og:type" content="article"><meta property="og:url" content="https://www.darknavy.org/zh/blog/chrome_x_ai_1024/"><meta property="og:image" content="https://www.darknavy.org/images/white_logo.png"><meta property="article:section" content="blog"><meta property="article:published_time" content="2024-10-31T17:32:23+08:00"><meta property="article:modified_time" content="2024-10-31T17:32:23+08:00"><meta property="og:site_name" content="DARKNAVY"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://www.darknavy.org/images/white_logo.png"><meta name=twitter:title content="以子之矛陷子之盾 · 用AI对AI漏洞的利用探索"><meta name=twitter:description content="2024年9月24日，OpenAI的CEO Sam Altman发表文章《The Intelligence Age》，大胆地宣告了AI时代的到来。
+来自清华的张超教授，展示了他们团队将大模型应用于二进制分析领域的成果，成功地应用于二进制代码相似性检测、patch补丁检测等场景；"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2024-10-31T17:32:23+08:00"><meta property="article:modified_time" content="2024-10-31T17:32:23+08:00"><meta property="og:image" content="https://www.darknavy.org/images/white_logo.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://www.darknavy.org/images/white_logo.png"><meta name=twitter:title content="以子之矛陷子之盾 · 用AI对AI漏洞的利用探索"><meta name=twitter:description content="2024年9月24日，OpenAI的CEO Sam Altman发表文章《The Intelligence Age》，大胆地宣告了AI时代的到来。
 
 给予文章强有力支撑的是ChatGPT-o1的发布，这是一次里程碑式的事件，在深度学习的加成下，大模型如虎添翼，表现强劲。
 身处时代浪潮之中，DARKNAVY也积极拥抱AI，探索AI和安全的关系。AI能否在发现和利用漏洞时，再现人类的方法论？AI会不会带来新的安全问题？
