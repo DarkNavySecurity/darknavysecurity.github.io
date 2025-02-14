@@ -4,7 +4,7 @@ date = 2024-01-03T16:14:27+08:00
 draft = false
 +++
 
-# 前言
+## 前言
 
 2018年，随着ARMv8.5-A的发布，一个全新的芯片安全特性[MTE](https://developer.arm.com/-/media/Arm%20Developer%20Community/PDF/Arm_Memory_Tagging_Extension_Whitepaper.pdf)(Memory Tagging Extensions) 横空出世。时隔五年后的2023年，市场上第一款支持此特性的手机发布 —— [Google Pixel 8](https://blog.google/products/pixel/google-pixel-8-pro/)，宣告着MTE正式走入了消费者群体。虽然该特性在手机上还未默认启用，但开发者可以[自行开启体验](https://googleprojectzero.blogspot.com/2023/11/first-handset-with-mte-on-market.html)。
 
@@ -16,7 +16,7 @@ MTE作为一个强大的内存破坏防御手段，对于它的防御边界、�
 
 本文将以MTE的三个主要玩家：Chrome中的PartitionAlloc、Glibc中的Ptmalloc、Android中的Scudo为目标，对其中MTE相关的实现分别进行讨论，并对它们进行对比。我们在研究中发现了PartitionAlloc中实现的问题，并将此问题报告给了Google，得到了Chrome团队的确认。
 
-# MTE概述
+## MTE概述
 
 > 已了解MTE原理的读者可跳过此章节。
 
@@ -39,11 +39,11 @@ ldr  x0, [x1]
 
 可以看到指令集中提供了底层的支持，但各个指令的使用有很大的自由度，MTE具体如何使用，很大程度上仍然取决于软件开发者。
 
-# Allocator
+## Allocator
 
-## Chrome - PartitionAlloc
+### Chrome - PartitionAlloc
 
-### 分配
+#### 分配
 
 PartitionAlloc中的分配可以大致分为三种情况：
 
@@ -61,7 +61,7 @@ PartitionAlloc中的分配可以大致分为三种情况：
           TagMemoryRangeRandomly(next_slot, TagSizeForSlot(root, slot_size));
 ```
 
-### 释放
+#### 释放
 
 将堆块的tag加一。
 
@@ -73,7 +73,7 @@ PartitionAlloc中的分配可以大致分为三种情况：
       object = TaggedSlotStartToObject(retagged_slot_start);
 ```
 
-### (过去的) 潜在威胁
+#### (过去的) 潜在威胁
 
 我们注意到释放时对tag加一的操作是个确定性的行为，而分配时很有可能不会改动tag，这两点使得PartitionAlloc中的tag管理相当脆弱，给了攻击者可乘之机。
 
@@ -94,15 +94,15 @@ PartitionAlloc中的分配可以大致分为三种情况：
 
 更为详细的报告内容及示例PoC可于[Issue 1512538](https://bugs.chromium.org/p/chromium/issues/detail?id=1512538)查看。
 
-### 分析
+#### 分析
 
 PartitionAlloc中的MTE支持并未如同想象般强大，其对tag的管理相对较少，最大程度地兼顾了效率，具体细节性的对比见下一章节。
 
-## Glibc - Ptmalloc
+### Glibc - Ptmalloc
 
 Ptmalloc中的实现最为简单粗暴，其策略简单得用几句话即可概括。
 
-### 分配
+#### 分配
 
 对于所有的分配，在获取到分配地址后，随机生成一个不为0的tag来标记整个分配出的chunk (代码中的实际逻辑为生成与chunk头不一样的tag值，而在我们所分析的版本2.38中，libc所管理的内存如chunk头tag为固定值0。本文后续不再对此特殊说明)。
 
@@ -115,7 +115,7 @@ Ptmalloc中的实现最为简单粗暴，其策略简单得用几句话即可概
   victim = tag_new_usable (victim);
 ```
 
-### 释放
+#### 释放
 
 将堆块的tag置为0。
 
@@ -127,7 +127,7 @@ Ptmalloc中的实现最为简单粗暴，其策略简单得用几句话即可概
       _int_free (ar_ptr, p, 0);
 ```
 
-### 分析
+#### 分析
 
 对于这样的分配策略，大有一种一力降十会的感觉。在性能和安全的权衡之间Glibc选择了安全：无论是任何的分配大小、任何分配的来源 (tcache、fastbin、smallbin...)，都会被重新打上随机的tag。
 
@@ -137,17 +137,17 @@ libc中自己所管理的内存，如chunk头、被free的chunk、top chunk等�
 1. 每两个chunk (tag非0) 之间一定存在着chunk头或free chunk (tag 0) 作为隔阂，扮演了类似Guard Page的存在，可以有效缓解线性溢出。
 2. free后的chunk (tag 0) 和正在使用的chunk (tag非0) 拥有的tag一定不一样，可以有效缓解UAF。
 
-## Android - Scudo
+### Android - Scudo
 
 相较而言，Scudo中的实现最为复杂。
 
-### 分配
+#### 分配
 
 
 1. Scudo只会给Primary类型 (大小 < 0x10000) 的堆块打上tag，对于更大的Secondary类型，其通过内存映射的方式分配空间，目前暂不支持给这类空间分配tag。
 2. Scudo在重用被释放的堆块时，会直接保存并使用其在释放时打上的tag；否则将分配一个随机tag。
 
-### 释放
+#### 释放
 
 给堆块打上一个与之前不同的随机tag，防止UAF重用。
 
@@ -166,7 +166,7 @@ libc中自己所管理的内存，如chunk头、被free的chunk、top chunk等�
       }
 ```
 
-### 分析
+#### 分析
 
 在Scudo的实现中，存在一个独特的配置选项：UseOddEvenTags。当此选项激活时，Scudo在内存分配过程中会特别考虑每个堆块的tag的奇偶性。这意味着，它确保每个相邻的堆块的tag奇偶性是不同的。
 
@@ -191,7 +191,7 @@ libc中自己所管理的内存，如chunk头、被free的chunk、top chunk等�
 
 这一设计凸显出Scudo在实现时的一个关键思考：如何在尽可能减少性能影响的同时，对不同类型内存漏洞的缓解策略进行平衡。这表明了堆管理器在处理内存安全性时的偏好性和取舍。
 
-# 对比
+## 对比
 
 声明：此表格仅对比了各个堆分配器中MTE的实现，并**不能**代表堆分配器整体的安全性。
 
@@ -231,7 +231,7 @@ libc中自己所管理的内存，如chunk头、被free的chunk、top chunk等�
       *(volatile char *)mem;
   ```
 
-# 结论
+## 结论
 
 本文详细分析了三大堆分配器中MTE的落地实现，读者应对他们的安全性都有了直观的了解。MTE对于ARM平台上的内存安全无疑是一次大跨越，可以看出传统堆上的内存破坏问题在开启MTE后，几乎都得到了有效的缓解，有的甚至已再无利用的可能。然而内存安全经历了多年的发展，疑难杂症众多，仍有许多开放问题待解决：
 

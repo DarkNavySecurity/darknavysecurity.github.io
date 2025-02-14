@@ -4,7 +4,7 @@ date = 2024-01-03T16:19:13+08:00
 draft = false
 +++
 
-# Introduction
+## Introduction
 
 In 2018, with the release of ARMv8.5-A, a brand new chip security feature [MTE](https://developer.arm.com/-/media/Arm%20Developer%20Community/PDF/Arm_Memory_Tagging_Extension_Whitepaper.pdf) (Memory Tagging Extensions) emerged. Five years later, in 2023, the first smartphone to support this feature was released — [Google Pixel 8](https://blog.google/products/pixel/google-pixel-8-pro/) — marking the official entry of MTE into the consumer market. Although this feature is not yet enabled by default, developers can [turn it on](https://googleprojectzero.blogspot.com/2023/11/first-handset-with-mte-on-market.html) themselves for testing.
 
@@ -16,7 +16,7 @@ Ordinary developers usually do not directly use MTE-related assembly instruction
 
 This article will target the three main players of MTE: PartitionAlloc in Chrome, Ptmalloc in Glibc, and Scudo in Android, to discuss and compare their respective MTE implementations. In our research, we found issues with the implementation in PartitionAlloc and reported them to Google, which were confirmed by the Chrome team.
 
-# MTE Overview
+## MTE Overview
 
 > Readers who are already familiar with the principles of MTE may skip this section.
 
@@ -39,11 +39,11 @@ ldr  x0, [x1]
 
 The instruction set provides underlying support, but there is a great deal of freedom in the use of each instruction. How MTE is specifically utilized still largely depends on software developers.
 
-# Allocator
+## Allocator
 
-## Chrome - PartitionAlloc
+### Chrome - PartitionAlloc
 
-### Allocation
+#### Allocation
 
 Allocations in PartitionAlloc can be roughly divided into three cases:
 
@@ -60,7 +60,7 @@ Allocations in PartitionAlloc can be roughly divided into three cases:
           TagMemoryRangeRandomly(next_slot, TagSizeForSlot(root, slot_size));
 ```
 
-### Release
+#### Release
 
 Increment the tag of the slot to be freed.
 
@@ -72,7 +72,7 @@ Increment the tag of the slot to be freed.
       object = TaggedSlotStartToObject(retagged_slot_start);
 ```
 
-### (Past) Potential Risks
+#### (Past) Potential Risks
 
 We have noticed that the operation of incrementing the tag upon release is a deterministic behavior, and it‘s very likely that the tag will not be changed during allocation. These two points make the tag management in PartitionAlloc quite fragile, providing attackers with chances to abuse.
 
@@ -91,15 +91,15 @@ For example, in the browser process, using the [Blob](https://googleprojectzero.
 
 More detailed report and example PoC are available at [Issue 1512538](https://bugs.chromium.org/p/chromium/issues/detail?id=1512538).
 
-### Analysis
+#### Analysis
 
 The MTE support in PartitionAlloc is not as powerful as we imagined. It manages tags to a lesser extent, prioritizing efficiency to the greatest degree. Detailed comparisons are provided in the following section.
 
-## Glibc - Ptmalloc
+### Glibc - Ptmalloc
 
 The implementation in Ptmalloc is the most straightforward and rudimentary. Its strategy is so simple that it can be summarized in just a few sentences.
 
-### Allocation
+#### Allocation
 
 For all allocations, after obtaining the allocation address, a random non-zero tag is generated to mark the entire allocated chunk (the actual logic in the code is to generate a tag value that is different from the chunk header. In the version 2.38 we analyzed, the memory managed by libc such as chunk headers has a fixed tag value of 0. This particular point will not be further specified in the rest of this article).
 
@@ -112,7 +112,7 @@ For all allocations, after obtaining the allocation address, a random non-zero t
   victim = tag_new_usable (victim);
 ```
 
-### Release
+#### Release
 
 Set the tag of the chunk to 0.
 
@@ -124,7 +124,7 @@ Set the tag of the chunk to 0.
       _int_free (ar_ptr, p, 0);
 ```
 
-### Analysis
+#### Analysis
 
 For such an allocation strategy, there is a sense of overwhelming force with a single move. In the balance between performance and security, Glibc has chosen security: no matter the size of the allocation or the source of the allocation (tcache, fastbin, smallbin...), it will be re-tagged with a random tag.
 
@@ -133,16 +133,16 @@ The memory managed by libc itself, such as chunk headers, freed chunks, and the 
 1. There is definitely a chunk header or a free chunk (tag 0) acting as a barrier between every two chunks (tag non-zero), playing a role similar to a Guard Page, which can effectively mitigate linear overflows.
 2. The tag of a freed chunk (tag 0) is always different from that of a chunk in use (tag non-zero), which can effectively mitigate UAF vulnerabilities.
 
-## Android - Scudo
+### Android - Scudo
 
 In comparison, the implementation in Scudo is the most complex.
 
-### Allocation
+#### Allocation
 
 1. Scudo only tags chunks of the Primary type (size < 0x10000). For the larger Secondary type, it allocates space through memory mapping, and currently does not support tagging such spaces.
 2. When Scudo reuses a freed chunk, it directly retains and uses the tag assigned to it at the time of release. Otherwise, it will allocate a random tag.
 
-### Release
+#### Release
 
 Assign a random tag different from the previous one to the chunk to prevent UAF reusing it.
 
@@ -161,7 +161,7 @@ Assign a random tag different from the previous one to the chunk to prevent UAF 
       }
 ```
 
-### Analysis
+#### Analysis
 
 In Scudo's implementation, there is a unique configuration option: UseOddEvenTags. When this option is activated, Scudo takes into special consideration the parity of the tags for each chunk during the memory allocation process. This means that it ensures that the parities of the tags for adjacent heap chunks are different.
 
@@ -186,7 +186,7 @@ This configuration involves a trade-off between UAF detection and buffer overflo
 
 This design highlights a key consideration in Scudo's implementation: how to balance mitigation strategies for different types of memory vulnerabilities while minimizing performance impact. It demonstrates the preferences and trade-offs that a heap allocator makes when dealing with memory safety.
 
-# Comparison
+## Comparison
 
 Disclaimer: This table only compares the implementation of MTE in various heap allocators and **does not** represent the overall security of the heap allocators.
 
@@ -233,7 +233,7 @@ Disclaimer: This table only compares the implementation of MTE in various heap a
       *(volatile char *)mem;
   ```
 
-# Conclusions
+## Conclusions
 
 This article provides a detailed analysis of the implementation of MTE in the three major heap allocators, giving readers an intuitive understanding of their security. MTE is undoubtedly a significant leap forward for memory safety on the ARM platform. It is evident that with MTE enabled, traditional heap memory corruption issues are effectively mitigated, with some even becoming infeasible to exploit. However, memory safety has evolved over many years and is fraught with complex issues, with many open questions still to be resolved:
 
