@@ -2,9 +2,10 @@
 title = 'The Most "Golden" Bypass of 2024'
 date = 2025-02-09T17:13:30+08:00
 draft = false
+images = ["attachments/cover.png"]
 +++
 
- ![](attachments/2.png)
+ ![](attachments/cover.png)
 
 Since the early 2000s, attacks based on browser vulnerabilities have remained a mainstream, effective, and versatile attack method. The following is the second article from the "DARKNAVY INSIGHT | 2024 Annual Security Report".
 
@@ -16,8 +17,7 @@ According to the latest report from market research firm Statcounter, Chrome has
 
 Chrome is renowned for its exceptional security, with the Google security team continuously researching and implementing cutting-edge vulnerability mitigation mechanisms. One of the most well-known among them is MiraclePtr, designed to prevent attackers from exploiting Use-After-Free (UAF) vulnerabilities in the browser.
 
-The PartitionAlloc heap allocator in Chrome maintains a hidden refcount field when allocating and freeing objects. In simple terms, the MiraclePtr mitigation mechanism works as follows:
-If an object is freed while its refcount is not zero, this indicates the presence of a dangerous reference in the code, meaning the object is a potential UAF target. At this point, the heap manager isolates the dangerous object, preventing potential exploitation.
+The PartitionAlloc heap allocator in Chrome maintains a user-transparent refcount field when allocating and freeing objects. In simple terms, the MiraclePtr mitigation mechanism works as follows: If an object is freed while its refcount is not zero, this indicates the presence of a dangerous reference in the code, meaning the object is a potential UAF target. At this point, the heap allocator isolates the dangerous object, preventing potential exploitation.
 
 - June 2022: The new MiraclePtr security mechanism was officially enabled in the browser process on Windows and Android.
 - September 2022: The scope was expanded, enabling MiraclePtr in all processes except the renderer process.
@@ -28,7 +28,7 @@ What gives Chrome the confidence to "ignore" UAF vulnerabilities?
 
 To answer this, we must look at one particular MiraclePtr bypass in 2024.
 
-In May 2024, Chrome announced a high-reward vulnerability bounty that caught everyone's attention—a **$100,000 bounty** specifically for a MiraclePtr Bypass under Chrome VRP Rules.
+In May 2024, Chrome announced a high-reward vulnerability bounty that caught everyone's attention—a **$100,115 bounty** specifically for a MiraclePtr Bypass under Chrome VRP Rules.
 
  ![](attachments/582cdd8b-4ae0-4ec9-94a8-c1e8dcac68b3.png)
 

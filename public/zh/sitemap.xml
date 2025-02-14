@@ -2,21 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.darknavy.org/zh/darknavy_insight/the_most_golden_bypass_of_2024/</loc>
-    <lastmod>2025-02-09T17:13:30+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.darknavy.org/darknavy_insight/the_most_golden_bypass_of_2024/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://www.darknavy.org/zh/darknavy_insight/the_most_golden_bypass_of_2024/"
-                />
-  </url><url>
     <loc>https://www.darknavy.org/zh/</loc>
-    <lastmod>2025-02-09T17:13:30+08:00</lastmod>
+    <lastmod>2025-02-11T11:41:45+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -29,7 +16,7 @@
                 />
   </url><url>
     <loc>https://www.darknavy.org/zh/darknavy_insight/</loc>
-    <lastmod>2025-02-09T17:13:30+08:00</lastmod>
+    <lastmod>2025-02-11T11:41:45+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -39,6 +26,19 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://www.darknavy.org/zh/darknavy_insight/"
+                />
+  </url><url>
+    <loc>https://www.darknavy.org/zh/darknavy_insight/the_most_golden_bypass_of_2024/</loc>
+    <lastmod>2025-02-09T17:13:30+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.darknavy.org/darknavy_insight/the_most_golden_bypass_of_2024/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://www.darknavy.org/zh/darknavy_insight/the_most_golden_bypass_of_2024/"
                 />
   </url><url>
     <loc>https://www.darknavy.org/zh/darknavy_insight/the_most_groundbreaking_new_security_ecosystem_of_2024/</loc>
