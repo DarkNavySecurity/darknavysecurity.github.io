@@ -2,6 +2,7 @@
 title = 'The Most Groundbreaking New Security Ecosystem of 2024'
 date = 2025-02-08T17:10:13+08:00
 draft = false
+images = ["attachments/f349496e-e1f5-4d6b-b4a2-7c939b50aa80.png"]
 +++
 
 ![](attachments/f349496e-e1f5-4d6b-b4a2-7c939b50aa80.png)

@@ -2,6 +2,7 @@
 title = '2024年度最别开生面的新生态'
 date = 2025-02-08T17:10:13+08:00
 draft = false
+images = ["attachments/edfb09e4-2e2e-4c4f-bcd4-60f71fa4a553.png"]
 +++
 
 ![](attachments/edfb09e4-2e2e-4c4f-bcd4-60f71fa4a553.png)
