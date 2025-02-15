@@ -1,8 +1,8 @@
 +++
 title = '2024年度最具想象空间的新应用'
 date = 2025-02-10T11:25:50+08:00
-draft = true
-images = ["attachments/1ad18afd-362e-414f-a907-3b86a212e397.png"]
+draft = false
+images = ["attachments/1a724053-1a90-48e6-81c5-5d26174869b8.png"]
 +++
 
 ![](attachments/1ad18afd-362e-414f-a907-3b86a212e397.png)
