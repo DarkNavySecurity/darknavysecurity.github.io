@@ -37,7 +37,7 @@
 &lt;li&gt;软件安全研究基础设施方面，清华大学副教授张超团队使用机器指令语料库训练的机器语言大模型（MLM），不仅能够比传统反编译方案能够获得包含程序语义、更直观易懂的反编译代码，还能够进一步通过MLM辅助解决漏洞挖掘、软件相似性分析等软件安全领域问题。&lt;/li&gt;
 &lt;li&gt;…&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt=&#34;张超在GEEKCON 2024上发表演讲&#34; loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_imaginative_new_applications_of_2024/attachments/1e3b25d2-3f4f-4939-9201-82f133147496.png&#34;&gt;&lt;/p&gt;
+ &lt;img src=&#34;attachments/1e3b25d2-3f4f-4939-9201-82f133147496.png&#34; style=&#34;display: block; margin-left: auto; margin-right: auto; zoom: 60%;&#34;/&gt;
 &lt;p&gt;这些工具毫无疑问推动了安全研究中各阶段的效率，但在安全研究者们最期望解决的&lt;strong&gt;未知漏洞自动化挖掘与修复方面&lt;/strong&gt;，结合DARKNAVY的安全研究经验，当前的大模型仍面临诸多挑战。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;一方面，大模型的上下文窗口限制了其对程序的理解范围。ChatGPT-4o的上下文窗口为128k tokens，而现实世界的程序代码通常代码量较大、漏洞常常跨越多个文件，可能出现超长的上下文。尽管有支持上千万tokens上下文窗口的大模型出现，但处理超长上下文时，模型可能会分散注意力甚至遗忘部分内容，定位特定的代码片段犹如大海捞针。&lt;/li&gt;
@@ -52,32 +52,16 @@
 &lt;li&gt;&lt;strong&gt;Python工具&lt;/strong&gt;：Agent能够运行Python脚本对程序的中间状态进行精确的计算。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;如此一来，Naptime便能模仿人的研究方式，浏览代码仓库中感兴趣的代码，并根据函数调用关系进行分析，实现全自动化的漏洞挖掘流程。&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Naptime架构&#34; loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_imaginative_new_applications_of_2024/attachments/b9629094-fbd8-45b3-9fbf-704580415126.png&#34;&gt;&lt;/p&gt;
+ &lt;img src=&#34;attachments/b9629094-fbd8-45b3-9fbf-704580415126.png&#34; style=&#34;display: block; margin-left: auto; margin-right: auto; zoom: 60%;&#34;/&gt;
 &lt;p&gt;终于，在24年10月，Naptime的进化版Big Sleep在SQLite中发现了一个潜在可利用的0day漏洞。&lt;/p&gt;
 &lt;p&gt;Big Sleep在浏览代码时，对漏洞函数中的断言（assertion）产生了兴趣，如同人类研究员一般，开始分析触发该断言的可能性并推断触发条件。随后Big Sleep尝试将输入iCol设为-1，并利用调试器进行测试，成功触发断言导致crash。&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Big Sleep发现漏洞过程&#34; loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_imaginative_new_applications_of_2024/attachments/f518e7d3-8f09-49fc-8836-d8cccb3060af.png&#34;&gt;&lt;/p&gt;
+ &lt;img src=&#34;attachments/f518e7d3-8f09-49fc-8836-d8cccb3060af.png&#34; style=&#34;display: block; margin-left: auto; margin-right: auto; zoom: 60%;&#34;/&gt;
 &lt;p&gt;尽管这个漏洞在调试环境中会触发断言，但Google研究人员发现在release版本中，并不会包含该断言，从而导致该漏洞具备了可利用性。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Google使Agent按照人类的思考方式阅读代码、测试输入，成功利用大模型的代码理解能力实现自动化代码安全性分析，并避免了大模型幻觉导致的误报。&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&#34;aixcc&#34;&gt;AIxCC&lt;/h2&gt;
 &lt;p&gt;同样是SQLite3，早在2024年8月，AIxCC主办方报告了Team Atlanta发现的一个off-by-one导致空指针解引用漏洞。&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;SQLite3中空指针解引用漏洞报告&#34; loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_imaginative_new_applications_of_2024/attachments/002a0b60-7f96-4067-833b-7b6bbb181bd5.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;为什么 Team Atlanta 没有自己报告漏洞呢？&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;因为这个漏洞是由Team Atlanta的机器人Atlantis在于AIxCC半决赛隔离的环境当中自主发现的。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;AIxCC比赛要求参赛队伍提供的网络推理系统（CRS）能够自动化发现漏洞并修补漏洞，不同于2016年的CGC比赛，AIxCC要求CRS需要以大语言模型为基础，并针对多种编程语言的真实世界应用程序源代码进行漏洞挖掘、修补。&lt;/p&gt;
-&lt;p&gt;为了考察CRS的泛化能力，参赛队伍在比赛开始前并不知道具体的挑战赛题。且所有队伍只能与通用大模型交互、使用同样的计算资源及token上限。&lt;/p&gt;
-&lt;p&gt;AIxCC半决赛在3个基于C语言的项目（Linux Kernel、Nginx、SQLite3）和2个基于Java的项目（Tika、Jenkins）中人为设置了数十个不同类型的漏洞。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img alt=&#34;AIxCC半决赛解题状态&#34; loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_imaginative_new_applications_of_2024/attachments/a62520f2-b34b-4735-9d1f-9825f05bce62.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;由于比赛中涉及到如Linux Kernel等代码量较大的项目，而每个项目的token额度仅为100美元，参赛队伍同样需要考虑如何让大模型辅助发现真正关键的代码片段。&lt;/p&gt;
-&lt;p&gt;参赛队伍均将传统的静态和动态程序分析方法与大模型进行结合。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Theori 利用大模型生成模糊测试的测试用例、harness，帮助fuzzer提升覆盖率等方式协助挖掘漏洞。&lt;/li&gt;
-&lt;li&gt;Team Atlanta则通过LLM Agent来模拟安全研究人员的思维方式&lt;/li&gt;
-&lt;li&gt;其中包含了&amp;quot;baby-security-AGI&amp;quot;系统，将人类研究员在人工代码审计方面的经验及常见做法提炼成包含工作流程的结构化prompts，从而使 Atlantis 能够复制团队中安全专家的习惯来模拟代码审计过程。&lt;/li&gt;
-&lt;li&gt;同时将大模型作为静态分析工解决传统程序分析中的复杂问题（指针分析、过程间分析等），并使 Atlantis 能够使用模糊测试工具获得漏洞触发代码。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img alt=&#34;Team Atlanta的参赛系统Atlantis&#34; loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_imaginative_new_applications_of_2024/attachments/777bf589-e3c4-47c7-bef2-8e6d1fb01782.png&#34;&gt;&lt;/p&gt;</description>
+ &lt;img src=&#34;attachments/002a0b60-7f96-4067-833b-7b6bbb181bd5.png&#34; style=&#34;display: block; margin-left: auto; margin-right: auto; zoom: 50%;&#34;/&gt;
+&lt;p&gt;&lt;strong&gt;为什么 Team Atlanta 没有自己报告漏洞呢？&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>2024年最具含“金”量的绕过</title>
@@ -99,7 +83,7 @@
 &lt;/ul&gt;
 &lt;p&gt;是什么给了Chrome安全团队如此底气，直接无视这一类严重的内存破坏问题？&lt;/p&gt;
 &lt;p&gt;想回答这个问题，就不得不提到24年的一例MiraclePtr绕过。在24年的5月，Chrome发布的一则巨额漏洞奖金格外引人注目，其数额高达&lt;strong&gt;10万美元&lt;/strong&gt;，这正是Chrome VRP悬赏的MiraclePtr Bypass的赏金数字。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_golden_bypass_of_2024/attachments/582cdd8b-4ae0-4ec9-94a8-c1e8dcac68b3.png&#34;&gt;&lt;/p&gt;
+ &lt;img src=&#34;attachments/582cdd8b-4ae0-4ec9-94a8-c1e8dcac68b3.png&#34; style=&#34;display: block; margin-left: auto; margin-right: auto; zoom: 50%;&#34;/&gt;
 &lt;p&gt;待issue完全公开后，大家才终于明白绕过的细节。PartitionAlloc中在进行refcount加一的操作后，代码中会检测refcount是否溢出，若发生溢出则会触发进程的主动崩溃。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;CountType&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;old_count&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;count_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fetch_add&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;kPtrInc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;memory_order_relaxed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Check overflow.
@@ -114,9 +98,9 @@
 &lt;/ul&gt;
 &lt;p&gt;综合了以上种种限制，这就使得这个绕过技术几乎只存在与理论中，但Chrome团队仍慷慨地奖励了这一发现。&lt;/p&gt;
 &lt;p&gt;除此之外，DARKNAVY与24年11月也发现了MiraclePtr实现上的缺陷，报告给了Chrome团队并得到了确认。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_golden_bypass_of_2024/attachments/2bafe2a9-c149-4d72-a351-83fbd00453ad.png&#34;&gt;&lt;/p&gt;
+ &lt;img src=&#34;attachments/2bafe2a9-c149-4d72-a351-83fbd00453ad.png&#34; style=&#34;display: block; margin-left: auto; margin-right: auto; zoom: 60%;&#34;/&gt;
 &lt;p&gt;综合这一发现以及此前多个高质量漏洞报告，DARKNAVY位列Chrome VRP 2024年度top 20安全研究员/机构。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_golden_bypass_of_2024/attachments/0d2e3c6e-9649-482c-9c68-0041ad24cc11.png&#34;&gt;&lt;/p&gt;
+ &lt;img src=&#34;attachments/0d2e3c6e-9649-482c-9c68-0041ad24cc11.png&#34; style=&#34;display: block; margin-left: auto; margin-right: auto; zoom: 60%;&#34;/&gt;
 &lt;p&gt;了解这般背景后，不难看出，历史上仅有的绕过方式存在诸多限制，且MiraclePtr缓解机制稳定运转了两年多，时间已经检验了它的有效性，相信Google是在深思熟虑后决定的&amp;quot;无视&amp;quot;大部分UAF漏洞。&lt;/p&gt;
 &lt;p&gt;Google历经两年多的时间终于基本根除了一个心头大患，这对消费者来说是可喜可贺的。在Chrome的Q3季度总结中还提到了数个对Chrome内存安全的加固，如移除C语言库libpng的依赖，改为使用Rust实现的PNG、JSON等解码；再如将图形渲染模块ANGLE移植到渲染进程中以获得更强大的沙箱保护。这方方面面的努力，无不预示着未来的Chrome将更难以使用内存破坏漏洞突破。&lt;/p&gt;
 &lt;hr&gt;
@@ -124,12 +108,7 @@
 &lt;p&gt;从MiraclePtr的部署到绕过案例的出现，再到其机制的不断完善，Chrome展现的不仅是技术防御的进化，更是一种安全哲学：&lt;/p&gt;
 &lt;p&gt;通过奖励机制激励发现潜在问题，通过技术迭代增强整体体系，而非仅关注单点漏洞。&lt;/p&gt;
 &lt;p&gt;这种模式体现了Chrome团队对&amp;quot;攻防对抗&amp;quot;的深刻认知——安全从不是一劳永逸的结果，而是一场拉锯战。&lt;/p&gt;
-&lt;p&gt;随着安全研究和技术手段的同步发展，Chrome的安全或许无法做到&amp;quot;绝对防御&amp;quot;，但却可以通过这种系统化的策略，将威胁持续降低至可接受的范围，赢取用户的信任，让安全成为产品的核心竞争力。&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;[1] https://gs.statcounter.com/browser-market-share#monthly-202412-202412-bar
-[2] https://chromereleases.googleblog.com/2024/06/stable-channel-update-for-desktop.html
-[3] https://issues.chromium.org/issues/386306231&lt;/p&gt;</description>
+&lt;p&gt;随着安全研究和技术手段的同步发展，Chrome的安全或许无法做到&amp;quot;绝对防御&amp;quot;，但却可以通过这种系统化的策略，将威胁持续降低至可接受的范围，赢取用户的信任，让安全成为产品的核心竞争力。&lt;/p&gt;</description>
     </item>
     <item>
       <title>2024年度最别开生面的新生态</title>
@@ -145,7 +124,7 @@
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_groundbreaking_new_security_ecosystem_of_2024/attachments/edccbbb3-c319-41dc-a2d8-aa0b007d7397.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;华&lt;/strong&gt;为于2019年发布了HarmonyOS 1.0版本，直到持续维护的HarmonyOS 4.2，虽然在应用框架层面上实现了对Android和鸿蒙的双重兼容，即所谓的&amp;quot;双框架&amp;quot;，但因为其操作系统底座仍基于Android内核，这一情况引发了业界广泛的质疑。&lt;/p&gt;
 &lt;p&gt;自2024年HarmonyOS NEXT版本起，到现在发布的5.0版本，HarmonyOS应用框架层已更新为鸿蒙&amp;quot;单框架&amp;quot;，内核也已完全转向使用华为自研的HongMeng内核。正式告别了对Android应用框架、内核的依赖。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_groundbreaking_new_security_ecosystem_of_2024/attachments/9ba4c168-3d16-4975-a015-ca4d4c799f74.png&#34;&gt;&lt;/p&gt;
+ &lt;img src=&#34;attachments/9ba4c168-3d16-4975-a015-ca4d4c799f74.png&#34; style=&#34;display: block; margin-left: auto; margin-right: auto; zoom: 60%;&#34;/&gt;
 &lt;p&gt;早在6月2日，DARKNAVY就已经发布了在HarmonyOS NEXT Developer Preview2版本上完成的&lt;a href=&#34;https://mp.weixin.qq.com/s/QjXGDmnmvHyxWzoESsADLg&#34;&gt;全球第一个公开越狱视频&lt;/a&gt;，并在6月12号发布了该版本另一漏洞导致的&lt;a href=&#34;https://mp.weixin.qq.com/s/Uc21sBCfW3H3snxepNYQAw&#34;&gt;应用保活视频&lt;/a&gt;。依托获取的系统权限，我们对HarmonyOS NEXT从应用框架到内核都做了进一步的分析，研究发现无论是应用框架还是内核，HarmonyOS NEXT都与Android有着显著差异。下面我们从安全研究的角度出发，以&amp;quot;单框架&amp;quot;应用开发、权限管控、万物互联、内核架构以及系统调用几个维度为例将我们看到的真实的HarmonyOS NEXT操作系统揭示出来。&lt;/p&gt;
 &lt;h2 id=&#34;鸿蒙单框架&#34;&gt;鸿蒙&amp;quot;单框架&amp;quot;&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;鸿&lt;/strong&gt;蒙&amp;quot;单框架&amp;quot;意味着彻底与Android分手，系统不再支持APK安装包，也不再使用JAVA作为应用开发语言。&amp;ldquo;单框架&amp;quot;改用HAP安装包部署，应用开发语言采用eTS(extended TypeScript)。&lt;/p&gt;
@@ -154,7 +133,7 @@
 &lt;ul&gt;
 &lt;li&gt;&amp;ldquo;万物互联&amp;quot;的底层基石是分布式软总线(DSoftBus)，它实现了不同型号、种类的设备之间的互联互通，底层传输介质支持了WiFi、蓝牙等，协议层面覆盖了发现、鉴权、传输等不同阶段。从用户的角度，系统新增的服务如分布式文件系统、剪切板同步极大地便捷了使用。对于开发者来说，底层甚至支持远程调用其他设备的IPC，实现了分布式binder调用。在如此强大的功能下，此模块的安全性更显得尤为重要。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_groundbreaking_new_security_ecosystem_of_2024/attachments/1e9908a8-a059-4c00-9952-1e5b5f58ca1b.png&#34;&gt;&lt;/p&gt;
+ &lt;img src=&#34;attachments/1e9908a8-a059-4c00-9952-1e5b5f58ca1b.png&#34; style=&#34;display: block; margin-left: auto; margin-right: auto; zoom: 50%;&#34;/&gt;
 &lt;ul&gt;
 &lt;li&gt;新增的XPM(eXecutable Permission Manager)模块确保了强制代码保护机制，应用仅可加载含合法签名的代码。在应用安装之后，代码文件(.abc和.so)无法被随意修改，否则将会被拒绝执行。同时还存在代码完整性保护，阻止应用篡改可执行代码。&lt;/li&gt;
 &lt;li&gt;AccessToken机制实现了更细颗粒度的权限控制，它首先将token type分成Hap、Native、Shell等几个类别，分离了系统程序和APP的权限管理；一个应用的access token中包含了应用 ID、子用户 ID、应用分身索引、应用APL、授权状态等信息，有助于系统实现更为细致的鉴权。&lt;/li&gt;
@@ -173,26 +152,8 @@
 &lt;li&gt;而在微内核架构下，即使某一模块（如网络模块）被攻破，由于各模块间的隔离机制，攻击者无法轻易将攻击扩展至其他系统模块。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_groundbreaking_new_security_ecosystem_of_2024/attachments/e76e86f9-bc1d-4df1-af9a-97622fb2e856.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;系统组件的隔离势必带来性能开销。对于组件间频繁上下文切换所带来的开销，HongMeng内核通过将文件系统管理(fsmgr)、内存管理(memmgr)、进程管理(procmgr)等频繁调用的功能移入内核态，并将网络通信、驱动(devhost)等存在较大攻击面的功能隔离于用户态，以牺牲较少量的性能换取了更高的安全性。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_groundbreaking_new_security_ecosystem_of_2024/attachments/0a6bf9a5-820f-40ec-a695-20a401bfc7dc.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;为了兼容Linux的软件开发生态，HongMeng内核实现了对Linux系统调用和驱动的支持。具体而言，HongMeng内核通过映射Linux系统调用号至自身调用号，并将Linux系统调用的相关功能在新的微内核架构下进行重构，实现了内核对应用的无感兼容。此外，它还引入了一个运行在用户空间的驱动容器，用于加载和执行各种Linux驱动程序。&lt;/p&gt;
-&lt;p&gt;因此，原本在Linux上运行的软件无需进行大量针对HongMeng内核的适配工作即可顺利运行。这也解释了为什么Android APP能够借助容器虚拟化技术，在鸿蒙系统中运行。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_groundbreaking_new_security_ecosystem_of_2024/attachments/30a41ed5-3680-4a86-a3c9-ee43cc01111e.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;HongMeng内核中的系统调用主要分为两类：lsyscall和archsyscall。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;lsyscall&lt;/strong&gt;即上文所述的用于兼容Linux的系统调用。但由于微内核架构的特点，这些功能被拆分为多个组件。具体来说，lsyscall根据功能被划分为9种不同类型，针对不同类型的系统调用，核心内核通过类RPC机制分发至相应的功能组件执行。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;archsyscall&lt;/strong&gt;则是专门为支持微内核特性而设计的系统调用。它支撑了微内核中的关键功能，如IPC（进程间通信）、RPC（远程过程调用）等。此外，HongMeng内核在资源管控参考SEL4实现了基于capability的细粒度管控机制。例如，针对RPC机制的核心载体ACTV和ACTVPOOL等内核资源的访问，均需校验capability，进一步增加了攻击难度。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_groundbreaking_new_security_ecosystem_of_2024/attachments/b5d1a454-e653-4481-bc4e-8b7afddd94dd.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;经过对HongMeng内核的深入分析，我们发现其在架构设计上付出了诸多努力，相较于 Linux内核，其在牺牲了少量性能的情况下显著地提升了安全性。&lt;/p&gt;
-&lt;p&gt;然而令人遗憾的是，与Android开放的生态相比，HongMeng内核不仅始终保持闭源状态，自2024年下半年起，HarmonyOS NEXT固件中的HongMeng内核还进行了加密处理，无疑增加了安全研究人员的分析难度。值得关注的是，这种封闭策略使得&amp;quot;纯血鸿蒙&amp;quot;的生态建设面临阶梯式挑战：首要前提在于系统核心能力是否向第三方手机和设备厂商开放——只有当底层真正开源，才存在讨论的起点；而后续在现有Android生态格局已然稳固的背景下，其他厂商是否愿意投入资源适配这套全新系统，也构成了生态建设的潜在挑战。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;正如早期macOS被质疑是FreeBSD、Linux被质疑是UNIX一样，由于适配、借鉴等原因，初生的操作系统有其它操作系统的影子是必然的，但是可以看出，HarmonyOS NEXT与原生Android在发展方向存在较大的差异性，相信后续的呈现也会大相径庭。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;deepseek锐评&#34;&gt;DeepSeek锐评&lt;/h2&gt;
-&lt;p&gt;当鸿蒙用代码签名筑起高墙时，我们是否正见证着开放生态的黄昏？闭源内核与加密固件打造的&amp;quot;安全堡垒&amp;rdquo;，究竟是抵御攻击的盾牌，还是禁锢技术演进的牢笼？微内核架构用性能换取的安全承诺，在万物互联的洪流中是否经得起零日漏洞的暴雨冲刷？那些在容器里游荡的Android幽灵，是否暗示着生态割裂时代的双重人格？当分布式IPC打通设备疆界时，攻击面是否也在指数级扩张？号称&amp;quot;纯血&amp;quot;的鸿蒙，在兼容与创新的钢丝上，究竟走出了技术自主的康庄大道，还是陷入了生态孤立的死胡同？当每个权限都化作数字镣铐，我们究竟在守护用户隐私，还是在扼杀创新可能？这场操作系统的涅槃重生，最终会孕育出数字安全的方舟，还是沦为又一个封闭花园的标本？&lt;/p&gt;</description>
+ &lt;img src=&#34;attachments/e76e86f9-bc1d-4df1-af9a-97622fb2e856.png&#34; style=&#34;display: block; margin-left: auto; margin-right: auto; zoom: 70%;&#34;/&gt;
+&lt;p&gt;系统组件的隔离势必带来性能开销。对于组件间频繁上下文切换所带来的开销，HongMeng内核通过将文件系统管理(fsmgr)、内存管理(memmgr)、进程管理(procmgr)等频繁调用的功能移入内核态，并将网络通信、驱动(devhost)等存在较大攻击面的功能隔离于用户态，以牺牲较少量的性能换取了更高的安全性。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

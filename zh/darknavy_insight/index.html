@@ -19,13 +19,7 @@ Big Sleep在浏览代码时，对漏洞函数中的断言（assertion）产生�
 Google使Agent按照人类的思考方式阅读代码、测试输入，成功利用大模型的代码理解能力实现自动化代码安全性分析，并避免了大模型幻觉导致的误报。
 AIxCC 同样是SQLite3，早在2024年8月，AIxCC主办方报告了Team Atlanta发现的一个off-by-one导致空指针解引用漏洞。
 为什么 Team Atlanta 没有自己报告漏洞呢？
-因为这个漏洞是由Team Atlanta的机器人Atlantis在于AIxCC半决赛隔离的环境当中自主发现的。
-AIxCC比赛要求参赛队伍提供的网络推理系统（CRS）能够自动化发现漏洞并修补漏洞，不同于2016年的CGC比赛，AIxCC要求CRS需要以大语言模型为基础，并针对多种编程语言的真实世界应用程序源代码进行漏洞挖掘、修补。
-为了考察CRS的泛化能力，参赛队伍在比赛开始前并不知道具体的挑战赛题。且所有队伍只能与通用大模型交互、使用同样的计算资源及token上限。
-AIxCC半决赛在3个基于C语言的项目（Linux Kernel、Nginx、SQLite3）和2个基于Java的项目（Tika、Jenkins）中人为设置了数十个不同类型的漏洞。
-由于比赛中涉及到如Linux Kernel等代码量较大的项目，而每个项目的token额度仅为100美元，参赛队伍同样需要考虑如何让大模型辅助发现真正关键的代码片段。
-参赛队伍均将传统的静态和动态程序分析方法与大模型进行结合。
-Theori 利用大模型生成模糊测试的测试用例、harness，帮助fuzzer提升覆盖率等方式协助挖掘漏洞。 Team Atlanta则通过LLM Agent来模拟安全研究人员的思维方式 其中包含了"baby-security-AGI"系统，将人类研究员在人工代码审计方面的经验及常见做法提炼成包含工作流程的结构化prompts，从而使 Atlantis 能够复制团队中安全专家的习惯来模拟代码审计过程。 同时将大模型作为静态分析工解决传统程序分析中的复杂问题（指针分析、过程间分析等），并使 Atlantis 能够使用模糊测试工具获得漏洞触发代码。 ...</p></div><footer class=entry-footer><span title='2025-02-10 11:25:50 +0800 CST'>二月 10, 2025</span>&nbsp;·&nbsp;104 字&nbsp;·&nbsp;DARKNAVY</footer><a class=entry-link aria-label="post link to 2024年度最具想象空间的新应用" href=https://www.darknavy.org/zh/darknavy_insight/the_most_imaginative_new_applications_of_2024/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>2024年最具含“金”量的绕过</h2></header><div class=entry-content><p>基于浏览器漏洞的攻击，自2000年代初出现以来直至今日，一直是一种主流、有效且场景丰富的攻击手段。以下为本期《深蓝洞察 | 2024 年度安全报告》的第二篇。
+...</p></div><footer class=entry-footer><span title='2025-02-10 11:25:50 +0800 CST'>二月 10, 2025</span>&nbsp;·&nbsp;104 字&nbsp;·&nbsp;DARKNAVY</footer><a class=entry-link aria-label="post link to 2024年度最具想象空间的新应用" href=https://www.darknavy.org/zh/darknavy_insight/the_most_imaginative_new_applications_of_2024/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>2024年最具含“金”量的绕过</h2></header><div class=entry-content><p>基于浏览器漏洞的攻击，自2000年代初出现以来直至今日，一直是一种主流、有效且场景丰富的攻击手段。以下为本期《深蓝洞察 | 2024 年度安全报告》的第二篇。
 根据市场调查机构 Statcounter 公布的最新报告，Chrome浏览器无可争议地牢牢占据了市场占有率第一的宝座。
 Chrome以其卓越的安全性而著称，Google安全团队一直致力于研究应用最前沿的漏洞缓解机制。MiraclePtr就是其中最为知名的缓解机制之一，旨在防止浏览器中的UAF漏洞被攻击者利用。
 Chrome中的PartitionAlloc堆分配器在分配和释放对象时维护了一个用户无感知的refcount字段，简单概括MiraclePtr这一缓解机制就是：若对象在被释放时，对该对象的refcount并不是0，这意味着代码中存在危险的引用，这是一个潜在的UAF对象，此时堆管理器会将此危险的对象隔离，从而阻止了后续可能的漏洞利用。
@@ -44,8 +38,7 @@ Google历经两年多的时间终于基本根除了一个心头大患，这对�
 通过奖励机制激励发现潜在问题，通过技术迭代增强整体体系，而非仅关注单点漏洞。
 这种模式体现了Chrome团队对"攻防对抗"的深刻认知——安全从不是一劳永逸的结果，而是一场拉锯战。
 随着安全研究和技术手段的同步发展，Chrome的安全或许无法做到"绝对防御"，但却可以通过这种系统化的策略，将威胁持续降低至可接受的范围，赢取用户的信任，让安全成为产品的核心竞争力。
-References:
-[1] https://gs.statcounter.com/browser-market-share#monthly-202412-202412-bar [2] https://chromereleases.googleblog.com/2024/06/stable-channel-update-for-desktop.html [3] https://issues.chromium.org/issues/386306231</p></div><footer class=entry-footer><span title='2025-02-09 17:13:30 +0800 CST'>二月 9, 2025</span>&nbsp;·&nbsp;61 字&nbsp;·&nbsp;DARKNAVY</footer><a class=entry-link aria-label="post link to 2024年最具含“金”量的绕过" href=https://www.darknavy.org/zh/darknavy_insight/the_most_golden_bypass_of_2024/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>2024年度最别开生面的新生态</h2></header><div class=entry-content><p>在《深蓝洞察 | 2023 年度安全报告》中，我们曾提到：“当我们站在下一个十年的悬崖边时，2023年注定将成为一个具有深刻转折意义的年份。新防御机制的落地和新型攻击技术的崛起，将深刻改变数字安全的格局。”
+...</p></div><footer class=entry-footer><span title='2025-02-09 17:13:30 +0800 CST'>二月 9, 2025</span>&nbsp;·&nbsp;61 字&nbsp;·&nbsp;DARKNAVY</footer><a class=entry-link aria-label="post link to 2024年最具含“金”量的绕过" href=https://www.darknavy.org/zh/darknavy_insight/the_most_golden_bypass_of_2024/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>2024年度最别开生面的新生态</h2></header><div class=entry-content><p>在《深蓝洞察 | 2023 年度安全报告》中，我们曾提到：“当我们站在下一个十年的悬崖边时，2023年注定将成为一个具有深刻转折意义的年份。新防御机制的落地和新型攻击技术的崛起，将深刻改变数字安全的格局。”
 2024年，如一阵疾风而至，又如暴雨般迅速远去。我们在2023年中讨论的AI变革、移动操作系统的突破、供应链安全的挑战，已经在2024年继续上演，几乎无法让人有片刻喘息。
 不断涌现的颠覆性变化，与传统安全市场如同冰窖般的低迷态势形成鲜明对比。在AI时代，传统的内存安全研究是否仍具意义？新的攻击手段又将走向何方？在不断变化的数字世界中，用户隐私的保障又该如何应对？
 2024年的深蓝洞察，我们已经迎接未来的到来，诚邀您一同探讨与分享。
@@ -60,13 +53,6 @@ References:
 值得一提的是，鸿蒙"单框架"虽不支持APK安装包，但"出境易”、“卓易通"应用使得在该系统上运行Android APP变得可能。实际分析时由于内核及TEE的加密支持，反编译这些应用市场的安装包异常困难。DARKNAVY基于前期积累实现了应用解密，使用自研反编译器，发现这些应用通过调用鸿蒙系统的容器接口实现了Android的应用和框架层模拟。
 鸿蒙内核 鸿蒙内核（以下统称为HongMeng内核）基于微内核架构设计，将传统内核的各项功能拆分为一个精简的核心内核和多个独立的系统组件，并根据安全需求将部分或全部系统组件置于用户态运行，相较于Linux Kernel采用的宏内核架构，提供了更强的安全性。
 在宏内核架构中，所有模块紧密耦合在一起。例如，如果攻击者利用网络模块中的漏洞成功攻破网络模块，便可直接控制整个宏内核。 而在微内核架构下，即使某一模块（如网络模块）被攻破，由于各模块间的隔离机制，攻击者无法轻易将攻击扩展至其他系统模块。 系统组件的隔离势必带来性能开销。对于组件间频繁上下文切换所带来的开销，HongMeng内核通过将文件系统管理(fsmgr)、内存管理(memmgr)、进程管理(procmgr)等频繁调用的功能移入内核态，并将网络通信、驱动(devhost)等存在较大攻击面的功能隔离于用户态，以牺牲较少量的性能换取了更高的安全性。
-为了兼容Linux的软件开发生态，HongMeng内核实现了对Linux系统调用和驱动的支持。具体而言，HongMeng内核通过映射Linux系统调用号至自身调用号，并将Linux系统调用的相关功能在新的微内核架构下进行重构，实现了内核对应用的无感兼容。此外，它还引入了一个运行在用户空间的驱动容器，用于加载和执行各种Linux驱动程序。
-因此，原本在Linux上运行的软件无需进行大量针对HongMeng内核的适配工作即可顺利运行。这也解释了为什么Android APP能够借助容器虚拟化技术，在鸿蒙系统中运行。
-HongMeng内核中的系统调用主要分为两类：lsyscall和archsyscall。
-lsyscall即上文所述的用于兼容Linux的系统调用。但由于微内核架构的特点，这些功能被拆分为多个组件。具体来说，lsyscall根据功能被划分为9种不同类型，针对不同类型的系统调用，核心内核通过类RPC机制分发至相应的功能组件执行。 archsyscall则是专门为支持微内核特性而设计的系统调用。它支撑了微内核中的关键功能，如IPC（进程间通信）、RPC（远程过程调用）等。此外，HongMeng内核在资源管控参考SEL4实现了基于capability的细粒度管控机制。例如，针对RPC机制的核心载体ACTV和ACTVPOOL等内核资源的访问，均需校验capability，进一步增加了攻击难度。 经过对HongMeng内核的深入分析，我们发现其在架构设计上付出了诸多努力，相较于 Linux内核，其在牺牲了少量性能的情况下显著地提升了安全性。
-然而令人遗憾的是，与Android开放的生态相比，HongMeng内核不仅始终保持闭源状态，自2024年下半年起，HarmonyOS NEXT固件中的HongMeng内核还进行了加密处理，无疑增加了安全研究人员的分析难度。值得关注的是，这种封闭策略使得"纯血鸿蒙"的生态建设面临阶梯式挑战：首要前提在于系统核心能力是否向第三方手机和设备厂商开放——只有当底层真正开源，才存在讨论的起点；而后续在现有Android生态格局已然稳固的背景下，其他厂商是否愿意投入资源适配这套全新系统，也构成了生态建设的潜在挑战。
-正如早期macOS被质疑是FreeBSD、Linux被质疑是UNIX一样，由于适配、借鉴等原因，初生的操作系统有其它操作系统的影子是必然的，但是可以看出，HarmonyOS NEXT与原生Android在发展方向存在较大的差异性，相信后续的呈现也会大相径庭。
-DeepSeek锐评 当鸿蒙用代码签名筑起高墙时，我们是否正见证着开放生态的黄昏？闭源内核与加密固件打造的"安全堡垒”，究竟是抵御攻击的盾牌，还是禁锢技术演进的牢笼？微内核架构用性能换取的安全承诺，在万物互联的洪流中是否经得起零日漏洞的暴雨冲刷？那些在容器里游荡的Android幽灵，是否暗示着生态割裂时代的双重人格？当分布式IPC打通设备疆界时，攻击面是否也在指数级扩张？号称"纯血"的鸿蒙，在兼容与创新的钢丝上，究竟走出了技术自主的康庄大道，还是陷入了生态孤立的死胡同？当每个权限都化作数字镣铐，我们究竟在守护用户隐私，还是在扼杀创新可能？这场操作系统的涅槃重生，最终会孕育出数字安全的方舟，还是沦为又一个封闭花园的标本？
 ...</p></div><footer class=entry-footer><span title='2025-02-08 17:10:13 +0800 CST'>二月 8, 2025</span>&nbsp;·&nbsp;60 字&nbsp;·&nbsp;DARKNAVY</footer><a class=entry-link aria-label="post link to 2024年度最别开生面的新生态" href=https://www.darknavy.org/zh/darknavy_insight/the_most_groundbreaking_new_security_ecosystem_of_2024/></a></article></main><footer class=footer><span>&copy; 2025 <a href=https://www.darknavy.org/zh/>DARKNAVY</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
