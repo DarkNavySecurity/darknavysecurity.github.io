@@ -23,7 +23,7 @@ Huawei launched the first version of HarmonyOS, HarmonyOS 1.0, in 2019, and the 
 
 With the release of the 2024 HarmonyOS NEXT version, and the subsequent 5.0 version, HarmonyOS has shifted to a "single framework" at the application layer, with the core now entirely based on Huawei's proprietary HongMeng kernel. This marks the official end of its reliance on the Android application framework and kernel.
 
- ![](attachments/0960f8dc-291d-4b8d-87b3-b948dd792d49.png)
+ <img src="attachments/0960f8dc-291d-4b8d-87b3-b948dd792d49.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 
 As early as June 2, DARKNAVY released the world's first public jailbreak video based on HarmonyOS NEXT Developer Preview 2. On June 12, we published another video demonstrating an application persistence issue in the same version. Leveraging the system privileges, we conducted further analysis on HarmonyOS NEXT, examining the application framework and kernel in detail. We discovered that both the application framework and the kernel of HarmonyOS NEXT differ significantly from Android. In this report, we will reveal the true nature of HarmonyOS NEXT from a security research perspective, focusing on key aspects such as "single framework" application development, permission management, the Internet of Everything (IoE), kernel architecture, and syscalls.
@@ -38,7 +38,7 @@ In addition to these optimizations, HarmonyOS "single framework" introduces seve
 
 * The underlying foundation of the "Internet of Everything" is the Distributed Soft Bus (DSoftBus), which enables seamless communication between various device models and types. The underlying transmission media supports Wi-Fi, Bluetooth, and other protocols, and the protocol layer covers various stages, including discovery, authentication, and transmission. From the user perspective, new services like distributed file systems and clipboard synchronization significantly enhance user convenience. For developers, the system even supports remote IPC calls to other devices, facilitating distributed binder calls. Given the power of these features, the security of this module is of paramount importance.
 
- ![](attachments/4b1125d7-3a6a-47e8-8a81-ea4829b9fb45.png)
+ <img src="attachments/4b1125d7-3a6a-47e8-8a81-ea4829b9fb45.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 50%;"/>
 
 * The newly introduced XPM (eXecutable Permission Manager) module enforces a robust code protection mechanism, ensuring that applications can only load code that is signed with a valid certificate. Once an application is installed, its code files (.abc and .so) cannot be modified arbitrarily; any modification will result in the code being rejected. Additionally, integrity protection prevents tampering with executable code.
 * The AccessToken mechanism enables finer-grained permission control by categorizing token types into Hap, Native, Shell, and others, thereby separating the management of system program and app permissions. An application's access token contains crucial information such as the app ID, sub-user ID, app clone index, app APL, and authorization status, enabling the system to implement more granular authentication.
@@ -59,24 +59,24 @@ HarmonyOS NEXT kernel (referred to as the HongMeng kernel hereafter) is designed
 > * In a monolithic kernel, all modules are tightly coupled. For example, if an attacker exploits a vulnerability in the network module, they can gain control over the entire kernel.
 > * In contrast, with a microkernel architecture, even if a module (such as the network module) is compromised, the attacker cannot easily escalate the attack to other system modules due to the isolation between components.
 
- ![](attachments/2765805d-2468-4685-9cc0-cee018bedbc6.png)
+ <img src="attachments/2765805d-2468-4685-9cc0-cee018bedbc6.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 70%;"/>
 
 This isolation between system components inevitably results in performance overhead. To minimize the cost of frequent context switches between components, the HongMeng kernel moves frequently accessed functionalities, such as file system management (fsmgr), memory management (memmgr), and process management (procmgr), into kernel mode, while isolating high-risk functionalities, such as network communication and device drivers (devhost), into user mode, thereby sacrificing a small amount of performance for improved security.
 
- ![](attachments/4b279a70-3d7f-41a0-97a4-cd4041166297.png)
+ <img src="attachments/4b279a70-3d7f-41a0-97a4-cd4041166297.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 70%;"/>
 
 To maintain compatibility with the Linux software development ecosystem, the HongMeng kernel supports Linux syscalls and drivers. Specifically, it maps Linux system call numbers to its own and reconstructs the corresponding functionality within the new microkernel architecture, ensuring seamless compatibility between the kernel and applications. Additionally, a user-space driver container is introduced to load and execute various Linux drivers, enabling Linux-based software to run smoothly without extensive adaptation for the HongMeng kernel.
 
 This also explains how Android apps can run on HarmonyOS NEXT using container virtualization technology.
 
- ![](attachments/3e361f53-c33a-4a85-8f35-935fcd08eb7d.png)
+ <img src="attachments/3e361f53-c33a-4a85-8f35-935fcd08eb7d.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 syscalls in the HongMeng kernel are categorized into two types: lsyscall and archsyscall.
 
 > * lsyscall refers to the Linux-compatible syscalls, but due to the microkernel architecture, these functionalities are divided into multiple components. Specifically, lsyscall is subdivided into nine different types, and depending on the type of system call, the core kernel dispatches the request via a class RPC mechanism to the appropriate functional component.
 > * archsyscall, on the other hand, is specifically designed to support the microkernel's features, enabling critical functionalities such as IPC (inter-process communication) and RPC (remote procedure calls). Moreover, the HongMeng kernel implements a fine-grained capability-based control mechanism for resource management, similar to SEL4. For example, access to core kernel resources, such as ACTV and ACTVPOOL for the RPC mechanism, requires a capability check, thus adding another layer of security against potential attacks.
 
- ![](attachments/b9c9d52c-29df-46ff-883c-28036a3ba085.png)
+ <img src="attachments/b9c9d52c-29df-46ff-883c-28036a3ba085.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 70%;"/>
 
 Our in-depth analysis of the HongMeng kernel reveals that significant efforts have been made in its architectural design. Compared to the Linux kernel, it achieves a notable enhancement in security, albeit with a slight performance trade-off.
 
