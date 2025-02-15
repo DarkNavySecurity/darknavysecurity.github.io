@@ -35,7 +35,7 @@ images = ["attachments/1a724053-1a90-48e6-81c5-5d26174869b8.png"]
 * 软件安全研究基础设施方面，清华大学副教授张超团队使用机器指令语料库训练的机器语言大模型（MLM），不仅能够比传统反编译方案能够获得包含程序语义、更直观易懂的反编译代码，还能够进一步通过MLM辅助解决漏洞挖掘、软件相似性分析等软件安全领域问题。
 * …
 
- ![张超在GEEKCON 2024上发表演讲](attachments/1e3b25d2-3f4f-4939-9201-82f133147496.png)
+ <img src="attachments/1e3b25d2-3f4f-4939-9201-82f133147496.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 这些工具毫无疑问推动了安全研究中各阶段的效率，但在安全研究者们最期望解决的**未知漏洞自动化挖掘与修复方面**，结合DARKNAVY的安全研究经验，当前的大模型仍面临诸多挑战。
 
@@ -54,13 +54,13 @@ Google的"Naptime"项目通过AI Agent（智能体）的方式，为其提供了
 
 如此一来，Naptime便能模仿人的研究方式，浏览代码仓库中感兴趣的代码，并根据函数调用关系进行分析，实现全自动化的漏洞挖掘流程。
 
- ![Naptime架构](attachments/b9629094-fbd8-45b3-9fbf-704580415126.png)
+ <img src="attachments/b9629094-fbd8-45b3-9fbf-704580415126.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 终于，在24年10月，Naptime的进化版Big Sleep在SQLite中发现了一个潜在可利用的0day漏洞。
 
 Big Sleep在浏览代码时，对漏洞函数中的断言（assertion）产生了兴趣，如同人类研究员一般，开始分析触发该断言的可能性并推断触发条件。随后Big Sleep尝试将输入iCol设为-1，并利用调试器进行测试，成功触发断言导致crash。
 
- ![Big Sleep发现漏洞过程](attachments/f518e7d3-8f09-49fc-8836-d8cccb3060af.png)
+ <img src="attachments/f518e7d3-8f09-49fc-8836-d8cccb3060af.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 尽管这个漏洞在调试环境中会触发断言，但Google研究人员发现在release版本中，并不会包含该断言，从而导致该漏洞具备了可利用性。
 
@@ -72,7 +72,7 @@ Big Sleep在浏览代码时，对漏洞函数中的断言（assertion）产生�
 
 同样是SQLite3，早在2024年8月，AIxCC主办方报告了Team Atlanta发现的一个off-by-one导致空指针解引用漏洞。
 
- ![SQLite3中空指针解引用漏洞报告](attachments/002a0b60-7f96-4067-833b-7b6bbb181bd5.png)
+ <img src="attachments/002a0b60-7f96-4067-833b-7b6bbb181bd5.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 50%;"/>
 
 **为什么 Team Atlanta 没有自己报告漏洞呢？**
 
@@ -84,7 +84,7 @@ Big Sleep在浏览代码时，对漏洞函数中的断言（assertion）产生�
 >
 > AIxCC半决赛在3个基于C语言的项目（Linux Kernel、Nginx、SQLite3）和2个基于Java的项目（Tika、Jenkins）中人为设置了数十个不同类型的漏洞。
 
- ![AIxCC半决赛解题状态](attachments/a62520f2-b34b-4735-9d1f-9825f05bce62.png)
+ <img src="attachments/a62520f2-b34b-4735-9d1f-9825f05bce62.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 由于比赛中涉及到如Linux Kernel等代码量较大的项目，而每个项目的token额度仅为100美元，参赛队伍同样需要考虑如何让大模型辅助发现真正关键的代码片段。
 
@@ -95,14 +95,14 @@ Big Sleep在浏览代码时，对漏洞函数中的断言（assertion）产生�
 * 其中包含了"baby-security-AGI"系统，将人类研究员在人工代码审计方面的经验及常见做法提炼成包含工作流程的结构化prompts，从而使 Atlantis 能够复制团队中安全专家的习惯来模拟代码审计过程。
 * 同时将大模型作为静态分析工解决传统程序分析中的复杂问题（指针分析、过程间分析等），并使 Atlantis 能够使用模糊测试工具获得漏洞触发代码。
 
- ![Team Atlanta的参赛系统Atlantis](attachments/777bf589-e3c4-47c7-bef2-8e6d1fb01782.png)
+ <img src="attachments/777bf589-e3c4-47c7-bef2-8e6d1fb01782.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 
 AI Agent在自动化漏洞挖掘方面已展现出模仿人类研究员未知漏洞挖掘能力，这在Team Atlanta和Google的Naptime项目中得到了验证，无疑彰显了AI Agent的巨大潜力。
 
 正如Sam Altman所言，作为通向AGI的潜在路径AI Agent技术，在25年其生产力将会被进一步释放。
 
- ![Sam Altman 于1月6日的 blog](attachments/sa.png)
+ <img src="attachments/sa.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 同样，在安全研究的各个细分领域中，利用大模型改进现有分析方法展现出了广阔的前景：
 

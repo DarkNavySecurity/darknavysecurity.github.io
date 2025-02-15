@@ -35,7 +35,7 @@ We also saw the emergence of a series of LLM-based tools:
 * In software security research infrastructure, Tsinghua University Associate Professor Chao Zhang's team used a machine language model (MLM) trained with a machine instruction corpus, not only obtaining more intuitive and understandable decompiled code with program semantics compared to traditional decompiling solutions but also further assisting in solving issues like vulnerability mining and software similarity analysis.
 * …
 
- ![Chao Zhang present MLM at GEEKCON 2024](attachments/75375846-6165-4b8e-82f6-402c895bef48.png)
+ <img src="attachments/75375846-6165-4b8e-82f6-402c895bef48.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 These tools have undoubtedly boosted the efficiency of various stages in security research. However, when it comes to **automating the discovery and patching of unknown vulnerabilities**—the most desired goal for security researchers—based on DARKNAVY's security research experience, current LLMs still face many challenges.
 
@@ -54,14 +54,14 @@ Google's "Naptime" project, through AI agents, provides a series of tools common
 
 Thus, Naptime can mimic human research methods, browsing code repositories for the code of interest, analyzing them based on function call relationships, and implementing a fully automated vulnerability discovery process.
 
- ![Naptime Architecture](attachments/4b4d2a42-36ea-4836-8a9b-b54be693ad76.png)
+ <img src="attachments/4b4d2a42-36ea-4836-8a9b-b54be693ad76.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 
 In October 2024, the evolved version of Naptime, Big Sleep, discovered a potential 0-day vulnerability in SQLite.
 
 During code browsing, Big Sleep became interested in an assertion in the vulnerability function, just like a human researcher, and began analyzing the possibility of triggering the assertion and inferring the trigger conditions. Big Sleep then set the input `iCol` to -1 and used the debugger to test, successfully triggering the assertion that caused a crash.
 
- ![Big Sleep Vulnerability Discovery Process](attachments/b54b40b6-01ed-433b-b6c4-566a847eb13d.png)
+ <img src="attachments/b54b40b6-01ed-433b-b6c4-566a847eb13d.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 
 Although this vulnerability triggered an assertion in the debugging environment, Google researchers found that the release version did not contain this assertion, making the vulnerability exploitable.
@@ -73,7 +73,7 @@ Although this vulnerability triggered an assertion in the debugging environment,
 
 In SQLite3, as early as August 2024, the AIxCC organizers reported a vulnerability found by Team Atlanta, an off-by-one error causing null pointer dereferencing.
 
- ![SQLite3 null pointer dereference report](attachments/c6db1e97-815d-4240-923a-8c01f07862a4.png)
+ <img src="attachments/c6db1e97-815d-4240-923a-8c01f07862a4.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 50%;"/>
 
 
 **Why didn't Team Atlanta report the vulnerability themselves?**
@@ -86,7 +86,7 @@ Because the vulnerability was discovered by Team Atlanta's robot Atlantis in the
 >
 > The AIxCC semifinals involved several large C-based projects (Linux Kernel, Nginx, SQLite3) and Java-based projects (Tika, Jenkins), with dozens of different types of vulnerabilities manually inserted into the code.
 
- ![AIXCC Semifinal Competition](attachments/c759760d-d828-4611-9cd4-14865757d39c.png)
+ <img src="attachments/c759760d-d828-4611-9cd4-14865757d39c.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 
 Given the large codebases like the Linux Kernel, each project's token limit was only $100, and teams needed to think about how to use LLMs to identify key code segments.
@@ -98,13 +98,13 @@ Teams combined traditional static and dynamic program analysis methods with LLMs
   * Incorporating the "baby-security-AGI" system to distill human researchers' experiences and practices into structured prompts, allowing Atlantis to replicate security experts' habits in the code audit process.
   * LLMs were also used as static analysis tools to solve complex problems in traditional program analysis (e.g., pointer analysis, interprocedural analysis) and enable Atlantis to use fuzz testing tools to find triggering code.
 
- ![Cyber Reasoning Systems (CRS) of Team Atlanta: Atlantis](attachments/668a551e-40a5-4f1d-bc4b-fafb58a4b281.png)
+ <img src="attachments/668a551e-40a5-4f1d-bc4b-fafb58a4b281.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 The use of AI agents in automated vulnerability discovery has demonstrated the ability to mimic human researchers' process of finding unknown vulnerabilities, as seen in Team Atlanta and Google's Naptime project, highlighting the immense potential of AI agents.
 
 As Sam Altman mentioned, AI agent technology, seen as a potential path to AGI, will have its productivity further unleashed by 2025.
 
- ![Sam Altman's blog on January 6th](attachments/8a61207e-255a-456e-a21f-91ef44a2e815.png)
+ <img src="attachments/8a61207e-255a-456e-a21f-91ef44a2e815.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 In subfields of cybersecurity, integrating LLMs with existing methods shows broad promise:
 

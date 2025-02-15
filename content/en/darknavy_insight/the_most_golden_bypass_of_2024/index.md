@@ -30,7 +30,7 @@ To answer this, we must look at one particular MiraclePtr bypass in 2024.
 
 In May 2024, Chrome announced a high-reward vulnerability bounty that caught everyone's attention—a **$100,115 bounty** specifically for a MiraclePtr Bypass under Chrome VRP Rules.
 
- ![](attachments/582cdd8b-4ae0-4ec9-94a8-c1e8dcac68b3.png)
+ <img src="attachments/582cdd8b-4ae0-4ec9-94a8-c1e8dcac68b3.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 50%;"/>
 
 Once the issue was fully disclosed, researchers finally understood the bypass details.
 
@@ -57,11 +57,11 @@ Given these strict conditions, this bypass technique was almost theoretical, yet
 
 In November 2024, DARKNAVY also discovered an implementation flaw in MiraclePtr, reported it to the Chrome team, and received confirmation.
 
- ![](attachments/2bafe2a9-c149-4d72-a351-83fbd00453ad.png)
+ <img src="attachments/2bafe2a9-c149-4d72-a351-83fbd00453ad.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 Thanks to this discovery, along with several other high-quality vulnerability reports, DARKNAVY ranked among Chrome VRP's Top 20 Security Researchers/Organizations of 2024.
 
- ![](attachments/0d2e3c6e-9649-482c-9c68-0041ad24cc11.png)
+ <img src="attachments/0d2e3c6e-9649-482c-9c68-0041ad24cc11.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 With this background in mind, it's clear that the only existing MiraclePtr bypass methods are highly constrained, and the mitigation has been running successfully for over two years. Google's decision to no longer treat protected UAF vulnerabilities as security issues was likely made after careful consideration.
 
@@ -89,7 +89,7 @@ As security research and defense techniques evolve together, Chrome may never ac
 
 ---
 
-***References:***
+**References:**
 
 \[1\] https://gs.statcounter.com/browser-market-share#monthly-202412-202412-bar
 \[2\] https://chromereleases.googleblog.com/2024/06/stable-channel-update-for-desktop.html

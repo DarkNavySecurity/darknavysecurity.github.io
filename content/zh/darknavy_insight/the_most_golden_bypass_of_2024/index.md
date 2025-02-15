@@ -28,7 +28,7 @@ Chrome中的PartitionAlloc堆分配器在分配和释放对象时维护了一个
 
 想回答这个问题，就不得不提到24年的一例MiraclePtr绕过。在24年的5月，Chrome发布的一则巨额漏洞奖金格外引人注目，其数额高达**10万美元**，这正是Chrome VRP悬赏的MiraclePtr Bypass的赏金数字。
 
- ![](attachments/582cdd8b-4ae0-4ec9-94a8-c1e8dcac68b3.png)
+ <img src="attachments/582cdd8b-4ae0-4ec9-94a8-c1e8dcac68b3.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 50%;"/>
 
 待issue完全公开后，大家才终于明白绕过的细节。PartitionAlloc中在进行refcount加一的操作后，代码中会检测refcount是否溢出，若发生溢出则会触发进程的主动崩溃。
 
@@ -51,11 +51,11 @@ PA_CHECK((old_count & kPtrCountMask) != kPtrCountMask);
 
 除此之外，DARKNAVY与24年11月也发现了MiraclePtr实现上的缺陷，报告给了Chrome团队并得到了确认。
 
- ![](attachments/2bafe2a9-c149-4d72-a351-83fbd00453ad.png)
+ <img src="attachments/2bafe2a9-c149-4d72-a351-83fbd00453ad.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 综合这一发现以及此前多个高质量漏洞报告，DARKNAVY位列Chrome VRP 2024年度top 20安全研究员/机构。
 
- ![](attachments/0d2e3c6e-9649-482c-9c68-0041ad24cc11.png)
+ <img src="attachments/0d2e3c6e-9649-482c-9c68-0041ad24cc11.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 了解这般背景后，不难看出，历史上仅有的绕过方式存在诸多限制，且MiraclePtr缓解机制稳定运转了两年多，时间已经检验了它的有效性，相信Google是在深思熟虑后决定的"无视"大部分UAF漏洞。
 

@@ -23,7 +23,7 @@ images = ["attachments/edfb09e4-2e2e-4c4f-bcd4-60f71fa4a553.png"]
 
 自2024年HarmonyOS NEXT版本起，到现在发布的5.0版本，HarmonyOS应用框架层已更新为鸿蒙"单框架"，内核也已完全转向使用华为自研的HongMeng内核。正式告别了对Android应用框架、内核的依赖。
 
- ![](attachments/9ba4c168-3d16-4975-a015-ca4d4c799f74.png)
+ <img src="attachments/9ba4c168-3d16-4975-a015-ca4d4c799f74.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 
 早在6月2日，DARKNAVY就已经发布了在HarmonyOS NEXT Developer Preview2版本上完成的[全球第一个公开越狱视频](https://mp.weixin.qq.com/s/QjXGDmnmvHyxWzoESsADLg)，并在6月12号发布了该版本另一漏洞导致的[应用保活视频](https://mp.weixin.qq.com/s/Uc21sBCfW3H3snxepNYQAw)。依托获取的系统权限，我们对HarmonyOS NEXT从应用框架到内核都做了进一步的分析，研究发现无论是应用框架还是内核，HarmonyOS NEXT都与Android有着显著差异。下面我们从安全研究的角度出发，以"单框架"应用开发、权限管控、万物互联、内核架构以及系统调用几个维度为例将我们看到的真实的HarmonyOS NEXT操作系统揭示出来。
@@ -39,7 +39,7 @@ images = ["attachments/edfb09e4-2e2e-4c4f-bcd4-60f71fa4a553.png"]
 
 * "万物互联"的底层基石是分布式软总线(DSoftBus)，它实现了不同型号、种类的设备之间的互联互通，底层传输介质支持了WiFi、蓝牙等，协议层面覆盖了发现、鉴权、传输等不同阶段。从用户的角度，系统新增的服务如分布式文件系统、剪切板同步极大地便捷了使用。对于开发者来说，底层甚至支持远程调用其他设备的IPC，实现了分布式binder调用。在如此强大的功能下，此模块的安全性更显得尤为重要。
 
- ![](attachments/1e9908a8-a059-4c00-9952-1e5b5f58ca1b.png)
+ <img src="attachments/1e9908a8-a059-4c00-9952-1e5b5f58ca1b.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 50%;"/>
 
 * 新增的XPM(eXecutable Permission Manager)模块确保了强制代码保护机制，应用仅可加载含合法签名的代码。在应用安装之后，代码文件(.abc和.so)无法被随意修改，否则将会被拒绝执行。同时还存在代码完整性保护，阻止应用篡改可执行代码。
 * AccessToken机制实现了更细颗粒度的权限控制，它首先将token type分成Hap、Native、Shell等几个类别，分离了系统程序和APP的权限管理；一个应用的access token中包含了应用 ID、子用户 ID、应用分身索引、应用APL、授权状态等信息，有助于系统实现更为细致的鉴权。
@@ -60,18 +60,18 @@ images = ["attachments/edfb09e4-2e2e-4c4f-bcd4-60f71fa4a553.png"]
 > * 在宏内核架构中，所有模块紧密耦合在一起。例如，如果攻击者利用网络模块中的漏洞成功攻破网络模块，便可直接控制整个宏内核。
 > * 而在微内核架构下，即使某一模块（如网络模块）被攻破，由于各模块间的隔离机制，攻击者无法轻易将攻击扩展至其他系统模块。
 
- ![](attachments/e76e86f9-bc1d-4df1-af9a-97622fb2e856.png)
+ <img src="attachments/e76e86f9-bc1d-4df1-af9a-97622fb2e856.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 70%;"/>
 
 系统组件的隔离势必带来性能开销。对于组件间频繁上下文切换所带来的开销，HongMeng内核通过将文件系统管理(fsmgr)、内存管理(memmgr)、进程管理(procmgr)等频繁调用的功能移入内核态，并将网络通信、驱动(devhost)等存在较大攻击面的功能隔离于用户态，以牺牲较少量的性能换取了更高的安全性。
 
- ![](attachments/0a6bf9a5-820f-40ec-a695-20a401bfc7dc.png)
+ <img src="attachments/0a6bf9a5-820f-40ec-a695-20a401bfc7dc.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 70%;"/>
 
 
 为了兼容Linux的软件开发生态，HongMeng内核实现了对Linux系统调用和驱动的支持。具体而言，HongMeng内核通过映射Linux系统调用号至自身调用号，并将Linux系统调用的相关功能在新的微内核架构下进行重构，实现了内核对应用的无感兼容。此外，它还引入了一个运行在用户空间的驱动容器，用于加载和执行各种Linux驱动程序。
 
 因此，原本在Linux上运行的软件无需进行大量针对HongMeng内核的适配工作即可顺利运行。这也解释了为什么Android APP能够借助容器虚拟化技术，在鸿蒙系统中运行。
 
- ![](attachments/30a41ed5-3680-4a86-a3c9-ee43cc01111e.png)
+ <img src="attachments/30a41ed5-3680-4a86-a3c9-ee43cc01111e.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 60%;"/>
 
 
 HongMeng内核中的系统调用主要分为两类：lsyscall和archsyscall。
@@ -79,7 +79,7 @@ HongMeng内核中的系统调用主要分为两类：lsyscall和archsyscall。
 * **lsyscall**即上文所述的用于兼容Linux的系统调用。但由于微内核架构的特点，这些功能被拆分为多个组件。具体来说，lsyscall根据功能被划分为9种不同类型，针对不同类型的系统调用，核心内核通过类RPC机制分发至相应的功能组件执行。
 * **archsyscall**则是专门为支持微内核特性而设计的系统调用。它支撑了微内核中的关键功能，如IPC（进程间通信）、RPC（远程过程调用）等。此外，HongMeng内核在资源管控参考SEL4实现了基于capability的细粒度管控机制。例如，针对RPC机制的核心载体ACTV和ACTVPOOL等内核资源的访问，均需校验capability，进一步增加了攻击难度。
 
- ![](attachments/b5d1a454-e653-4481-bc4e-8b7afddd94dd.png)
+ <img src="attachments/b5d1a454-e653-4481-bc4e-8b7afddd94dd.png" style="display: block; margin-left: auto; margin-right: auto; zoom: 70%;"/>
 
 
 经过对HongMeng内核的深入分析，我们发现其在架构设计上付出了诸多努力，相较于 Linux内核，其在牺牲了少量性能的情况下显著地提升了安全性。
