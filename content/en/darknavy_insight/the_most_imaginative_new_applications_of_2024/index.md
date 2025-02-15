@@ -1,8 +1,8 @@
 +++
 title = 'The Most Imaginative New Applications of 2024'
 date = 2025-02-10T11:25:50+08:00
-draft = true
-images = ["attachments/0127cf48-39e2-4864-bafc-4b2ce7a7cef1.png"]
+draft = false
+images = ["attachments/74e16a34-d20c-4282-99af-4f93482ad22e.png"]
 +++
 
 ![](attachments/0127cf48-39e2-4864-bafc-4b2ce7a7cef1.png)
