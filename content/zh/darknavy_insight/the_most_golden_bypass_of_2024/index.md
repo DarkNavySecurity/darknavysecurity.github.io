@@ -75,8 +75,8 @@ Google历经两年多的时间终于基本根除了一个心头大患，这对�
 
 ---
 
-***References:***
+**References**
 
-\[1\] https://gs.statcounter.com/browser-market-share#monthly-202412-202412-bar
-\[2\] https://chromereleases.googleblog.com/2024/06/stable-channel-update-for-desktop.html
-\[3\] https://issues.chromium.org/issues/386306231
+* \[1\] <https://gs.statcounter.com/browser-market-share#monthly-202412-202412-bar>
+* \[2\] <https://chromereleases.googleblog.com/2024/06/stable-channel-update-for-desktop.html>
+* \[3\] <https://issues.chromium.org/issues/386306231>

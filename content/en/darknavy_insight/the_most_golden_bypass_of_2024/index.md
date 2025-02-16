@@ -89,8 +89,8 @@ As security research and defense techniques evolve together, Chrome may never ac
 
 ---
 
-**References:**
+**References**
 
-\[1\] https://gs.statcounter.com/browser-market-share#monthly-202412-202412-bar
-\[2\] https://chromereleases.googleblog.com/2024/06/stable-channel-update-for-desktop.html
-\[3\] https://issues.chromium.org/issues/386306231
+* \[1\] <https://gs.statcounter.com/browser-market-share#monthly-202412-202412-bar>
+* \[2\] <https://chromereleases.googleblog.com/2024/06/stable-channel-update-for-desktop.html>
+* \[3\] <https://issues.chromium.org/issues/386306231>
