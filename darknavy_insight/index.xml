@@ -11,8 +11,18 @@
     </image>
     <generator>Hugo -- 0.142.0</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 10 Feb 2025 11:25:50 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 11 Feb 2025 11:41:45 +0800</lastBuildDate>
     <atom:link href="https://www.darknavy.org/darknavy_insight/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Maddest Vulnerability of 2024</title>
+      <link>https://www.darknavy.org/darknavy_insight/the_maddest_vulnerability_of_2024/</link>
+      <pubDate>Tue, 11 Feb 2025 11:41:45 +0800</pubDate>
+      <guid>https://www.darknavy.org/darknavy_insight/the_maddest_vulnerability_of_2024/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/darknavy_insight/the_maddest_vulnerability_of_2024/attachments/8671fafe-16f3-46b2-bf66-846bf748cc02.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Under the collective efforts of security researchers and increasingly stringent security mitigations, most memory vulnerabilities have been nipped in the bud.&lt;/p&gt;
+&lt;p&gt;Is it time to declare memory vulnerabilities a thing of the past?&lt;/p&gt;
+&lt;p&gt;In July 2024, a &amp;ldquo;nuclear bomb&amp;rdquo; from the Windows camp shattered the illusion of security. We can&amp;rsquo;t help but ask: When faced with threats from memory, just how much can the walls in front of us really defend against?&lt;/p&gt;</description>
+    </item>
     <item>
       <title>The Most Imaginative New Applications of 2024</title>
       <link>https://www.darknavy.org/darknavy_insight/the_most_imaginative_new_applications_of_2024/</link>
