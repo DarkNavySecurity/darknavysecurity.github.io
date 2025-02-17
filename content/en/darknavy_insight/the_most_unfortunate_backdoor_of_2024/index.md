@@ -1,7 +1,7 @@
 +++
 title = 'The Most Unfortunate Backdoor of 2024'
 date = 2025-02-13T17:07:28+08:00
-draft = true
+draft = false
 images = ["attachments/f4924b5c-b046-42e2-9f80-45f00f4a132c.png"]
 +++
 

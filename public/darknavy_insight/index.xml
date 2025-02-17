@@ -11,8 +11,20 @@
     </image>
     <generator>Hugo -- 0.142.0</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 12 Feb 2025 16:40:12 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 13 Feb 2025 17:07:28 +0800</lastBuildDate>
     <atom:link href="https://www.darknavy.org/darknavy_insight/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Most Unfortunate Backdoor of 2024</title>
+      <link>https://www.darknavy.org/darknavy_insight/the_most_unfortunate_backdoor_of_2024/</link>
+      <pubDate>Thu, 13 Feb 2025 17:07:28 +0800</pubDate>
+      <guid>https://www.darknavy.org/darknavy_insight/the_most_unfortunate_backdoor_of_2024/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/darknavy_insight/the_most_unfortunate_backdoor_of_2024/attachments/474a4c83-4170-4512-bc3b-a8ec5de49be4.png&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Does open source guarantee that there are no backdoors?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;At the 1983 Turing Award ceremony, Ken Thompson raised this question. As one of only three legends to win the Turing Award before the age of 40, he demonstrated how to hack Unix systems compiled from harmless source code by implanting backdoors in compilers, remaining a tale frequently cited by hackers to this day.&lt;/p&gt;
+&lt;p&gt;In 2024, the XZ backdoor incident resurfaced this question. Under the nose of the open-source community, attackers successfully pushed the backdoored xz-utils 5.6.1 package into official repositories of several distributions like Debian and Fedora. Fortunately, engineer Andres Freund discovered and reported the abnormal behavior of xz-utils 5.6.1 in time. Although the community effectively stopped the backdoor&amp;rsquo;s spread, this heart-stopping crisis made every open-source user rethink the trust model in collaborative development.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>The Most Prominent Privacy Security Trend of 2024</title>
       <link>https://www.darknavy.org/darknavy_insight/the_most_prominent_privacy_security_trend_of_2024/</link>
