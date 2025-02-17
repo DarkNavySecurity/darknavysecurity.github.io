@@ -1,7 +1,7 @@
 +++
 title = 'The Most Prominent Privacy Security Trend of 2024'
 date = 2025-02-12T16:40:12+08:00
-draft = true
+draft = false
 images = ["attachments/6390442c-44f0-4659-96d6-6e2bae29382c.png"]
 +++
 
