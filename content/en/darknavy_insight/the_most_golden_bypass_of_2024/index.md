@@ -2,14 +2,14 @@
 title = 'The Most "Golden" Bypass of 2024'
 date = 2025-02-09T17:13:30+08:00
 draft = false
-images = ["attachments/cover.png"]
+images = ["attachments/2.png"]
 +++
 
  ![](attachments/cover.png)
 
 Since the early 2000s, attacks based on browser vulnerabilities have remained a mainstream, effective, and versatile attack method. The following is the second article from the "DARKNAVY INSIGHT | 2024 Annual Security Report".
 
- ![](attachments/640.png)
+ ![](attachments/2.png)
 
 According to the latest report from market research firm Statcounter, Chrome has unquestionably secured its position as the most dominant browser in terms of market share.
 

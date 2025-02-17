@@ -2,7 +2,7 @@
 title = 'The Most Prominent Privacy Security Trend of 2024'
 date = 2025-02-12T16:40:12+08:00
 draft = false
-images = ["attachments/6390442c-44f0-4659-96d6-6e2bae29382c.png"]
+images = ["attachments/5.png"]
 +++
 
 ![](attachments/ea604b12-e368-4ff5-baea-2b56979e34e5.png)
@@ -16,7 +16,7 @@ Even though Apple firmly denied these claims, public concern over privacy securi
 Below is the fifth article from this year's "DARKNAVY INSIGHT | 2024 Annual Security Report".
 
 
- ![](attachments/6390442c-44f0-4659-96d6-6e2bae29382c.png)
+ ![](attachments/5.png)
 
 
 Imagine this scenario:
