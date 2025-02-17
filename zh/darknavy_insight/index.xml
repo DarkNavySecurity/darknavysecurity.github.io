@@ -11,8 +11,58 @@
     </image>
     <generator>Hugo -- 0.142.0</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 11 Feb 2025 11:41:45 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 12 Feb 2025 16:40:12 +0800</lastBuildDate>
     <atom:link href="https://www.darknavy.org/zh/darknavy_insight/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2024年最“隐”人注目的安全趋势</title>
+      <link>https://www.darknavy.org/zh/darknavy_insight/the_most_prominent_privacy_security_trend_of_2024/</link>
+      <pubDate>Wed, 12 Feb 2025 16:40:12 +0800</pubDate>
+      <guid>https://www.darknavy.org/zh/darknavy_insight/the_most_prominent_privacy_security_trend_of_2024/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_prominent_privacy_security_trend_of_2024/attachments/f43ec1bc-1e64-402d-bf85-8c1d85b9576e.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;2025年伊始，持续五年的“Siri偷听门”事件终于迎来了终章。苹果公司以9500万美元的和解金，与原告达成了集体诉讼的和解。&lt;/p&gt;
+&lt;p&gt;这起备受瞩目的隐私争议案件起源于用户指控Siri在未经授权的情况下，意外捕获并录制日常对话，并将数据泄露给第三方广告商。&lt;/p&gt;
+&lt;p&gt;尽管苹果对此坚决否认，但公众对隐私安全的忧虑却与日俱增。&lt;strong&gt;而如今，我们每天都在与AI共享海量的个人数据，这些隐私数据，真的足够安全吗？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;以下为本期《深蓝洞察 | 2024 年度安全报告》的第五篇。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_prominent_privacy_security_trend_of_2024/attachments/9538ac55-86fc-4a4c-ac26-ef19915eadbf.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;设想这样一个场景：&lt;/p&gt;
+&lt;p&gt;清晨，你走进一家咖啡馆，手机已经为你点好了一杯拿铁。正当你享受咖啡带来的片刻宁静时，手机屏幕上正循环播放着那些自动生成的相册视频——每一帧仿佛都精确捕捉了你手机中珍藏的记忆。不久后，你接到一个境外来电，接通之后，屏幕上立刻弹出一则&amp;quot;反诈提醒&amp;quot;。&lt;/p&gt;
+&lt;p&gt;你不由自主地陷入沉思： &lt;/p&gt;
+&lt;p&gt;为何咖啡馆能如此准确地推断出你偏爱的咖啡口味？&lt;/p&gt;
+&lt;p&gt;手机中自动生成相册的视频究竟是在本地处理，还是已被上传到云端？&lt;/p&gt;
+&lt;p&gt;那张记录助记词的照片，现在是不是也正悄然存放在某个不为人知的云端？&lt;/p&gt;
+&lt;p&gt;而突然出现的反诈提醒，是否意味着你的通话语音正被某个第三方实时监听？&lt;/p&gt;
+&lt;p&gt;…&lt;/p&gt;
+&lt;p&gt;如果说五年前的隐私问题源于智能助手技术的不成熟，那么五年后的今天，随着AI大模型的全面普及，隐私挑战正以更广泛的形式席卷而来。&lt;/p&gt;
+&lt;p&gt;万物皆AI的时代，意味着海量用户数据需要被采集、处理和利用，用户隐私数据价值更高；此外，由于终端算力的局限，绝大部分数据处理任务不得不依赖云端。用户的数据是否在云端能够真正得到安全保障？从语音助手到大模型，隐私问题并没有随技术的进步而消失，反而愈发凸显。口号式的隐私承诺早已不足以令人信服，只有通过技术上可证明、可验证的保障，才能真正守住隐私底线。&lt;/p&gt;
+&lt;h2 id=&#34;隐私计算大模型时代的安全基石&#34;&gt;隐私计算：大模型时代的安全基石&lt;/h2&gt;
+&lt;p&gt;隐私计算，是解决AI与隐私冲突的关键方案。&lt;/p&gt;
+&lt;p&gt;从金融到医疗，&lt;strong&gt;数据孤岛现象&lt;/strong&gt;依旧如顽石横亘在前。竞争关系、隐私问题与技术障碍让不同机构之间的数据难以互通，数据价值也因此未能完全释放。而对于个人而言，每日与无数模型和应用交互时，如何确保自己的隐私不被泄露或滥用，更是当务之急。&lt;/p&gt;
+&lt;p&gt;隐私计算技术应运而生，其核心目标是在数据不可见的前提下，实现数据的最大化价值。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;首先，通过&lt;strong&gt;多方安全计算&lt;/strong&gt;[1]和&lt;strong&gt;同态加密&lt;/strong&gt;[2]，隐私计算让敏感数据在加密状态下依旧可计算与分析，实现了数据的&amp;quot;可用不可见&amp;quot;。&lt;/li&gt;
+&lt;li&gt;其次，&lt;strong&gt;联邦学习&lt;/strong&gt;[3]技术让&amp;quot;数据不动模型动&amp;quot;成为现实。在保障隐私安全的同时，多方数据可以协同计算，进一步提升数据的价值。&lt;/li&gt;
+&lt;li&gt;此外，&lt;strong&gt;可信执行环境&lt;/strong&gt;[4]则为数据计算提供了硬件隔离的安全基石。通过隔离计算环境，隐私计算能够确保计算过程的安全可信。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;随着大模型的爆发式增长，上云成为不可逆转的趋势。端侧算力的局限性让云端处理成为复杂任务的优选方案，端云协同成为模型应用的重要方向。Apple PCC (Private Cloud Compute)[5]等端云协同方案已经树立了标杆。&lt;/p&gt;
+&lt;p&gt;然而，用户上传至云端的数据是否真正安全，依然是悬而未决的问题：&lt;strong&gt;数据上传后，是否会被窃取或滥用？如何让用户信任云端设施的安全性？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;
+&lt;img alt=&#34;Apple PCC 的运行时安全架构[6]&#34; loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_prominent_privacy_security_trend_of_2024/attachments/254f2987-d595-4706-aaac-2e9ebb4235c7.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;为了解决这些问题，隐私计算在云端的应用尤为重要，但这需要克服多方面的挑战：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;首先，云端与端侧需具备同等的安全能力&lt;/strong&gt;。为此，厂商需要通过可信执行环境和硬件隔离技术，确保用户数据在计算过程中不会被泄露。例如，Apple PCC 专门设计的Apple Silicon服务器和定制版iOS系统，从安全引导、代码签名，到运行时的各种软硬件保护层层把关，同时，端到端加密通信确保数据只有用户可见，推理完成后定期清空缓存数据。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;其次，云端环境必须对特权访问进行严格限制&lt;/strong&gt;。过去不乏拿用户隐私数据作恶的案例，例如Uber在 2016 年发生的5700万用户数据泄露，就源于内部员工利用特权访问窃取数据。因此，服务器和数据库的管理人员需要受到严格监控和权限约束，确保无法滥用访问权限。Apple PCC不仅不提供shell或调试接口，所有日志和事件也必须经过严格过滤后才能离开节点。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最后，云端隐私计算能力的可信性需要透明化验证&lt;/strong&gt;，这也是推动模型应用的关键。然而，目前国内尚无统一的第三方验证标准，这在一定程度上阻碍了云端隐私计算的推广。Apple PCC将云端节点的二进制测量数据（包括操作系统、所有代码固件的测量值）公开在透明度日志中，接受第三方专家的验证，并建立高额的赏金计划，树立了信任标杆。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;
+&lt;img src=&#34;attachments/1505f28c-757d-493b-87a6-cb295ff5f7c5.png&#34; style=&#34;display: block; margin-left: auto; margin-right: auto; zoom: 40%;&#34;/&gt;&lt;/p&gt;
+&lt;p&gt;此外，即使云端硬件的安全特性能够确保软件的完整性，&lt;strong&gt;但硬件本身的完整性又如何保证呢&lt;/strong&gt;？云端服务器硬件的制作过程往往是不完全公开，其上的硬件指令是否如记载的那样执行，也是难以验证的。&lt;/p&gt;
+&lt;p&gt;对于Apple PCC而言，每台服务器被密封前都会进行清点并拍照，并在数据中心被多方团队进行重新验证。然而，这一流程也并非完全的公开透明。如果深究到底，用户仍然无法完全信任硬件指令产生的透明度测量值是真实的，&lt;strong&gt;甚至是否存在三角测量行动那样的硬件后门&lt;/strong&gt;。这仍然是现有厂商需要深入思考的问题。&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;DARKNAVY 针对 Apple PCC 的研究成果&#34; loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_prominent_privacy_security_trend_of_2024/attachments/0e0b4319-4e72-4add-8b8d-4142e0243905.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;为了验证Apple PCC是否如白皮书所宣称的那样具备绝对的安全性，DARKNAVY基于其发布的虚拟研究环境（VRE）和部分开源代码开展了深入研究。研究结果显示，得益于其软硬件一体化的独特安全机制，Apple PCC能够有效防止隐私泄露的风险，并显著降低远程攻击的可能性。然而，DARKNAVY的研究也发现了一些可能导致云端推理引擎发生崩溃的输入，这表明Apple PCC并非绝对安全。&lt;/p&gt;
+&lt;h2 id=&#34;国产探索与未来趋势&#34;&gt;国产探索与未来趋势&lt;/h2&gt;
+&lt;p&gt;在大模型时代的云计算浪潮中，&lt;strong&gt;隐私安全与机密计算已成为安全行业无法回避的关键话题&lt;/strong&gt;。个人、企业甚至国家都在寻找切实可行的方案来保障数据安全。试想，如果隐私数据随意裸奔于云端，AI功能再强大也会被画上巨大的问号。&lt;/p&gt;
+&lt;p&gt;在国内，蚂蚁集团开源的可信隐私计算框架「&lt;strong&gt;隐语 SecretFlow&lt;/strong&gt;」[7]作为先驱者，以通用化方案整合可信执行环境、多方安全计算和联邦学习等多种技术，试图打破主流框架单一技术路线的局限。隐语通过将各种技术抽象为&amp;quot;密态设备&amp;quot;，并提供统一SDK接口，开发者无需深入底层即可快速实现具备隐私保护特性的算法应用。&lt;/p&gt;
+ &lt;img src=&#34;attachments/e99ce1d6-c4df-4a9c-b87b-b7caceaff122.png&#34; style=&#34;display: block; margin-left: auto; margin-right: auto; zoom: 80%;&#34;/&gt;
+&lt;p&gt;与此同时，国产手机厂商也在探索大模型与隐私计算的结合。与Apple PCC的一体化生态不同，安卓阵营因品牌与系统版本的多样性而显得碎片化，其用户隐私安全问题更为复杂。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2024年度最狂躁不安的漏洞</title>
       <link>https://www.darknavy.org/zh/darknavy_insight/the_maddest_vulnerability_of_2024/</link>
