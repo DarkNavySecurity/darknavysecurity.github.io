@@ -2,7 +2,7 @@
 title = 'The Most Groundbreaking New Security Ecosystem of 2024'
 date = 2025-02-08T17:10:13+08:00
 draft = false
-images = ["attachments/f349496e-e1f5-4d6b-b4a2-7c939b50aa80.png"]
+images = ["attachments/1.png"]
 +++
 
 ![](attachments/f349496e-e1f5-4d6b-b4a2-7c939b50aa80.png)
@@ -17,7 +17,7 @@ In the 2024 edition of DARKNAVY INSIGHT, we have already embraced the future and
 
 Below is the first article from this year's "DARKNAVY INSIGHT | 2024 Annual Security Report".
 
- ![](attachments/12d76fff-e135-4e8f-acf0-d50e35bf18e2.jpeg)
+ ![](attachments/1.png)
 
 Huawei launched the first version of HarmonyOS, HarmonyOS 1.0, in 2019, and the operating system has been continuously updated, with HarmonyOS 4.2 being the latest version. While the initial versions provided dual compatibility with both Android and Harmony frameworks at the application layer, the underlying system still relied on the Android kernel, which raised significant skepticism within the industry.
 

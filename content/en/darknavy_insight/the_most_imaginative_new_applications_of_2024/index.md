@@ -2,7 +2,7 @@
 title = 'The Most Imaginative New Applications of 2024'
 date = 2025-02-10T11:25:50+08:00
 draft = false
-images = ["attachments/2.jpg"]
+images = ["attachments/3.png"]
 +++
 
 ![](attachments/0127cf48-39e2-4864-bafc-4b2ce7a7cef1.png)
@@ -17,7 +17,7 @@ Will we embrace AI first, or will AI replace us? When will this day arrive?
 
 The following is the third article of the "DARKNAVY INSIGHT | 2024 Annual Security Report".
 
- ![](attachments/2.jpg)
+ ![](attachments/3.png)
 
 With the emergence of generative AI, its impressive code understanding abilities undoubtedly show its potential to revolutionize the field of security research.
 
