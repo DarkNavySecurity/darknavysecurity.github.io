@@ -1,7 +1,7 @@
 +++
 title = 'The Most Unstoppable Offensive and Defensive Trend of 2024'
 date = 2025-02-14T17:47:00+08:00
-draft = true
+draft = false
 images = ["attachments/83d545c3-11db-4b85-97cb-926c59a7f1b7.png"]
 +++
 
@@ -68,7 +68,7 @@ A bold prediction: Given the difficulty in exploiting memory vulnerabilities, th
 
 As memory security defenses build layers of protection, attackers' "spears" have subtly transitioned to more covert battlegrounds. "There is no such thing as a perfectly secure system" and memory security is gradually becoming the baseline for infrastructure. Security defenses now confront, more profound and systematic challenges: How can we establish trust verification mechanisms that encompass the software supply chain? How can we achieve automated security modeling for business logic? These will be the critical issues in next-generation security defenses.
 
-Security confrontations are perpetual; they are continually reshaped across evolving dimensions. Security researchers must adopt a more comprehensive perspective on security boundaries. As memory vulnerabilities approach their twilight, the fog of logic vulnerabilities begins to emerge at dawn.
+Security confrontations are perpetual; they are continually reshaped across evolving dimensions. Security researchers must adopt a more comprehensive perspective on security boundaries. As memory corruption vulnerabilities approach their twilight, the fog of logic vulnerabilities begins to emerge at dawn.
 
 
 ---
