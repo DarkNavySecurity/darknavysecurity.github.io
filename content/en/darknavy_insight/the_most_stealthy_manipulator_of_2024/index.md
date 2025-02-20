@@ -1,7 +1,7 @@
 +++
 title = 'The Most Stealthy Manipulator of 2024'
 date = 2025-02-17T18:00:44+08:00
-draft = true
+draft = false
 images = ["attachments/6f4d6b51-fae4-472f-8cc9-f4c9b7340655.png"]
 +++
 
