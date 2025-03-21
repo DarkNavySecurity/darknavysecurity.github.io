@@ -44,6 +44,14 @@
 &lt;p&gt;The DARKNAVY team has been closely monitoring security developments within the Web3 ecosystem. Following the Bybit incident, we conducted a reconstruction of the attack, analyzing it from the perspectives of the attackers, the developers, and the transaction signers.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Fatal Vulnerabilities Compromising DJI Control Devices</title>
+      <link>https://www.darknavy.org/blog/fatal_vulnerabilities_compromising_dji_control_devices/</link>
+      <pubDate>Fri, 21 Mar 2025 10:01:19 +0800</pubDate>
+      <guid>https://www.darknavy.org/blog/fatal_vulnerabilities_compromising_dji_control_devices/</guid>
+      <description>&lt;p&gt;As logistics drones weave through buildings and surveying equipment delineates urban landscapes, the capillaries of the low-altitude economy are sketching the future with millimeter-level precision.&lt;/p&gt;
+&lt;p&gt;DARKNAVY consistently focuses on the construction and breaching of drone security defenses. In this research, we discovered &lt;strong&gt;a fatal exploit chain in DJI remote control devices&lt;/strong&gt;, leading to the complete compromise of the security defenses within the DJI remote controller. How can we assist industry leader DJI in fortifying its security defenses? What potential risks do these vulnerabilities reveal? Welcome to read this article.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>The Most Stealthy Manipulator of 2024</title>
       <link>https://www.darknavy.org/darknavy_insight/the_most_stealthy_manipulator_of_2024/</link>
       <pubDate>Mon, 17 Feb 2025 18:00:44 +0800</pubDate>

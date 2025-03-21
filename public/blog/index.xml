@@ -25,6 +25,14 @@
 &lt;p&gt;As the new generation of satellites gradually incorporates laser links, some satellites can communicate with each other via laser. This both reduces reliance on ground stations and improves transmission efficiency, enhancing global coverage.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Fatal Vulnerabilities Compromising DJI Control Devices</title>
+      <link>https://www.darknavy.org/blog/fatal_vulnerabilities_compromising_dji_control_devices/</link>
+      <pubDate>Fri, 21 Mar 2025 10:01:19 +0800</pubDate>
+      <guid>https://www.darknavy.org/blog/fatal_vulnerabilities_compromising_dji_control_devices/</guid>
+      <description>&lt;p&gt;As logistics drones weave through buildings and surveying equipment delineates urban landscapes, the capillaries of the low-altitude economy are sketching the future with millimeter-level precision.&lt;/p&gt;
+&lt;p&gt;DARKNAVY consistently focuses on the construction and breaching of drone security defenses. In this research, we discovered &lt;strong&gt;a fatal exploit chain in DJI remote control devices&lt;/strong&gt;, leading to the complete compromise of the security defenses within the DJI remote controller. How can we assist industry leader DJI in fortifying its security defenses? What potential risks do these vulnerabilities reveal? Welcome to read this article.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>CVE-2024-5274: A Minor Flaw in V8 Parser Leading to Catastrophes</title>
       <link>https://www.darknavy.org/blog/cve_2024_5274_a_minor_flaw_in_v8_parser_leading_to_catastrophes/</link>
       <pubDate>Fri, 30 Aug 2024 10:09:29 +0800</pubDate>
