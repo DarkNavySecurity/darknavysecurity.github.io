@@ -9,7 +9,7 @@
       <url>https://www.darknavy.org/images/white_logo.png</url>
       <link>https://www.darknavy.org/images/white_logo.png</link>
     </image>
-    <generator>Hugo -- 0.142.0</generator>
+    <generator>Hugo -- 0.146.5</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 31 Oct 2024 17:32:23 +0800</lastBuildDate>
     <atom:link href="https://www.darknavy.org/zh/blog/index.xml" rel="self" type="application/rss+xml" />
@@ -23,8 +23,7 @@
 &lt;p&gt;给予文章强有力支撑的是ChatGPT-o1的发布，这是一次里程碑式的事件，在深度学习的加成下，大模型如虎添翼，表现强劲。&lt;/p&gt;
 &lt;p&gt;身处时代浪潮之中，DARKNAVY也积极拥抱AI，探索AI和安全的关系。AI能否在发现和利用漏洞时，再现人类的方法论？AI会不会带来新的安全问题？&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;楚人有鬻盾与矛者，誉之曰：“吾盾之坚，物莫能陷之。”以誉其矛曰：“吾矛之利，于物无不陷也。”或曰：“以子之矛陷子之盾，何如？”其人弗能应也。夫不可陷之盾与无不陷之矛，不可同世而立。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;楚人有鬻盾与矛者，誉之曰：“吾盾之坚，物莫能陷之。”以誉其矛曰：“吾矛之利，于物无不陷也。”或曰：“以子之矛陷子之盾，何如？”其人弗能应也。夫不可陷之盾与无不陷之矛，不可同世而立。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;吾盾之坚物莫能陷&#34;&gt;吾盾之坚，物莫能陷&lt;/h2&gt;
 &lt;p&gt;AI时代下，各大厂商纷纷推出了全新的AI产品、大模型，而对现存的产品，在迭代更新中，不少也加入了AI powered功能。AI已逐渐在无形之中成为了产品安全的一部分。新的代码也意味着新的攻击面，对于AI类的功能，更为特殊。&lt;/p&gt;
 &lt;p&gt;新增的代码仍受到传统攻击手法的威胁，从审计的角度来看，AI代码除了功能的不同，本质上还是代码中的一个子模块，内存溢出、越界等内存破坏漏洞皆有可能存在。而除了传统的代码攻击面外，还存在着特定于AI类别的攻击面，例如模型越狱、对抗样本攻击等等。&lt;/p&gt;
@@ -49,8 +48,7 @@
 &lt;img src=&#34;assets/3.png&#34; style=&#34;display: block; margin-left: auto; margin-right: auto; zoom: 50%;&#34;/&gt;
 &lt;h2 id=&#34;吾矛之利物无不陷&#34;&gt;吾矛之利，物无不陷&lt;/h2&gt;
 &lt;p&gt;发现漏洞后，思路自然地转向了研究此漏洞的可利用性。正如前文所述，AI能否在此研究过程中给予人类有力的援助？AI之于安全研究员，是一把趁手的武器，还是一堆废铜烂铁？&lt;/p&gt;
-&lt;p&gt;在今年GeekCon 2024&lt;a href=&#34;https://geekcon.top/&#34;&gt;新加坡站&lt;/a&gt;的舞台上，有多个有关此话题的安全研究亮相。&lt;/p&gt;
-&lt;p&gt;来自清华的张超教授，展示了他们团队将大模型应用于二进制分析领域的成果，成功地应用于二进制代码相似性检测、patch补丁检测等场景；&lt;/p&gt;</description>
+&lt;p&gt;在今年GeekCon 2024&lt;a href=&#34;https://geekcon.top/&#34;&gt;新加坡站&lt;/a&gt;的舞台上，有多个有关此话题的安全研究亮相。&lt;/p&gt;</description>
     </item>
     <item>
       <title>CVE-2024-5274: A Minor Flaw in V8 Parser Leading to Catastrophes</title>
@@ -166,8 +164,7 @@
 &lt;p&gt;本文将以MTE的三个主要玩家：Chrome中的PartitionAlloc、Glibc中的Ptmalloc、Android中的Scudo为目标，对其中MTE相关的实现分别进行讨论，并对它们进行对比。我们在研究中发现了PartitionAlloc中实现的问题，并将此问题报告给了Google，得到了Chrome团队的确认。&lt;/p&gt;
 &lt;h2 id=&#34;mte概述&#34;&gt;MTE概述&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;已了解MTE原理的读者可跳过此章节。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;已了解MTE原理的读者可跳过此章节。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;MTE利用ARMv8的TBI (Top-Byte Ignore) 特性，使用指针的高4 bits存储tag，在每个进程中有一段专用的内存用于存储tag。当为内存指定了某个tag后，程序必须带上正确的tag访问内存，若tag错误，程序抛出错误信号SIGSEGV，如下图所示：&lt;/p&gt;
 &lt;img src=&#34;assets/2.png&#34; style=&#34;display: block; margin-left: auto; margin-right: auto; zoom: 50%;&#34;/&gt;
 &lt;p&gt;指令集提供了系列指令来操作tag，此处举例说明MTE的基本用法：&lt;/p&gt;

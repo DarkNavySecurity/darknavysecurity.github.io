@@ -9,10 +9,21 @@
       <url>https://www.darknavy.org/images/white_logo.png</url>
       <link>https://www.darknavy.org/images/white_logo.png</link>
     </image>
-    <generator>Hugo -- 0.142.0</generator>
+    <generator>Hugo -- 0.146.5</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 17 Feb 2025 18:00:44 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 16 Apr 2025 15:34:29 +0800</lastBuildDate>
     <atom:link href="https://www.darknavy.org/darknavy_insight/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reconstructing the $1.5 Billion Bybit Hack by North Korean Actors</title>
+      <link>https://www.darknavy.org/darknavy_insight/reconstructing_the_1.5_billion_bybit_hack_by_north_korean_actors/</link>
+      <pubDate>Wed, 16 Apr 2025 15:34:29 +0800</pubDate>
+      <guid>https://www.darknavy.org/darknavy_insight/reconstructing_the_1.5_billion_bybit_hack_by_north_korean_actors/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Both the Attackers and Victims Made Critical Mistakes&lt;/p&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;On February 21, 2025, the cryptocurrency exchange Bybit experienced the most significant financial loss in Web3 history when nearly $1.5 billion was illicitly transferred from its multi-signature wallet by North Korean threat actors.&lt;/p&gt;
+&lt;p&gt;The DARKNAVY team has been closely monitoring security developments within the Web3 ecosystem. Following the Bybit incident, we conducted a reconstruction of the attack, analyzing it from the perspectives of the attackers, the developers, and the transaction signers.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>The Most Stealthy Manipulator of 2024</title>
       <link>https://www.darknavy.org/darknavy_insight/the_most_stealthy_manipulator_of_2024/</link>
@@ -54,8 +65,7 @@
       <guid>https://www.darknavy.org/darknavy_insight/the_most_unfortunate_backdoor_of_2024/</guid>
       <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/darknavy_insight/the_most_unfortunate_backdoor_of_2024/attachments/474a4c83-4170-4512-bc3b-a8ec5de49be4.png&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Does open source guarantee that there are no backdoors?&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;Does open source guarantee that there are no backdoors?&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;At the 1983 Turing Award ceremony, Ken Thompson raised this question. As one of only three legends to win the Turing Award before the age of 40, he demonstrated how to hack Unix systems compiled from harmless source code by implanting backdoors in compilers, remaining a tale frequently cited by hackers to this day.&lt;/p&gt;
 &lt;p&gt;In 2024, the XZ backdoor incident resurfaced this question. Under the nose of the open-source community, attackers successfully pushed the backdoored xz-utils 5.6.1 package into official repositories of several distributions like Debian and Fedora. Fortunately, engineer Andres Freund discovered and reported the abnormal behavior of xz-utils 5.6.1 in time. Although the community effectively stopped the backdoor&amp;rsquo;s spread, this heart-stopping crisis made every open-source user rethink the trust model in collaborative development.&lt;/p&gt;</description>
     </item>
