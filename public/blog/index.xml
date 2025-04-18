@@ -11,8 +11,19 @@
     </image>
     <generator>Hugo -- 0.146.5</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 30 Aug 2024 10:09:29 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 18 Apr 2025 10:10:22 +0800</lastBuildDate>
     <atom:link href="https://www.darknavy.org/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A First Glimpse of the Starlink User Ternimal</title>
+      <link>https://www.darknavy.org/blog/a_first_glimpse_of_the_starlink_user_ternimal/</link>
+      <pubDate>Fri, 18 Apr 2025 10:10:22 +0800</pubDate>
+      <guid>https://www.darknavy.org/blog/a_first_glimpse_of_the_starlink_user_ternimal/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;I think the human race has no future if it doesn&amp;rsquo;t go to space. —— Stephen Hawking&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Starlink is a low Earth orbit (LEO) satellite internet service provided by SpaceX. Users connect to near-Earth orbit satellites through a user terminal, which then connects to the internet via ground gateways.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Basic architecture of the Starlink system [1]&#34; loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/blog/a_first_glimpse_of_the_starlink_user_ternimal/attachments/d48521bc-861b-4050-82df-1366d6bc01d2.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;As the new generation of satellites gradually incorporates laser links, some satellites can communicate with each other via laser. This both reduces reliance on ground stations and improves transmission efficiency, enhancing global coverage.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>CVE-2024-5274: A Minor Flaw in V8 Parser Leading to Catastrophes</title>
       <link>https://www.darknavy.org/blog/cve_2024_5274_a_minor_flaw_in_v8_parser_leading_to_catastrophes/</link>
