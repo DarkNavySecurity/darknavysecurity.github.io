@@ -24,7 +24,7 @@ In this article, we provide a concise overview of DARKNAVY's recent preliminary 
 
 ## Hardware Analysis
 
-A complete Starlink user terminal consists of two parts: a router and an antenna. This article focuses on the antenna component (User Terminal Antenna, hereafter referred to as "UTA"). We purchased a Starlink Standard Actuated (also known as Rev3 or GenV2) user terminal in Singapore and disassembled its antenna portion.
+A complete Starlink user terminal consists of two parts: a router and an antenna. This article focuses on the antenna component (User Terminal Antenna, hereafter referred to as "UTA"). DARKNAVY purchased a Starlink Standard Actuated (also known as Rev3 or GenV2) user terminal in Singapore and disassembled its antenna portion.
 
  ![Starlink UTA Rev3 PCB (full view)](attachments/7beb1f43-a758-4a5c-ad1e-73fc65157927.png)
 
@@ -45,7 +45,7 @@ At Black Hat USA 2022, Dr. Lennert Wouters from KU Leuven demonstrated a fault-i
 
 ## Firmware Extraction and Analysis
 
-To analyze the UTA in depth, we directly dumped the firmware from the eMMC chip. Since no obvious eMMC debug pins exist on the Rev3 board, we had to desolder the eMMC chip from the PCB and read it using a programmer. Once extracted, we discovered that most of the firmware contents were unencrypted, revealing the boot chain (excluding BootROM), kernel, and the unencrypted portions of the filesystem. Further analysis showed that after the kernel starts, it reads most of the runtime environment from the eMMC and unpacks it to the `/sx/local/runtime` directory.
+To analyze the UTA in depth, DARKNAVY directly dumped the firmware from the eMMC chip. Since no obvious eMMC debug pins exist on the Rev3 board, we had to desolder the eMMC chip from the PCB and read it using a programmer. Once extracted, we discovered that most of the firmware contents were unencrypted, revealing the boot chain (excluding BootROM), kernel, and the unencrypted portions of the filesystem. Further analysis showed that after the kernel starts, it reads most of the runtime environment from the eMMC and unpacks it to the `/sx/local/runtime` directory.
 
  ![Core runtime of the UTA](attachments/80819cd3-d929-4e20-a1e9-77f65b3ccb33.png)
 
@@ -58,7 +58,7 @@ Interestingly, the core software extracted from the UTA also includes some funct
 
 ## Emulation
 
-For convenient ongoing analysis of the UTA, we built a basic QEMU-based emulation environment for the Rev3 firmware:
+For convenient ongoing analysis of the UTA, DARKNAVY built a basic QEMU-based emulation environment for the Rev3 firmware:
 
 
 <video src="attachments/starlink.mp4" controls="controls" width="100%" height="auto"></video>
@@ -86,7 +86,7 @@ Overall, this chip serves as an additional root of trust independent of the SoC'
 
 ## Easter Egg: Is Elon Watching You?
 
-During our analysis, we stumbled upon a program labeled **Ethernet Data Recorder**, which naturally raises suspicions of a backdoor capturing user data.
+During the analysis, DARKNAVY stumbled upon a program labeled **Ethernet Data Recorder**, which naturally raises suspicions of a backdoor capturing user data.
 
  ![Ethernet Data Recorder](attachments/a451b9c1-5be5-4d8f-a77a-f17edef85653.png)
 
