@@ -19,7 +19,7 @@ In GeekPwn 2022, we verified the existence of security vulnerabilities in the Un
 In this quick sketch, we will share our preliminary security exploration of the Unitree robot dog GO2.
 
 
-## **GO2 Attack Surface Overview**
+## GO2 Attack Surface Overview
 
 The GO2 robot dog primarily interacts with the Mobile APP and the Cloud Service during its operation. Simultaneously, various modules and services within the device also collaborate through a data distribution service middleware.
 
