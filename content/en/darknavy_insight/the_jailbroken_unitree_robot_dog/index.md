@@ -1,6 +1,6 @@
 +++
 title = 'The Jailbroken Unitree Robot Dog'
-date = 2025-04-24T10:00:17+08:00
+date = 2025-03-28T10:00:17+08:00
 draft = false
 images = ["attachments/54c66f49-112b-432f-8c26-e611c12ea986.png"]
 +++
