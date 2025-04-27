@@ -1,6 +1,6 @@
 +++
 title = 'A First Glimpse of the Starlink User Ternimal'
-date = 2025-04-18T10:10:22+08:00
+date = 2025-03-26T10:10:22+08:00
 draft = false
 images = ["attachments/91f681b3-25c3-4487-a2db-518aedba9a22.png"]
 +++
