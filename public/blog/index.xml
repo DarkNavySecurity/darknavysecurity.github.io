@@ -11,8 +11,16 @@
     </image>
     <generator>Hugo -- 0.146.5</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 26 Mar 2025 10:10:22 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 30 Mar 2025 10:00:52 +0800</lastBuildDate>
     <atom:link href="https://www.darknavy.org/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>If the Person Who Finds a Web3 Hardware Wallet is a Hacker</title>
+      <link>https://www.darknavy.org/blog/if_the_person_who_finds_a_web3_hardware_wallet_is_a_hacker/</link>
+      <pubDate>Sun, 30 Mar 2025 10:00:52 +0800</pubDate>
+      <guid>https://www.darknavy.org/blog/if_the_person_who_finds_a_web3_hardware_wallet_is_a_hacker/</guid>
+      <description>&lt;p&gt;In 2024, Web3 security incidents caused by private key leaks have surged, resulting in estimated financial losses exceeding $855 million.&lt;/p&gt;
+&lt;p&gt;Private keys function as the sole credentials for blockchain accounts, controlling access to all associated on-chain assets like cryptocurrencies and NFTs. Due to the decentralized nature of blockchain, losing the private key means permanently losing account control, while leakage typically results in asset theft. &lt;strong&gt;Hardware wallets&lt;/strong&gt;, utilizing techniques like offline private key storage and secure chips, have become the primary choice for asset protection.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>A First Glimpse of the Starlink User Ternimal</title>
       <link>https://www.darknavy.org/blog/a_first_glimpse_of_the_starlink_user_ternimal/</link>

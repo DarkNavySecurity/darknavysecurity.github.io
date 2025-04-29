@@ -2,8 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.darknavy.org/blog/</loc>
+    <lastmod>2025-03-30T10:00:52+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://www.darknavy.org/zh/blog/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.darknavy.org/blog/"
+                />
+  </url><url>
     <loc>https://www.darknavy.org/</loc>
-    <lastmod>2025-03-28T10:00:17+08:00</lastmod>
+    <lastmod>2025-03-30T10:00:52+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -14,6 +27,9 @@
                 hreflang="en"
                 href="https://www.darknavy.org/"
                 />
+  </url><url>
+    <loc>https://www.darknavy.org/blog/if_the_person_who_finds_a_web3_hardware_wallet_is_a_hacker/</loc>
+    <lastmod>2025-03-30T10:00:52+08:00</lastmod>
   </url><url>
     <loc>https://www.darknavy.org/darknavy_insight/</loc>
     <lastmod>2025-03-28T10:00:17+08:00</lastmod>
@@ -33,19 +49,6 @@
   </url><url>
     <loc>https://www.darknavy.org/blog/a_first_glimpse_of_the_starlink_user_ternimal/</loc>
     <lastmod>2025-03-26T10:10:22+08:00</lastmod>
-  </url><url>
-    <loc>https://www.darknavy.org/blog/</loc>
-    <lastmod>2025-03-26T10:10:22+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://www.darknavy.org/zh/blog/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.darknavy.org/blog/"
-                />
   </url><url>
     <loc>https://www.darknavy.org/darknavy_insight/reconstructing_the_1.5_billion_bybit_hack_by_north_korean_actors/</loc>
     <lastmod>2025-03-24T15:34:29+08:00</lastmod>
