@@ -2,8 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.darknavy.org/blog/argusee_a_multi_agent_collaborative_architecture_for_automated_vulnerability_discovery/</loc>
+    <lastmod>2025-05-23T11:09:50+08:00</lastmod>
+  </url><url>
     <loc>https://www.darknavy.org/blog/</loc>
-    <lastmod>2025-03-30T10:00:52+08:00</lastmod>
+    <lastmod>2025-05-23T11:09:50+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -16,7 +19,7 @@
                 />
   </url><url>
     <loc>https://www.darknavy.org/</loc>
-    <lastmod>2025-03-30T10:00:52+08:00</lastmod>
+    <lastmod>2025-05-23T11:09:50+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"

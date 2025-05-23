@@ -9,10 +9,20 @@
       <url>https://www.darknavy.org/images/white_logo.png</url>
       <link>https://www.darknavy.org/images/white_logo.png</link>
     </image>
-    <generator>Hugo -- 0.146.5</generator>
+    <generator>Hugo -- 0.147.4</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 30 Mar 2025 10:00:52 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 23 May 2025 11:09:50 +0800</lastBuildDate>
     <atom:link href="https://www.darknavy.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Argusee: A Multi-Agent Collaborative Architecture for Automated Vulnerability Discovery</title>
+      <link>https://www.darknavy.org/blog/argusee_a_multi_agent_collaborative_architecture_for_automated_vulnerability_discovery/</link>
+      <pubDate>Fri, 23 May 2025 11:09:50 +0800</pubDate>
+      <guid>https://www.darknavy.org/blog/argusee_a_multi_agent_collaborative_architecture_for_automated_vulnerability_discovery/</guid>
+      <description>&lt;p&gt;As we envisioned in &lt;strong&gt;&lt;a href=&#34;https://www.darknavy.org/darknavy_insight/the_most_imaginative_new_applications_of_2024/&#34;&gt;DARKNAVY INSIGHT | The Most Imaginative New Applications of 2024&lt;/a&gt;&lt;/strong&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The next generation of AI agents will have excellent reasoning and generalization abilities and be skilled at using a variety of security research tools, inheriting a wealth of human expert knowledge. They will be able to discover more 0-day vulnerabilities in the real world, like top security experts.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Unsurprisingly, as Large Language Models (LLMs) demonstrate increasing proficiency in handling complex tasks, Agent technology is emerging as a new paradigm in the field of vulnerability discovery. Since Google Project Zero released Naptime[1] last year, an increasing number of Agent-based auditing tools are appearing. By providing LLMs with the necessary toolsets and source code for testing, these tools simulate the behaviour of security researchers to perform code audits and vulnerability confirmation.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>If the Person Who Finds a Web3 Hardware Wallet is a Hacker</title>
       <link>https://www.darknavy.org/blog/if_the_person_who_finds_a_web3_hardware_wallet_is_a_hacker/</link>
