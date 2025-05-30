@@ -11,16 +11,8 @@
     </image>
     <generator>Hugo -- 0.147.4</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 30 May 2025 11:25:22 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 23 May 2025 11:09:50 +0800</lastBuildDate>
     <atom:link href="https://www.darknavy.org/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Achieving Persistent Client-Side Attacks with a Single WeChat Message</title>
-      <link>https://www.darknavy.org/blog/achieving_persistent_client_side_attacks_with_a_single_wechat_message/</link>
-      <pubDate>Fri, 30 May 2025 11:25:22 +0800</pubDate>
-      <guid>https://www.darknavy.org/blog/achieving_persistent_client_side_attacks_with_a_single_wechat_message/</guid>
-      <description>&lt;p&gt;From White House staff to battlefield journalists, instant messaging (IM) applications are indispensable communication tools for countless individuals. Whether it&amp;rsquo;s WhatsApp, Telegram, WeChat, or QQ, they have become the &amp;ldquo;digital arteries&amp;rdquo; of modern society, carrying core activities such as social interaction, payments, and office work for billions of users. Their security directly affects personal privacy, financial assets, and even national security.&lt;/p&gt;
-&lt;p&gt;In fact, security research on IM platforms has been ongoing for years. In 2019, Project Zero disclosed CVE-2019-8641 in iMessage[1], a memory corruption issue. Since iMessage automatically parses rich media content in messages, an attacker could achieve remote code execution by sending a specially crafted file &lt;strong&gt;without user interaction&lt;/strong&gt;, gaining complete control over the target iPhone.&lt;/p&gt;</description>
-    </item>
     <item>
       <title>Argusee: A Multi-Agent Collaborative Architecture for Automated Vulnerability Discovery</title>
       <link>https://www.darknavy.org/blog/argusee_a_multi_agent_collaborative_architecture_for_automated_vulnerability_discovery/</link>

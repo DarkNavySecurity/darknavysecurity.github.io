@@ -1,7 +1,7 @@
 +++
 title = 'Achieving Persistent Client-Side Attacks with a Single WeChat Message'
 date = 2025-05-30T11:25:22+08:00
-draft = false
+draft = true
 images = ["attachments/ee59f925-6fe8-4762-aa32-028b09486308.png"]
 +++
 
