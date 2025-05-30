@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.darknavy.org/blog/argusee_a_multi_agent_collaborative_architecture_for_automated_vulnerability_discovery/</loc>
-    <lastmod>2025-05-23T11:09:50+08:00</lastmod>
+    <loc>https://www.darknavy.org/blog/achieving_persistent_client_side_attacks_with_a_single_wechat_message/</loc>
+    <lastmod>2025-05-30T11:25:22+08:00</lastmod>
   </url><url>
     <loc>https://www.darknavy.org/blog/</loc>
-    <lastmod>2025-05-23T11:09:50+08:00</lastmod>
+    <lastmod>2025-05-30T11:25:22+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -19,7 +19,7 @@
                 />
   </url><url>
     <loc>https://www.darknavy.org/</loc>
-    <lastmod>2025-05-23T11:09:50+08:00</lastmod>
+    <lastmod>2025-05-30T11:25:22+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -30,6 +30,9 @@
                 hreflang="en"
                 href="https://www.darknavy.org/"
                 />
+  </url><url>
+    <loc>https://www.darknavy.org/blog/argusee_a_multi_agent_collaborative_architecture_for_automated_vulnerability_discovery/</loc>
+    <lastmod>2025-05-23T11:09:50+08:00</lastmod>
   </url><url>
     <loc>https://www.darknavy.org/blog/if_the_person_who_finds_a_web3_hardware_wallet_is_a_hacker/</loc>
     <lastmod>2025-03-30T10:00:52+08:00</lastmod>
