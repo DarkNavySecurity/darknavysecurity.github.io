@@ -315,7 +315,7 @@ Load the object in |slot_index| of the context at |depth| in the context
 chain starting at |context| into the accumulator.
 ```
 
-很显然，`LdaContextSlot`更为复杂。因为context的存储是栈式的，`LdaContextSlot`给予了一个更通用的方式来load，可以手动置顶起始context和需要查找的depth。
+很显然，`LdaContextSlot`更为复杂。因为context的存储是栈式的，`LdaContextSlot`给予了一个更通用的方式来load，可以手动指定起始context和需要查找的depth。
 
 例如，以下字节码则是一个常见的字节码组合来load一个值。
 
