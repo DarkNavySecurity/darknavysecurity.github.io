@@ -13,7 +13,7 @@ But does the moment a hacker's fingertip touches the metal casing of a hardware 
 
 In this brief overview of attack and defense, we outline DARKNAVY's research on Web3 hardware wallets from an adversarial perspective.
 
- ![DARKNAVY's Cracking of Popular Web3 Hardware Wallets](attachments/7040d7d5-4672-4806-a6e3-ef920e3515da.png)
+ ![Exploiting Cypherock X1 Vault Vulnerability to display "Hacked by DARKNAVY" on screen](attachments/7040d7d5-4672-4806-a6e3-ef920e3515da.png)
 
 ## Attack Surface Overview
 
@@ -100,8 +100,6 @@ Tangem supports 33 custom NFC functions. Besides potential flaws in functional l
 ## Conclusion
 
 Asset migration in the blockchain ecosystem never stops. What hardware wallets carry represents far more than a simple combination of physical chips and cryptographic algorithms; they are the ultimate experiment in entrusting 'trust' to code.
-
-> Asset migration in the blockchain ecosystem never stops. Hardware wallets represent more than just physical chips and cryptographic algorithms—they embody a fundamental experiment in transferring 'trust' to code.
 
 As attackers dissect hardware protection layers with surgical precision, the fragile reality of this trust experiment becomes clear: a single unnoticed buffer overflow, an inadequately isolated secure chip, or even a misplaced comment in the firmware code can become a critical flaw capable of undermining the entire system. In this ongoing battle over assets worth trillions, DARKNAVY's research remains relentless.
 
