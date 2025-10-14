@@ -2,6 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.darknavy.org/about/</loc>
+    <lastmod>2025-10-14T16:33:58+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://www.darknavy.org/zh/about/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.darknavy.org/about/"
+                />
+  </url><url>
+    <loc>https://www.darknavy.org/</loc>
+    <lastmod>2025-10-14T16:33:58+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://www.darknavy.org/zh/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.darknavy.org/"
+                />
+  </url><url>
     <loc>https://www.darknavy.org/blog/</loc>
     <lastmod>2025-05-30T11:25:22+08:00</lastmod>
     <xhtml:link
@@ -13,19 +39,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://www.darknavy.org/blog/"
-                />
-  </url><url>
-    <loc>https://www.darknavy.org/</loc>
-    <lastmod>2025-05-30T11:25:22+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://www.darknavy.org/zh/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.darknavy.org/"
                 />
   </url><url>
     <loc>https://www.darknavy.org/blog/argusee_a_multi_agent_collaborative_architecture_for_automated_vulnerability_discovery/</loc>
@@ -255,19 +268,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://www.darknavy.org/blog/exploiting_the_libwebp_vulnerability_part_1/"
-                />
-  </url><url>
-    <loc>https://www.darknavy.org/about/</loc>
-    <lastmod>2023-11-02T17:11:58+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://www.darknavy.org/zh/about/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.darknavy.org/about/"
                 />
   </url>
 </urlset>

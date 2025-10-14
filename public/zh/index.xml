@@ -9,10 +9,18 @@
       <url>https://www.darknavy.org/images/white_logo.png</url>
       <link>https://www.darknavy.org/images/white_logo.png</link>
     </image>
-    <generator>Hugo -- 0.150.0</generator>
+    <generator>Hugo -- 0.151.0</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 17 Feb 2025 18:00:44 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 14 Oct 2025 16:33:58 +0800</lastBuildDate>
     <atom:link href="https://www.darknavy.org/zh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://www.darknavy.org/zh/about/</link>
+      <pubDate>Tue, 14 Oct 2025 16:33:58 +0800</pubDate>
+      <guid>https://www.darknavy.org/zh/about/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;DARKNAVY&lt;/strong&gt;, headquartered in Singapore and Shanghai, is an independent cybersecurity research and services organization. We are pioneers in &lt;strong&gt;AVSS&lt;/strong&gt; (Adversarial Vulnerability Scoring System) and &lt;strong&gt;quantitative security&lt;/strong&gt;, as well as the founding team behind the international hacking competition &lt;a href=&#34;https://geekcon.top/&#34;&gt;GEEKCON&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Founded upon the legacy of KeenTeam, established in 2011 and globally recognized as a multiple world-record holder and international hacking competition champion, DARKNAVY inherits over a decade of cutting-edge security research experience across operating systems, chipsets, AI, mobile, IoT, and Web3. Guided by the founding team&amp;rsquo;s unique vision, we have built a collaborative research team dedicated to solving the most critical security challenges faced by our clients.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2024年度最隐蔽的黑手</title>
       <link>https://www.darknavy.org/zh/darknavy_insight/the_most_stealthy_manipulator_of_2024/</link>
@@ -727,14 +735,6 @@ ldr  x0, [x1]
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;         key = GetNextKey(key, len);
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       }
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;因此，漏洞很可能是由于在构建Huffman Table时，没有对输入的数据进行有效性检查，从而导致分配给表的内存区域被溢写，即出现了缓冲区溢出。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>About</title>
-      <link>https://www.darknavy.org/zh/about/</link>
-      <pubDate>Thu, 02 Nov 2023 17:11:58 +0800</pubDate>
-      <guid>https://www.darknavy.org/zh/about/</guid>
-      <description>&lt;p&gt;We are DARKNAVY, an independent and free-spirited security research team and service provider. We have established AVSS (Adversarial Vulnerability Scoring System) to evaluate vulnerabilities and the effectiveness of system mitigation mechanisms in real adversarial environments.&lt;/p&gt;
-&lt;p&gt;Over the past 20 years, we have been at the forefront of cybersecurity research and application, winning multiple world championships. We have also established GEEKCON, a unique and top-class security geek competition, and responsibly disclosed over 1000 severe vulnerabilities. With relentless efforts, we have helped over 100 companies worldwide address security issues, contributing to the growth of the cybersecurity industry.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

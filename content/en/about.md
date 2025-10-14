@@ -1,6 +1,6 @@
 ---
 title: "About"
-date: 2023-11-02T17:11:58+08:00
+date: 2025-10-14T16:33:58+08:00
 draft: false
 url: "/about/"
 ShowToc: false
@@ -8,11 +8,13 @@ ShowBreadCrumbs: false
 hideMeta: true
 ---
 
-We are DARKNAVY, an independent and free-spirited security research team and service provider. We have established AVSS (Adversarial Vulnerability Scoring System) to evaluate vulnerabilities and the effectiveness of system mitigation mechanisms in real adversarial environments.
+**DARKNAVY**, headquartered in Singapore and Shanghai, is an independent cybersecurity research and services organization. We are pioneers in **AVSS** (Adversarial Vulnerability Scoring System) and **quantitative security**, as well as the founding team behind the international hacking competition [GEEKCON](https://geekcon.top/).
 
-Over the past 20 years, we have been at the forefront of cybersecurity research and application, winning multiple world championships. We have also established GEEKCON, a unique and top-class security geek competition, and responsibly disclosed over 1000 severe vulnerabilities. With relentless efforts, we have helped over 100 companies worldwide address security issues, contributing to the growth of the cybersecurity industry.
+Founded upon the legacy of KeenTeam, established in 2011 and globally recognized as a multiple world-record holder and international hacking competition champion, DARKNAVY inherits over a decade of cutting-edge security research experience across operating systems, chipsets, AI, mobile, IoT, and Web3. Guided by the founding team's unique vision, we have built a collaborative research team dedicated to solving the most critical security challenges faced by our clients.
 
-Our goal is to create a more secure digital world by eliminating vulnerabilities in IT products/services. By sharing our knowledge through consulting and R&D experiences, we aim to enable organizations to better prepare and protect themselves against the ever-evolving threat of cyber attacks.
+Since its official launch in 2023, DARKNAVY has proudly delivered advanced security research services to leading enterprises across multiple industries. Our signed clients include Huawei, Alipay, DJI, WeChat, ByteDance, Xiaomi, vivo, Zeekr, OPPO, Huazhu, and others. We provide in-depth product and system security assessments and make cybersecurity one of their core competitive strengths.
 
-We also strive to empower the development of the global security community by bringing together global leading experts, top researchers, white-hat hackers, academics, policymakers, practitioners and solution providers to share knowledge of frontier technology achievements, inspire awareness, insights and innovative solutions of current and emerging cyber threats and trends.
+Our research outcomes and technical insights have contributed significantly to the safer and more sustainable development of the cybersecurity industry. We see ourselves not only as thinkers, but as leaders driving the field forward.
 
+For security collaboration or technical inquiries, please contact us at coop@darknavy.com
+. We look forward to hearing your needs and delivering the most valuable, competitive, and deeply technical cybersecurity services. Thank you for your trust and support.
