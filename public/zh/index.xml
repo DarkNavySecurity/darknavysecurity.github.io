@@ -9,7 +9,7 @@
       <url>https://www.darknavy.org/images/white_logo.png</url>
       <link>https://www.darknavy.org/images/white_logo.png</link>
     </image>
-    <generator>Hugo -- 0.151.0</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
     <lastBuildDate>Tue, 14 Oct 2025 16:33:58 +0800</lastBuildDate>
     <atom:link href="https://www.darknavy.org/zh/index.xml" rel="self" type="application/rss+xml" />
@@ -49,7 +49,8 @@
 &lt;p&gt;按照安卓系统规范，当我们在桌面上点击应用图标时，启动的应该是应用在AndroidManifest.xml中注册有&lt;code&gt;android.intent.action.MAIN&lt;/code&gt;和&lt;code&gt;android.intent.category.LAUNCHER&lt;/code&gt;标志的Activity，推广页显然不符合条件。&lt;/p&gt;
 &lt;p&gt;仔细观察例图页面的顶端，在标题的两侧可以发现几个类似浏览器功能的按钮。推广页的本质其实是在应用内置浏览器中加载的网页，使用Deep Link启动应用可以很容易地做到这一点。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Deep Link&lt;/strong&gt;（&lt;strong&gt;深链接&lt;/strong&gt;）是指一种特殊的URL，是实现应用间快速导航、内容分享以及推广转化的重要工具。使用Deep Link能够直接跳转到安卓应用内的特定页面或功能，而不是简单地打开应用的主界面。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Deep Link&lt;/strong&gt;（&lt;strong&gt;深链接&lt;/strong&gt;）是指一种特殊的URL，是实现应用间快速导航、内容分享以及推广转化的重要工具。使用Deep Link能够直接跳转到安卓应用内的特定页面或功能，而不是简单地打开应用的主界面。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;那么该厂商是如何修改系统逻辑进行劫持的？通过对其桌面应用进行分析，可以得出结论：&lt;/p&gt;
 &lt;p&gt;该厂商的桌面应用基于AOSP源码定制，但向处理点击事件的&lt;code&gt;ItemClickHandler.onClick&lt;/code&gt;插入了额外的处理逻辑。它根据正常应该启动的Activity名称去寻找劫持配置，如果存在匹配，就直接通过配置中的Deep Link启动应用、直达推广页；否则才继续进行正常的应用启动流程。&lt;/p&gt;
 &lt;p&gt;为了避免劫持反复触发，桌面还会移除已使用过的配置。仅第一次打开应用时触发，这样的劫持行为也更容易被用户误解为应用的开屏广告，让用户的矛头错指应用方。&lt;/p&gt;
@@ -58,7 +59,8 @@
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_stealthy_manipulator_of_2024/attachments/b469c3f6-7103-4902-a51c-cc4553105700.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;这些行为破坏了公平竞争，还严重侵犯了用户与相关应用方的权益，可能违反相关法律法规。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;《&lt;strong&gt;反不正当竞争法&lt;/strong&gt;》第十二条明确规定：经营者不得利用技术手段，通过影响用户选择或者其他方式，实施下列妨碍、破坏其他经营者合法提供的网络产品或者服务正常运行的行为：（一）未经其他经营者同意，在其合法提供的网络产品或者服务中，插入链接、强制进行目标跳转……&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;《&lt;strong&gt;反不正当竞争法&lt;/strong&gt;》第十二条明确规定：经营者不得利用技术手段，通过影响用户选择或者其他方式，实施下列妨碍、破坏其他经营者合法提供的网络产品或者服务正常运行的行为：（一）未经其他经营者同意，在其合法提供的网络产品或者服务中，插入链接、强制进行目标跳转……&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;和&lt;a href=&#34;https://mp.weixin.qq.com/s/P_EYQxOEupqdU0BJMRqWsw&#34;&gt;「深蓝洞察」曾披露过的另一家违规巨头&lt;/a&gt;类似，本案例中的厂商，也采用了一系列的技术手段来掩盖他们的违规行为：&lt;/p&gt;
 &lt;p&gt;含有Deep Link的配置并未事先存储在设备中，而是由厂商的服务器根据特定规则动态下发。GEEKCON选手指出，并非所有该品牌的设备都会接收到这些恶意劫持配置。这表明，厂商可能依据用户的画像、手机的地理位置等因素来决定是否下发这些配置，&lt;strong&gt;从而将受影响的用户群体锁定为技术知识相对薄弱的二三线城市的中老年人群体&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;此外，该厂商再次滥用特权，下发的恶意配置文件被保存在桌面应用的私有数据目录中，由于安卓系统的应用沙箱隔离机制，每个应用的数据存储区域都受到严格保护，以此阻止第三方提取证据。动态下发的机制也赋予厂商远程销毁证据的能力，使得追踪与固证更加困难。&lt;/p&gt;
@@ -66,13 +68,15 @@
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;京东集团高级总监兼首席安全研究员、GEEKCON组委 flanker&lt;/strong&gt;：&lt;/p&gt;
 &lt;p&gt;内存破坏漏洞，凭借先进的技术手段，尚可不断予以消灭和预防；然而，业务模式所衍生出的安全与隐私风险，却犹如顽固的沉疴，最难根除。&lt;/p&gt;
-&lt;p&gt;正如古人云：&amp;ldquo;破山中贼易，破心中贼难&amp;rdquo;。科技本身，纯净无瑕，不过是供人驱使的工具，其本质无善恶之分；然而人心的幽深复杂，恰似深不可测的万丈深渊，潜藏着难以分辨的善恶欲念。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;正如古人云：&amp;ldquo;破山中贼易，破心中贼难&amp;rdquo;。科技本身，纯净无瑕，不过是供人驱使的工具，其本质无善恶之分；然而人心的幽深复杂，恰似深不可测的万丈深渊，潜藏着难以分辨的善恶欲念。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;深蓝洞察&#34;&gt;深蓝洞察&lt;/h2&gt;
 &lt;p&gt;数字技术的使命应是为人们带来便利与福祉，进而实现用户和厂商的共赢。而当技术被滥用甚至恶意使用成为谋取私利的工具时，受损的不仅是用户的权益，更是整个技术生态的信任基础。&lt;/p&gt;
 &lt;p&gt;iOS缘何成为人们心中安全与隐私的代名词，这不仅得益于其软硬结合、缜密完备的安全防御体系，更在于其生态环境中对隐私保护的高度重视，以及在商业化进程中所秉持的克制态度。诚然，苹果较高的硬件利润率或许是其能坚守隐私保护的因素之一，但换个角度看，这种克制又何尝不是铸就了人们对其品牌的高度认可，以及甘愿为之付出溢价的消费意愿？&lt;/p&gt;
 &lt;p&gt;如今，以HarmonyOS NEXT为代表的新一代操作系统正蓬勃崛起，在这充满挑战与机遇的进程中，它能否承受住各方压力，避免重蹈覆辙，切实守护用户的安全与隐私？各大厂商能否躬身自省，与iOS见贤思齐？这无疑是消费者与行业共同关注的焦点。&lt;/p&gt;
-&lt;p&gt;* 本期深蓝洞察年度报告共十篇已发布完结，感谢您的支持、期待您的宝贵建议。&lt;/p&gt;</description>
+&lt;p&gt;* 本期深蓝洞察年度报告共十篇已发布完结，感谢您的支持、期待您的宝贵建议。&lt;/p&gt;
+&lt;hr&gt;</description>
     </item>
     <item>
       <title>2024年度最憋屈的漏洞披露</title>
@@ -98,7 +102,8 @@
 &lt;p&gt;但是，这种模型在现实实践中展现出了一定的局限性：&lt;strong&gt;厂商在漏洞披露过程中占据主导权，安全研究者需要花费大量的时间与精力与厂商沟通漏洞的细节&lt;/strong&gt;。就本次事件而言，第三方安全研究人员即Simone与开发者OpenPrinting之间的沟通过程并不是那么顺利。在Simone的博客中提到双方的沟通记录内容多达50页，时间跨度长达3周，消耗了双方大量的时间与精力，最终Simone违反了&amp;quot;负责任的披露&amp;quot;的准则，提前进行了漏洞披露。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;漏洞评价标准的缺失是厂商在漏洞披露过程中占据主导权的原因之一，目前常用的CVSS漏洞评价体系对于漏洞评价的指标过于单一，无法准确评估漏洞的攻击难度与影响范围，安全研究员与厂商很难通过这套体系达成一致。&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;安全研究员、GEEKCON评委古河对现行CVSS的评价&#34; loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_frustrating_vulnerability_disclosure_of_2024/attachments/be6171ac-c7d0-4910-aba0-b9375f0a01f7.png&#34;&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt=&#34;安全研究员、GEEKCON评委古河对现行CVSS的评价&#34; loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_frustrating_vulnerability_disclosure_of_2024/attachments/be6171ac-c7d0-4910-aba0-b9375f0a01f7.png&#34;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;对于这种困境，P0、ZDI、CERT等组织在CVD模型的基础上加入了Deadline机制，以Google Project Zero为例，其提出了90天漏洞披露机制，即安全研究员第一时间将漏洞细节通报给厂商，并且在90天之后或者漏洞安全补丁发布之后，向公众公布漏洞细节以及缓解方案。&lt;/p&gt;
 &lt;p&gt;Deadline机制作为CVD模型的现实补充，有效的提高了漏洞修复的效率以及最终用户的安全性。但是Deadline机制终究只是一种被动的警告机制，并没有对漏洞披露过程中厂商的权力进行有效的限制，厂商仍然占据着绝对的主导权。事实上，即使一些安全研究员声明将在漏洞报告90天之后披露漏洞细节，部分厂商仍然没有积极推进漏洞修复的流程，从而导致在野漏洞流出，在P0的报告中不乏这样的例子。&lt;/p&gt;
 &lt;p&gt;&lt;img alt=&#34;P0对其提交给三星的漏洞逾期后发布的漏洞公告&#34; loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_frustrating_vulnerability_disclosure_of_2024/attachments/c7135102-8068-4ff5-8ac2-660ab66d254d.png&#34;&gt;&lt;/p&gt;
@@ -207,7 +212,8 @@
       <guid>https://www.darknavy.org/zh/darknavy_insight/the_most_unfortunate_backdoor_of_2024/</guid>
       <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_unfortunate_backdoor_of_2024/attachments/e194c748-d8d1-4837-a7c4-860d3bc79e7d.png&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;看到了软件的源码，就意味着没有后门吗？&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;看到了软件的源码，就意味着没有后门吗？&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;1983年的图灵奖颁奖仪式上，Ken Thompson抛出了这个问题。作为历史上唯三在40岁以下获得图灵奖的传奇之一，他在获奖演讲中向听众展示了如何通过在编译器中植入后门来骇入由无害源码编译得到的Unix系统。Ken的演讲为整个开源世界敲响了信任的警钟，并且直至今日仍为年轻黑客们所津津乐道。&lt;/p&gt;
 &lt;p&gt;2024年，XZ backdoor事件横空出世，将Ken的问题重新拉回了大众的视野。开源社区众目睽睽之下，攻击者成功将带有后门程序的xz-utils 5.6.1软件包更新到了Debian(Sid)/Fedora(Rawhide)等发行版的官方软件源中。万幸的是，工程师Andres Freund及时发现了xz-utils 5.6.1的异常行为。尽管在社区共同努力下后门程序的传播被及时阻断，但这场惊心动魄的危机仍然在敲打着每一个开源软件的使用者，提醒我们重新审视开源世界中的开发模式和信任传递问题。&lt;/p&gt;
 &lt;p&gt;在本报告中，我们将试图从技术角度还原xz backdoor从植入到被发现的整个过程，希望能够帮助读者更好地理解和应对开源代码所面临的安全威胁。&lt;/p&gt;
@@ -233,7 +239,8 @@
 &lt;li&gt;心理弱点利用：抓住了维护者长年以来的疲惫心理，也抓住了使用者对二进制文件与源码匹配性的疏忽心理。 可以看到，对以社区合作形式开展的开源项目的攻击，可能不仅仅局限在狭义的技术层面。无论是可重现构建还是零信任架构，我们不仅需要设计如何保护数据与系统，更需要思考人与人之间，人与技术之间，甚至技术与技术之间如何重新构建一种更有韧性，更可持续的信任体系。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;p&gt;XZ backdoor攻击者的这盆冷水，并没有浇灭开源社区众人拾柴的火焰。然而，信任问题并没有得到根本解决的情况下，倘若未来第二个，第三个Jia Tan出现，我们还能否有现在的自信和乐观？&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;XZ backdoor攻击者的这盆冷水，并没有浇灭开源社区众人拾柴的火焰。然而，信任问题并没有得到根本解决的情况下，倘若未来第二个，第三个Jia Tan出现，我们还能否有现在的自信和乐观？&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;功败垂成是运气使然还是skill-issue&#34;&gt;功败垂成——是运气使然还是skill issue？&lt;/h2&gt;
 &lt;p&gt;时间过去9个月，网络上已经有大量深入的对XZ后门程序的逆向工程分析[4,5]。回过头来，我们想探究的问题是：&lt;strong&gt;攻击者耗费了2年时间精心隐藏植入的后门，为什么会在如此短的时间内就被发现&lt;/strong&gt;？从攻击者的角度出发，这其中存在的缺陷是否还能够进一步优化？ 从防御者角度出发，又如何更好的及时发现和定位类似的问题？&lt;/p&gt;
 &lt;p&gt;Andres Freund在社交媒体上的评论表示，他一开始只是发现有恶意攻击者在&lt;strong&gt;爆破服务器ssh密码&lt;/strong&gt;，但是造成了异常高的CPU占用。随后他对&lt;code&gt;sshd&lt;/code&gt;进行了性能分析，发现更新过&lt;code&gt;liblzma.so&lt;/code&gt;后其处理每个ssh连接的时间从0.3秒增加到了0.8秒。联想到之前偶然看到的Valgrind报错，Andres对&lt;code&gt;xz-5.6.1&lt;/code&gt;中的&lt;code&gt;liblzma.so&lt;/code&gt;和源码构建脚本进行了深入分析并得出了其内部被植入后门的结论。&lt;/p&gt;
@@ -323,7 +330,8 @@
 &lt;p&gt;为何在采用最新缓解措施的Windows Server 2025上，此内存漏洞依然能被完整利用？&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;彭峙酿这样回答&lt;/strong&gt;：目前在Windows众多最新缓解措施全开的情况下，由一个内存破坏漏洞实现远程利用，正常来说是极难的。很多漏洞已不存在被利用的路径，或路径极少极隐蔽。&lt;/p&gt;
-&lt;p&gt;但这并不代表目前的缓解措施杀死了所有的漏洞利用。能否完成利用往往取决于：攻击者为了完成利用所愿意投入的时间、对相关代码模块的熟悉程度、漏洞和具体模块的特殊情况。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;但这并不代表目前的缓解措施杀死了所有的漏洞利用。能否完成利用往往取决于：攻击者为了完成利用所愿意投入的时间、对相关代码模块的熟悉程度、漏洞和具体模块的特殊情况。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;deepseek锐评&#34;&gt;DeepSeek锐评&lt;/h2&gt;
 &lt;p&gt;微软对狂躁许可漏洞&amp;quot;几乎不可能利用&amp;quot;的傲慢断言，折射出安全行业长期存在的评估悖论：当漏洞评级体系脱离攻击者视角，便沦为自欺欺人的技术乌托邦。&lt;/p&gt;
@@ -457,7 +465,8 @@
 &lt;/ul&gt;
 &lt;p&gt;以上这几项机制都从操作系统内核层面给予了支持，实现了从上到下的全流程控制。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;值得一提的是，鸿蒙&amp;quot;单框架&amp;quot;虽不支持APK安装包，但&amp;quot;出境易&amp;rdquo;、&amp;ldquo;卓易通&amp;quot;应用使得在该系统上运行Android APP变得可能。实际分析时由于内核及TEE的加密支持，反编译这些应用市场的安装包异常困难。DARKNAVY基于前期积累实现了应用解密，使用自研反编译器，发现这些应用通过调用鸿蒙系统的容器接口实现了Android的应用和框架层模拟。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;值得一提的是，鸿蒙&amp;quot;单框架&amp;quot;虽不支持APK安装包，但&amp;quot;出境易&amp;rdquo;、&amp;ldquo;卓易通&amp;quot;应用使得在该系统上运行Android APP变得可能。实际分析时由于内核及TEE的加密支持，反编译这些应用市场的安装包异常困难。DARKNAVY基于前期积累实现了应用解密，使用自研反编译器，发现这些应用通过调用鸿蒙系统的容器接口实现了Android的应用和框架层模拟。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_groundbreaking_new_security_ecosystem_of_2024/attachments/041b449b-86a5-4f6f-86d6-95c83b881ba3.png&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;鸿蒙内核&#34;&gt;鸿蒙内核&lt;/h2&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.darknavy.org/zh/darknavy_insight/the_most_groundbreaking_new_security_ecosystem_of_2024/attachments/29d2ff55-0b0c-433e-ac26-ad678551f701.png&#34;&gt;&lt;/p&gt;
@@ -466,7 +475,8 @@
 &lt;ul&gt;
 &lt;li&gt;在宏内核架构中，所有模块紧密耦合在一起。例如，如果攻击者利用网络模块中的漏洞成功攻破网络模块，便可直接控制整个宏内核。&lt;/li&gt;
 &lt;li&gt;而在微内核架构下，即使某一模块（如网络模块）被攻破，由于各模块间的隔离机制，攻击者无法轻易将攻击扩展至其他系统模块。&lt;/li&gt;
-&lt;/ul&gt;&lt;/blockquote&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
  &lt;img src=&#34;attachments/e76e86f9-bc1d-4df1-af9a-97622fb2e856.png&#34; style=&#34;display: block; margin-left: auto; margin-right: auto; zoom: 70%;&#34;/&gt;
 &lt;p&gt;系统组件的隔离势必带来性能开销。对于组件间频繁上下文切换所带来的开销，HongMeng内核通过将文件系统管理(fsmgr)、内存管理(memmgr)、进程管理(procmgr)等频繁调用的功能移入内核态，并将网络通信、驱动(devhost)等存在较大攻击面的功能隔离于用户态，以牺牲较少量的性能换取了更高的安全性。&lt;/p&gt;</description>
     </item>
@@ -480,7 +490,8 @@
 &lt;p&gt;给予文章强有力支撑的是ChatGPT-o1的发布，这是一次里程碑式的事件，在深度学习的加成下，大模型如虎添翼，表现强劲。&lt;/p&gt;
 &lt;p&gt;身处时代浪潮之中，DARKNAVY也积极拥抱AI，探索AI和安全的关系。AI能否在发现和利用漏洞时，再现人类的方法论？AI会不会带来新的安全问题？&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;楚人有鬻盾与矛者，誉之曰：“吾盾之坚，物莫能陷之。”以誉其矛曰：“吾矛之利，于物无不陷也。”或曰：“以子之矛陷子之盾，何如？”其人弗能应也。夫不可陷之盾与无不陷之矛，不可同世而立。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;楚人有鬻盾与矛者，誉之曰：“吾盾之坚，物莫能陷之。”以誉其矛曰：“吾矛之利，于物无不陷也。”或曰：“以子之矛陷子之盾，何如？”其人弗能应也。夫不可陷之盾与无不陷之矛，不可同世而立。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;吾盾之坚物莫能陷&#34;&gt;吾盾之坚，物莫能陷&lt;/h2&gt;
 &lt;p&gt;AI时代下，各大厂商纷纷推出了全新的AI产品、大模型，而对现存的产品，在迭代更新中，不少也加入了AI powered功能。AI已逐渐在无形之中成为了产品安全的一部分。新的代码也意味着新的攻击面，对于AI类的功能，更为特殊。&lt;/p&gt;
 &lt;p&gt;新增的代码仍受到传统攻击手法的威胁，从审计的角度来看，AI代码除了功能的不同，本质上还是代码中的一个子模块，内存溢出、越界等内存破坏漏洞皆有可能存在。而除了传统的代码攻击面外，还存在着特定于AI类别的攻击面，例如模型越狱、对抗样本攻击等等。&lt;/p&gt;
@@ -505,7 +516,8 @@
 &lt;img src=&#34;assets/3.png&#34; style=&#34;display: block; margin-left: auto; margin-right: auto; zoom: 50%;&#34;/&gt;
 &lt;h2 id=&#34;吾矛之利物无不陷&#34;&gt;吾矛之利，物无不陷&lt;/h2&gt;
 &lt;p&gt;发现漏洞后，思路自然地转向了研究此漏洞的可利用性。正如前文所述，AI能否在此研究过程中给予人类有力的援助？AI之于安全研究员，是一把趁手的武器，还是一堆废铜烂铁？&lt;/p&gt;
-&lt;p&gt;在今年GeekCon 2024&lt;a href=&#34;https://geekcon.top/&#34;&gt;新加坡站&lt;/a&gt;的舞台上，有多个有关此话题的安全研究亮相。&lt;/p&gt;</description>
+&lt;p&gt;在今年GeekCon 2024&lt;a href=&#34;https://geekcon.top/&#34;&gt;新加坡站&lt;/a&gt;的舞台上，有多个有关此话题的安全研究亮相。&lt;/p&gt;
+&lt;p&gt;来自清华的张超教授，展示了他们团队将大模型应用于二进制分析领域的成果，成功地应用于二进制代码相似性检测、patch补丁检测等场景；&lt;/p&gt;</description>
     </item>
     <item>
       <title>CVE-2024-5274: A Minor Flaw in V8 Parser Leading to Catastrophes</title>
@@ -621,7 +633,8 @@
 &lt;p&gt;本文将以MTE的三个主要玩家：Chrome中的PartitionAlloc、Glibc中的Ptmalloc、Android中的Scudo为目标，对其中MTE相关的实现分别进行讨论，并对它们进行对比。我们在研究中发现了PartitionAlloc中实现的问题，并将此问题报告给了Google，得到了Chrome团队的确认。&lt;/p&gt;
 &lt;h2 id=&#34;mte概述&#34;&gt;MTE概述&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;已了解MTE原理的读者可跳过此章节。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;已了解MTE原理的读者可跳过此章节。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;MTE利用ARMv8的TBI (Top-Byte Ignore) 特性，使用指针的高4 bits存储tag，在每个进程中有一段专用的内存用于存储tag。当为内存指定了某个tag后，程序必须带上正确的tag访问内存，若tag错误，程序抛出错误信号SIGSEGV，如下图所示：&lt;/p&gt;
 &lt;img src=&#34;assets/2.png&#34; style=&#34;display: block; margin-left: auto; margin-right: auto; zoom: 50%;&#34;/&gt;
 &lt;p&gt;指令集提供了系列指令来操作tag，此处举例说明MTE的基本用法：&lt;/p&gt;

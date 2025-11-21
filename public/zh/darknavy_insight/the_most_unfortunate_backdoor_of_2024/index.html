@@ -1,6 +1,7 @@
 <!doctype html><html lang=zh dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>2024年度最悲剧的后门 | DARKNAVY</title><meta name=keywords content><meta name=description content='
 
 看到了软件的源码，就意味着没有后门吗？
+
 1983年的图灵奖颁奖仪式上，Ken Thompson抛出了这个问题。作为历史上唯三在40岁以下获得图灵奖的传奇之一，他在获奖演讲中向听众展示了如何通过在编译器中植入后门来骇入由无害源码编译得到的Unix系统。Ken的演讲为整个开源世界敲响了信任的警钟，并且直至今日仍为年轻黑客们所津津乐道。
 2024年，XZ backdoor事件横空出世，将Ken的问题重新拉回了大众的视野。开源社区众目睽睽之下，攻击者成功将带有后门程序的xz-utils 5.6.1软件包更新到了Debian(Sid)/Fedora(Rawhide)等发行版的官方软件源中。万幸的是，工程师Andres Freund及时发现了xz-utils 5.6.1的异常行为。尽管在社区共同努力下后门程序的传播被及时阻断，但这场惊心动魄的危机仍然在敲打着每一个开源软件的使用者，提醒我们重新审视开源世界中的开发模式和信任传递问题。
 在本报告中，我们将试图从技术角度还原xz backdoor从植入到被发现的整个过程，希望能够帮助读者更好地理解和应对开源代码所面临的安全威胁。
@@ -27,6 +28,7 @@ xz项目由Lasse Collin等人于2005年发起，因其优异的性能和压缩�
 
 
 XZ backdoor攻击者的这盆冷水，并没有浇灭开源社区众人拾柴的火焰。然而，信任问题并没有得到根本解决的情况下，倘若未来第二个，第三个Jia Tan出现，我们还能否有现在的自信和乐观？
+
 功败垂成——是运气使然还是skill issue？
 时间过去9个月，网络上已经有大量深入的对XZ后门程序的逆向工程分析[4,5]。回过头来，我们想探究的问题是：攻击者耗费了2年时间精心隐藏植入的后门，为什么会在如此短的时间内就被发现？从攻击者的角度出发，这其中存在的缺陷是否还能够进一步优化？ 从防御者角度出发，又如何更好的及时发现和定位类似的问题？
 Andres Freund在社交媒体上的评论表示，他一开始只是发现有恶意攻击者在爆破服务器ssh密码，但是造成了异常高的CPU占用。随后他对sshd进行了性能分析，发现更新过liblzma.so后其处理每个ssh连接的时间从0.3秒增加到了0.8秒。联想到之前偶然看到的Valgrind报错，Andres对xz-5.6.1中的liblzma.so和源码构建脚本进行了深入分析并得出了其内部被植入后门的结论。
@@ -46,6 +48,7 @@ Andres Freund在社交媒体上的评论表示，他一开始只是发现有恶�
 然而，根据先前研究人员逆向工程的结果[4]，xz 5.6.1中后门程序的主要原理是拦截RSA解密函数后，根据ssh客户端发送证书中的字段进行解密，验签和执行命令操作。我们调试过程中发现，对于通过密码来登录的方式，并不会触发到后门代码的执行。也就是说按照现有的理解（或者说攻击者的设计思路），Andres应该无法从密码爆破这个现象观察到有明显的时间差异。'><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="darknavy_insight"><meta property="article:published_time" content="2025-02-13T17:07:28+08:00"><meta property="article:modified_time" content="2025-02-13T17:07:28+08:00"><meta property="og:image" content="https://www.darknavy.org/zh/darknavy_insight/the_most_unfortunate_backdoor_of_2024/attachments/8e1f8e07-a662-4ac7-aa92-5d6b11cd4d31.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://www.darknavy.org/zh/darknavy_insight/the_most_unfortunate_backdoor_of_2024/attachments/8e1f8e07-a662-4ac7-aa92-5d6b11cd4d31.png"><meta name=twitter:title content="2024年度最悲剧的后门"><meta name=twitter:description content='
 
 看到了软件的源码，就意味着没有后门吗？
+
 1983年的图灵奖颁奖仪式上，Ken Thompson抛出了这个问题。作为历史上唯三在40岁以下获得图灵奖的传奇之一，他在获奖演讲中向听众展示了如何通过在编译器中植入后门来骇入由无害源码编译得到的Unix系统。Ken的演讲为整个开源世界敲响了信任的警钟，并且直至今日仍为年轻黑客们所津津乐道。
 2024年，XZ backdoor事件横空出世，将Ken的问题重新拉回了大众的视野。开源社区众目睽睽之下，攻击者成功将带有后门程序的xz-utils 5.6.1软件包更新到了Debian(Sid)/Fedora(Rawhide)等发行版的官方软件源中。万幸的是，工程师Andres Freund及时发现了xz-utils 5.6.1的异常行为。尽管在社区共同努力下后门程序的传播被及时阻断，但这场惊心动魄的危机仍然在敲打着每一个开源软件的使用者，提醒我们重新审视开源世界中的开发模式和信任传递问题。
 在本报告中，我们将试图从技术角度还原xz backdoor从植入到被发现的整个过程，希望能够帮助读者更好地理解和应对开源代码所面临的安全威胁。
@@ -72,6 +75,7 @@ xz项目由Lasse Collin等人于2005年发起，因其优异的性能和压缩�
 
 
 XZ backdoor攻击者的这盆冷水，并没有浇灭开源社区众人拾柴的火焰。然而，信任问题并没有得到根本解决的情况下，倘若未来第二个，第三个Jia Tan出现，我们还能否有现在的自信和乐观？
+
 功败垂成——是运气使然还是skill issue？
 时间过去9个月，网络上已经有大量深入的对XZ后门程序的逆向工程分析[4,5]。回过头来，我们想探究的问题是：攻击者耗费了2年时间精心隐藏植入的后门，为什么会在如此短的时间内就被发现？从攻击者的角度出发，这其中存在的缺陷是否还能够进一步优化？ 从防御者角度出发，又如何更好的及时发现和定位类似的问题？
 Andres Freund在社交媒体上的评论表示，他一开始只是发现有恶意攻击者在爆破服务器ssh密码，但是造成了异常高的CPU占用。随后他对sshd进行了性能分析，发现更新过liblzma.so后其处理每个ssh连接的时间从0.3秒增加到了0.8秒。联想到之前偶然看到的Valgrind报错，Andres对xz-5.6.1中的liblzma.so和源码构建脚本进行了深入分析并得出了其内部被植入后门的结论。
