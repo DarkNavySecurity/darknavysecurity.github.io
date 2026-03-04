@@ -1,3 +1,8 @@
 .DS_Store
 .vscode
 .idea
+
+# Hugo build artifacts (compiled in CI, should not be committed)
+public/
+resources/_gen/
+.hugo_build.lock
