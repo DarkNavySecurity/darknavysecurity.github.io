@@ -1,0 +1,203 @@
+/* Web3 section styles — consistent with PaperMod dark theme */
+
+/* Table borders for web3 report pages */
+.post-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+}
+.post-content table th,
+.post-content table td {
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 6px 12px;
+}
+.post-content table th {
+  background: rgba(255,255,255,0.05);
+  font-weight: 600;
+}
+.post-content table tr:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+/* Section headings */
+.web3-section-heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 2rem 0 1rem;
+}
+
+/* Skills row — 3-column grid */
+.web3-skills-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+@media (max-width: 768px) {
+  .web3-skills-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Skill card */
+.web3-skill-card {
+  display: block;
+  padding: 1rem;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  color: var(--content);
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.web3-skill-card:hover {
+  border-color: var(--link);
+  transform: translateY(-2px);
+}
+.web3-skill-name {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.35rem;
+}
+.web3-skill-desc {
+  font-size: 0.85rem;
+  color: var(--content-secondary);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.web3-skill-tech {
+  font-size: 0.75rem;
+  background: rgba(122,162,247,0.12);
+  color: #7aa2f7;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* Search box */
+.web3-search-box {
+  margin-bottom: 1rem;
+}
+.web3-search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px;
+  background: var(--theme);
+  color: var(--content);
+  font-size: 0.9rem;
+  outline: none;
+}
+.web3-search-input:focus {
+  border-color: var(--link);
+}
+
+/* Report entry — one per row, like blog post entries */
+.web3-report-entry {
+  position: relative;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  transition: border-color 0.2s;
+}
+.web3-report-entry:hover {
+  border-color: rgba(255,255,255,0.3);
+}
+.web3-report-entry .entry-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.web3-report-entry .entry-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.3rem;
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+.web3-report-entry .entry-content p {
+  font-size: 0.88rem;
+  color: var(--content-secondary);
+  line-height: 1.5;
+  margin: 0 0 0.5rem;
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+.web3-report-entry .entry-footer {
+  font-size: 0.8rem;
+  color: var(--content-secondary);
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Chain badges */
+.web3-chain-badge {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.web3-chain-ethereum { background: rgba(122,162,247,0.15); color: #7aa2f7; }
+.web3-chain-bsc { background: rgba(247,118,142,0.15); color: #f7768e; }
+.web3-chain-arbitrum { background: rgba(125,207,255,0.15); color: #7dcfff; }
+.web3-chain-base { background: rgba(122,162,247,0.15); color: #7aa2f7; }
+.web3-chain-polygon { background: rgba(158,206,106,0.15); color: #9ece6a; }
+.web3-chain-polygon-zkevm { background: rgba(158,206,106,0.15); color: #9ece6a; }
+.web3-chain-linea { background: rgba(187,154,247,0.15); color: #bb9af7; }
+.web3-chain-optimism { background: rgba(224,175,104,0.15); color: #e0af68; }
+.web3-chain-avalanche { background: rgba(187,154,247,0.15); color: #bb9af7; }
+
+/* Loss & vuln badges */
+.web3-loss-badge {
+  color: #f7768e;
+  font-weight: 500;
+}
+.web3-vuln-badge {
+  background: rgba(224,175,104,0.12);
+  color: #e0af68;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+.web3-artifact-link {
+  color: var(--link);
+  text-decoration: none;
+  position: relative;
+  z-index: 3;
+  pointer-events: auto;
+  font-size: 0.8rem;
+}
+.web3-artifact-link:hover {
+  text-decoration: underline;
+}
+
+/* Numbered pagination */
+.pagination-pages {
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+}
+.pagination-page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--content);
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.pagination-page:hover {
+  background: rgba(255,255,255,0.08);
+}
+.pagination-page.active {
+  background: var(--link);
+  color: #fff;
+  font-weight: 600;
+}

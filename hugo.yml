@@ -156,6 +156,9 @@ menu:
     - name: Insight
       url: /darknavy_insight/
       weight: 30
+    - name: Web3
+      url: /web3/
+      weight: 35
     - name: About
       url: /about/
       weight: 40

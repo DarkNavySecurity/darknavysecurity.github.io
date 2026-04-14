@@ -1,0 +1,111 @@
+{{- define "main" }}
+
+{{- if .Title }}
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{- if .Description }}
+  <div class="post-description">
+    {{ .Description | markdownify }}
+  </div>
+  {{- end }}
+</header>
+{{- end }}
+
+{{ .Content }}
+
+{{/* Web3 Landing Page: /web3/ */}}
+{{- if eq .RelPermalink "/web3/" }}
+
+{{/* Skills as a 3-column grid row */}}
+{{- $skills := where (where site.RegularPages "Section" "web3") "Params.skill_type" "!=" nil }}
+{{- if gt (len $skills) 0 }}
+<h2 class="web3-section-heading">Security Capabilities</h2>
+<div class="web3-skills-row">
+  {{- range $skills }}
+  <a href="{{ .Permalink }}" class="web3-skill-card">
+    <div class="web3-skill-name">{{ .Title }}</div>
+    <div class="web3-skill-desc">{{ .Description }}</div>
+    <div class="web3-skill-tech">{{ .Params.tech }}</div>
+  </a>
+  {{- end }}
+</div>
+{{- end }}
+
+{{ end }}
+
+{{/* Report list — one per row, like blog posts */}}
+{{- $exploits := where (where site.RegularPages "Section" "web3") "Params.chain" "!=" nil }}
+{{- $paginator := .Paginate $exploits }}
+
+{{- if gt (len $exploits) 0 }}
+
+<h2 class="web3-section-heading">Exploit Analysis Reports</h2>
+
+<div class="web3-search-box">
+  <input type="text" id="web3-search" placeholder="Search reports..." class="web3-search-input">
+</div>
+
+<div id="web3-report-list">
+{{- range $paginator.Pages }}
+<article class="web3-report-entry" data-search="{{ lower .Title }} {{ lower .Params.chain_display }} {{ lower .Params.vuln_type }}">
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">{{ .Title }}</h2>
+  </header>
+  {{- with .Params.summary }}
+  <div class="entry-content">
+    <p>{{ . | truncate 280 }}</p>
+  </div>
+  {{- else }}
+  <div class="entry-content">
+    <p>{{ .Description }}</p>
+  </div>
+  {{- end }}
+  <footer class="entry-footer">
+    <span>{{ .Date.Format "2006-01-02" }}</span>&nbsp;&middot;&nbsp;
+    <span class="web3-chain-badge web3-chain-{{ .Params.chain }}">{{ .Params.chain_display }}</span>
+    {{- with .Params.loss }}&nbsp;&middot;&nbsp;<span class="web3-loss-badge">{{ . }}</span>{{ end }}
+    {{- with .Params.vuln_type }}&nbsp;&middot;&nbsp;<span class="web3-vuln-badge">{{ . }}</span>{{ end }}
+    {{- with .Params.tx_hash }}&nbsp;&middot;&nbsp;<a href="https://github.com/DarkNavySecurity/web3-exploit-analysis/tree/main/artifacts/analysis_{{ . }}" target="_blank" rel="noopener" class="web3-artifact-link" onclick="event.stopPropagation()">Artifacts</a>{{ end }}
+  </footer>
+  <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+</article>
+{{- end }}
+</div>
+
+{{/* Numbered pagination */}}
+{{- if gt $paginator.TotalPages 1 }}
+<footer class="page-footer">
+  <nav class="pagination">
+    {{- if $paginator.HasPrev }}
+    <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">&laquo;&nbsp;Prev</a>
+    {{- end }}
+    <span class="pagination-pages">
+      {{- range $i, $p := $paginator.Pagers }}
+      <a href="{{ $p.URL | absURL }}" class="pagination-page{{ if eq $p.PageNumber $paginator.PageNumber }} active{{ end }}">{{ $p.PageNumber }}</a>
+      {{- end }}
+    </span>
+    {{- if $paginator.HasNext }}
+    <a class="next" href="{{ $paginator.Next.URL | absURL }}">Next&nbsp;&raquo;</a>
+    {{- end }}
+  </nav>
+</footer>
+{{- end }}
+
+<script>
+(function() {
+  var search = document.getElementById('web3-search');
+  var entries = document.querySelectorAll('.web3-report-entry');
+  search.addEventListener('input', function() {
+    var q = this.value.toLowerCase();
+    entries.forEach(function(entry) {
+      var text = entry.dataset.search;
+      entry.style.display = (!q || text.indexOf(q) !== -1) ? '' : 'none';
+    });
+  });
+})();
+</script>
+
+{{- end }}
+
+{{- end }}{{- /* end main */ -}}

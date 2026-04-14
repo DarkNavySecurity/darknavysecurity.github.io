@@ -1,0 +1,71 @@
+{{- define "main" }}
+
+<article class="post-single">
+  <header class="post-header">
+    {{ partial "breadcrumbs.html" . }}
+    <h1 class="post-title entry-hint-parent">
+      {{ .Title }}
+      {{- if .Draft }}
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+      {{- end }}
+    </h1>
+    {{- if and .Description .Params.skill_type }}
+    <div class="post-description">
+      {{ .Description }}
+    </div>
+    {{- end }}
+    <div class="post-meta">
+      {{- with .Params.chain_display }}
+      <span class="web3-chain-badge web3-chain-{{ $.Params.chain }}">{{ . }}</span>&nbsp;·&nbsp;
+      {{- end }}
+      {{- if not ($.Param "hideMeta") }}
+      {{ .Date.Format "2006-01-02" }}
+      {{- with $.Params.loss }}&nbsp;·&nbsp;Loss: {{ . }}{{ end }}
+      {{- with $.Params.vuln_type }}&nbsp;·&nbsp;{{ . }}{{ end }}
+      {{- end }}
+      {{- if .Params.skill_type }}
+      &nbsp;·&nbsp;{{ .Params.tech }}
+      {{- end }}
+    </div>
+  </header>
+  {{- if (.Param "ShowToc") }}
+  {{- partial "toc.html" . }}
+  {{- end }}
+
+  {{- if .Content }}
+  <div class="post-content">
+    {{- if not (.Param "disableAnchoredHeadings") }}
+    {{- partial "anchored_headings.html" .Content -}}
+    {{- else }}{{ .Content }}{{ end }}
+  </div>
+  {{- end }}
+
+  <footer class="post-footer">
+    {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
+    <ul class="post-tags">
+      {{- range ($.GetTerms $tags) }}
+      <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+      {{- end }}
+    </ul>
+    {{- if .Params.skill_type }}
+    <div class="post-nav-links">
+      <a href="https://github.com/DarkNavySecurity/web3-skills/" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+    </div>
+    {{- else }}
+    <div class="post-nav-links">
+      {{- with .Params.tx_hash }}
+      <a href="https://github.com/DarkNavySecurity/web3-exploit-analysis/tree/main/artifacts/analysis_{{ . }}" target="_blank" rel="noopener">View On-chain Artifacts &rarr;</a>
+      &nbsp;·&nbsp;
+      {{- end }}
+      <a href="/web3/">&larr; Back to Web3 Security</a>
+    </div>
+    {{- end }}
+  </footer>
+</article>
+
+{{- end }}{{- /* end main */ -}}
