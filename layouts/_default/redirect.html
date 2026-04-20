@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="{{ site.Language.Lang | default "en" }}">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ .Title | default "Redirecting" }}</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="0; url={{ .Params.redirect_to }}">
+    <link rel="canonical" href="{{ .Params.redirect_to }}">
+    <script>
+      window.location.replace({{ printf "%q" .Params.redirect_to | safeJS }});
+    </script>
+  </head>
+  <body>
+    <p>
+      Redirecting to
+      <a href="{{ .Params.redirect_to }}">{{ .Params.redirect_to }}</a>.
+    </p>
+  </body>
+</html>
