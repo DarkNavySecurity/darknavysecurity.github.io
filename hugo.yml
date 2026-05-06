@@ -137,12 +137,12 @@ languages:
   en:
     contentDir: content/en
     disabled: false
-    languageName: English
+    label: English
     weight: 1
   zh:
     contentDir: content/zh
     disabled: false
-    languageName: Chinese
+    label: Chinese
     weight: 2
 
 menu:
