@@ -1,0 +1,64 @@
+{{- $root := .root -}}
+{{- $section := .section -}}
+{{- $skills := .skills -}}
+{{- $reports := .reports -}}
+{{- $showViewAll := .showViewAll | default false -}}
+{{- $sectionClass := .sectionClass | default "deepsea-home-section" -}}
+{{- $reportHeading := .reportHeading | default (cond (eq $root.Lang "zh") "漏洞利用分析报告" "Exploit Analysis Reports") -}}
+{{- if and $section (or (gt (len $skills) 0) (gt (len $reports) 0)) }}
+<section class="{{ $sectionClass }}" id="web3">
+  <div class="deepsea-home-heading deepsea-home-heading-row">
+    <div>
+      <h2>{{ $section.Title }}</h2>
+      <p>{{ $section.Description }}</p>
+    </div>
+    {{- if $showViewAll }}
+    <a class="deepsea-section-link" href="{{ $section.RelPermalink }}">{{ if eq $root.Lang "zh" }}查看全部{{ else }}VIEW ALL{{ end }} <span aria-hidden="true">&rarr;</span></a>
+    {{- end }}
+  </div>
+
+  {{- if gt (len $skills) 0 }}
+  <div class="deepsea-web3-block-heading">
+    <h3>{{ if eq $root.Lang "zh" }}安全能力{{ else }}Security Capabilities{{ end }}</h3>
+  </div>
+  <div class="deepsea-grid deepsea-grid-3 deepsea-web3-capability-grid">
+    {{- range $skills }}
+    <article class="deepsea-card deepsea-web3-capability-card">
+      <a class="deepsea-web3-block-link" href="{{ .RelPermalink }}">
+        <div class="deepsea-card-body">
+          <div class="deepsea-card-title-row deepsea-card-title-row-compact">
+            <h3 class="deepsea-card-title">{{ .Title }}</h3>
+          </div>
+          <p class="deepsea-card-summary">{{ .Description }}</p>
+          {{- with .Params.tech }}<div class="deepsea-web3-inline-meta">{{ . }}</div>{{- end }}
+        </div>
+      </a>
+    </article>
+    {{- end }}
+  </div>
+  {{- end }}
+
+  {{- if gt (len $reports) 0 }}
+  <div class="deepsea-web3-block-heading deepsea-web3-report-heading">
+    <h3>{{ $reportHeading }}</h3>
+  </div>
+  <div class="deepsea-web3-report-list">
+    {{- range $reports }}
+    {{- $report := . -}}
+    <article class="deepsea-web3-report-card">
+      <a class="deepsea-web3-block-link" href="{{ .RelPermalink }}">
+        <div class="deepsea-card-body">
+          <div class="deepsea-card-title-row deepsea-card-title-row-compact">
+            <h3 class="deepsea-card-title">{{ .Title }}</h3>
+          </div>
+          <div class="deepsea-web3-report-meta">
+            {{ partial "web3_report_meta.html" (dict "root" $root "report" .) }}
+          </div>
+        </div>
+      </a>
+    </article>
+    {{- end }}
+  </div>
+  {{- end }}
+</section>
+{{- end }}

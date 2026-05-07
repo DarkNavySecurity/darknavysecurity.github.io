@@ -1,0 +1,29 @@
+{{- $pages := where site.RegularPages "Section" .Section -}}
+{{- if and (eq .Section "web3") .Params.skill_type -}}
+  {{- $pages = where $pages "Params.skill_type" "!=" nil -}}
+{{- else if and (eq .Section "web3") .Params.chain -}}
+  {{- $pages = where $pages "Params.chain" "!=" nil -}}
+{{- end -}}
+{{- $prev := $pages.Next . -}}
+{{- $next := $pages.Prev . -}}
+{{- if or $prev $next }}
+{{- $prevLen := 0 -}}
+{{- $nextLen := 0 -}}
+{{- with $prev }}{{- $prevLen = len .Name -}}{{- end -}}
+{{- with $next }}{{- $nextLen = len .Name -}}{{- end -}}
+{{- $layoutClass := cond (le (add $prevLen $nextLen) 72) "deepsea-paginav-inline" "deepsea-paginav-split" -}}
+<nav class="paginav deepsea-paginav deepsea-paginav-compact {{ $layoutClass }}" aria-label="{{ i18n "post_nav" | default "Post navigation" }}">
+  {{- with $prev }}
+  <a class="prev" href="{{ .RelPermalink }}">
+    <span class="title"><span aria-hidden="true">&larr;</span> {{ i18n "prev_page" }}</span>
+    <span>{{- .Name -}}</span>
+  </a>
+  {{- end }}
+  {{- with $next }}
+  <a class="next" href="{{ .RelPermalink }}">
+    <span>{{- .Name -}}</span>
+    <span class="title">{{ i18n "next_page" }} <span aria-hidden="true">&rarr;</span></span>
+  </a>
+  {{- end }}
+</nav>
+{{- end }}

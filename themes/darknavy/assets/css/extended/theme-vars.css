@@ -1,0 +1,28 @@
+.dark {
+    --main-width: 1200px;
+    --theme: #000102;
+    --entry: rgba(5, 7, 12, 0.78);
+    --code-bg: rgba(6, 8, 14, 0.86);
+    --code-block-bg: rgba(5, 7, 12, 0.96);
+    --border: rgba(148, 163, 184, 0.1);
+    --primary: #f6fbff;
+    --secondary: rgba(209, 213, 219, 0.7);
+    --tertiary: rgba(39, 46, 58, 0.36);
+    --content: #eef6ff;
+    --content-secondary: rgba(188, 198, 214, 0.76);
+    --link: #60a5fa;
+    --link-hover: #93c5fd;
+    --deepsea-surface: rgba(5, 7, 12, 0.78);
+    --deepsea-surface-strong: rgba(5, 7, 12, 0.94);
+    --deepsea-glow: 0 0 0 1px rgba(148, 163, 184, 0.08), 0 18px 60px rgba(0, 0, 0, 0.38);
+    --deepsea-glow-strong: 0 0 0 1px rgba(148, 163, 184, 0.12), 0 24px 80px rgba(0, 0, 0, 0.5);
+    --deepsea-gradient: radial-gradient(circle at top left, rgba(96, 165, 250, 0.035), transparent 34%), radial-gradient(circle at bottom right, rgba(96, 165, 250, 0.025), transparent 28%), linear-gradient(180deg, rgba(0, 1, 2, 0.98), rgba(0, 1, 2, 0.96));
+}
+
+.entry-link:hover {
+    background: rgba(46, 46, 51, 0.3) !important;
+}
+
+.logo a img, .logo a svg {
+    border-radius: 0 !important;
+}

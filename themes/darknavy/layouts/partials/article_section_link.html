@@ -1,0 +1,10 @@
+{{- $label := .label -}}
+{{- $href := .href -}}
+{{- $direction := .direction | default "back" -}}
+<a class="deepsea-article-section-link deepsea-article-section-link-{{ $direction }}" href="{{ $href }}">
+  <span class="title">
+    {{- if eq $direction "back" -}}<span aria-hidden="true">&larr;</span> {{- end -}}
+    {{- $label -}}
+    {{- if eq $direction "forward" -}} <span aria-hidden="true">&rarr;</span>{{- end -}}
+  </span>
+</a>

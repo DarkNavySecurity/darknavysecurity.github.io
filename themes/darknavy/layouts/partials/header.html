@@ -1,0 +1,99 @@
+{{- /* theme-toggle is enabled */}}
+{{- if (not site.Params.disableThemeToggle) }}
+{{- if (eq site.Params.defaultTheme "light") }}
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    }
+</script>
+{{- else if (eq site.Params.defaultTheme "dark") }}
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+</script>
+{{- else }}
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+{{- end }}
+{{- else if (and (ne site.Params.defaultTheme "light") (ne site.Params.defaultTheme "dark"))}}
+<script>
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+{{- end }}
+
+<header class="header deepsea-header{{ if .IsHome }} deepsea-header-home{{ else }} deepsea-header-page is-scrolled{{ end }}" data-deepsea-header>
+    <nav class="nav deepsea-nav">
+        <div class="deepsea-nav-brand">
+            <a class="deepsea-logo-link" href="{{ .Site.Home.RelPermalink }}" accesskey="h" title="{{ site.Title }} (Alt + H)">
+                <img src="{{ "/images/hero-logo.png" | relURL }}" alt="{{ site.Title }}" class="deepsea-header-logo">
+            </a>
+        </div>
+
+        {{- $homePath := .Site.Home.RelPermalink -}}
+        <ul id="menu" class="deepsea-menu">
+            <li><a class="deepsea-menu-link" href="{{ if .IsHome }}#about{{ else }}{{ printf "%s#about" $homePath }}{{ end }}" title="About"><span>{{ if eq .Lang "zh" }}About{{ else }}About{{ end }}</span></a></li>
+            <li><a class="deepsea-menu-link" href="{{ if .IsHome }}#blog{{ else }}{{ printf "%s#blog" $homePath }}{{ end }}" title="Blog"><span>{{ if eq .Lang "zh" }}Blog{{ else }}Blog{{ end }}</span></a></li>
+            <li><a class="deepsea-menu-link" href="{{ if .IsHome }}#insight{{ else }}{{ printf "%s#insight" $homePath }}{{ end }}" title="Insight"><span>{{ if eq .Lang "zh" }}Insight{{ else }}Insight{{ end }}</span></a></li>
+            <li><a class="deepsea-menu-link" href="{{ if eq .Lang "zh" }}/#web3{{ else if .IsHome }}#web3{{ else }}{{ printf "%s#web3" $homePath }}{{ end }}" title="Web3"><span>{{ if eq .Lang "zh" }}Web3{{ else }}Web3{{ end }}</span></a></li>
+        </ul>
+
+        <div class="deepsea-nav-utilities">
+            <div class="deepsea-header-socials">
+                {{ partial "social_icons.html" }}
+            </div>
+
+            {{- $lang := .Lang}}
+            {{- with site.Home.Translations }}
+            <ul class="lang-switch deepsea-lang-switch">
+                {{- range . -}}
+                {{- if ne $lang .Lang }}
+                <li>
+                    <a href="{{- .RelPermalink -}}" title="{{ .Language.Params.languageAltTitle | default (.Language.Label | emojify) | default (.Lang | title) }}"
+                        aria-label="{{ .Language.Label | default (.Lang | title) }}">
+                        {{- if (and site.Params.displayFullLangName (.Language.Label)) }}
+                        {{- .Language.Label | emojify -}}
+                        {{- else }}
+                        {{- .Lang | title -}}
+                        {{- end -}}
+                    </a>
+                </li>
+                {{- end -}}
+                {{- end}}
+            </ul>
+            {{- end }}
+
+            {{- if (not site.Params.disableThemeToggle) }}
+            <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+            {{- end }}
+        </div>
+    </nav>
+</header>

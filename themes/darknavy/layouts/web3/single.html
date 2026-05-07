@@ -1,0 +1,49 @@
+{{- define "main" }}
+{{- $defaultLang := .Site.Home.Lang -}}
+{{- $web3Path := cond (eq .Lang $defaultLang) "/web3/" (printf "/%s/web3/" .Lang) -}}
+<article class="post-single deepsea-single-page deepsea-article-shell">
+  <header class="post-header deepsea-article-hero">
+    <div class="deepsea-article-eyebrow">
+      {{- if .Params.skill_type }}
+      <a class="deepsea-pill deepsea-article-category-pill" href="{{ "/web3/" | relLangURL }}">Web3 Skill</a>
+      {{- else }}
+      <a class="deepsea-pill deepsea-article-category-pill" href="{{ "/web3/" | relLangURL }}">Web3 Report</a>
+      {{- end }}
+    </div>
+    <h1 class="post-title entry-hint-parent">
+      {{ .Title }}
+      {{- if .Draft }}<span class="entry-hint" title="Draft">Draft</span>{{- end }}
+    </h1>
+    <div class="post-meta deepsea-article-post-meta">
+      {{ .Date.Format "2006-01-02" }}
+      {{- with .Params.loss }}&nbsp;·&nbsp;{{ i18n "web3_loss_label" }} {{ . }}{{ end }}
+      {{- with .Params.vuln_type }}&nbsp;·&nbsp;{{ . }}{{ end }}
+      {{- with .Params.tech }}&nbsp;·&nbsp;{{ . }}{{ end }}
+    </div>
+    {{- if and .Description .Params.skill_type }}
+    <div class="post-description">{{ .Description }}</div>
+    {{- end }}
+  </header>
+
+  {{- if .Content }}
+  <div class="post-content deepsea-article-content">
+    {{- if not (.Param "disableAnchoredHeadings") }}{{ partial "anchored_headings.html" .Content }}{{ else }}{{ .Content }}{{ end }}
+  </div>
+  {{- end }}
+
+  <footer class="post-footer deepsea-article-footer{{ if or .Params.tx_hash .Params.skill_type }} deepsea-article-footer-actions{{ end }}">
+    {{- with .Params.tx_hash }}
+    <a class="deepsea-artifact-cta" href="https://github.com/DarkNavySecurity/web3-exploit-analysis/tree/main/artifacts/analysis_{{ . }}" target="_blank" rel="noopener">
+      <span>{{ i18n "web3_view_artifacts" }}</span>
+    </a>
+    {{- end }}
+    {{- if .Params.skill_type }}
+    <a class="deepsea-artifact-cta" href="https://github.com/DarkNavySecurity/web3-skills/" target="_blank" rel="noopener">
+      <span>{{ i18n "web3_view_github" }}</span>
+    </a>
+    {{- end }}
+    {{- partial "post_nav_links.html" . }}
+    {{ partial "article_section_link.html" (dict "label" (i18n "web3_back") "href" ($web3Path | relURL)) }}
+  </footer>
+</article>
+{{- end }}

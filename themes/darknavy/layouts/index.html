@@ -1,0 +1,115 @@
+{{- define "main" }}
+{{- $lang := .Lang -}}
+{{- $defaultLang := .Site.Home.Lang -}}
+{{- $aboutPath := cond (eq $lang $defaultLang) "/about" (printf "/%s/about" $lang) -}}
+{{- $aboutPage := site.GetPage $aboutPath -}}
+{{- $blogSection := site.GetPage "section" "blog" -}}
+{{- $insightSection := site.GetPage "section" "darknavy_insight" -}}
+{{- $web3Section := site.GetPage "section" "web3" -}}
+{{- $blogPages := first 3 (where site.RegularPages "Section" "blog") -}}
+{{- $insightPages := first 4 (where site.RegularPages "Section" "darknavy_insight") -}}
+{{- $web3SkillPages := first 3 (where (where site.RegularPages "Section" "web3") "Params.skill_type" "!=" nil) -}}
+{{- $web3ReportPages := first 10 (where (where site.RegularPages "Section" "web3") "Params.chain" "!=" nil) -}}
+{{- $heroTagline := cond (eq $lang "zh") "独立网络安全研究与服务机构" "Independent cybersecurity research and services organization" -}}
+{{- $heroSubtitle := cond (eq $lang "zh") "AVSS 与量化安全的先行者，GEEKCON 国际黑客大赛创始团队" "Pioneers of AVSS and quantitative security, and founding team of GEEKCON" -}}
+{{- $aboutIntro := "Built on KeenTeam's research legacy, focused on critical security challenges" -}}
+{{- $localizedDateFormat := cond (eq $lang "zh") "2006年1月2日" site.Params.DateFormat -}}
+{{- $aboutLines := slice -}}
+{{- with $aboutPage }}
+  {{- $aboutLines = split (.Plain | strings.TrimSpace) "\n" -}}
+{{- end -}}
+<div class="deepsea-home deepsea-home-prototype">
+  <section class="deepsea-hero-prototype" id="top">
+    <div class="deepsea-hero-video-wrap">
+      <video autoplay muted loop playsinline class="deepsea-hero-video">
+        <source src="{{ "/hero-bg.mp4" | relURL }}" type="video/mp4">
+      </video>
+      <div class="deepsea-hero-overlay"></div>
+    </div>
+    <div class="deepsea-hero-prototype-inner">
+      <img class="deepsea-hero-logo" src="{{ "/images/hero-logo.png" | relURL }}" alt="{{ site.Title }}">
+      <h1>{{ $heroTagline }}</h1>
+      <p class="deepsea-hero-subtitle">{{ $heroSubtitle }}</p>
+      <div class="deepsea-social-row deepsea-social-row-prototype">
+        {{ partial "social_icons.html" (dict "align" "center") }}
+      </div>
+    </div>
+  </section>
+
+  {{- with $aboutPage }}
+  <section class="deepsea-home-section deepsea-about-prototype" id="about">
+    <div class="deepsea-home-heading deepsea-home-heading-centered">
+      <h2>ABOUT</h2>
+      <p>{{ $aboutIntro }}</p>
+    </div>
+    <div class="deepsea-about-columns">
+      <div class="deepsea-about-column">
+        {{- if ge (len $aboutLines) 1 }}<p>{{ index $aboutLines 0 | markdownify }}</p>{{- end }}
+        {{- if ge (len $aboutLines) 2 }}<p>{{ index $aboutLines 1 | markdownify }}</p>{{- end }}
+      </div>
+      <div class="deepsea-about-column">
+        {{- if ge (len $aboutLines) 3 }}<p>{{ index $aboutLines 2 | markdownify }}</p>{{- end }}
+        {{- if ge (len $aboutLines) 4 }}<p>{{ index $aboutLines 3 | markdownify }}</p>{{- end }}
+        {{- if ge (len $aboutLines) 5 }}<p>{{ index $aboutLines 4 | markdownify }}</p>{{- end }}
+      </div>
+    </div>
+  </section>
+  {{- end }}
+
+  {{- with $blogSection }}
+  <section class="deepsea-home-section" id="blog">
+    <div class="deepsea-home-heading deepsea-home-heading-row">
+      <div>
+        <h2>{{ if eq $.Lang "zh" }}最新研究{{ else }}LATEST RESEARCH{{ end }}</h2>
+      </div>
+      <a class="deepsea-section-link" href="{{ .RelPermalink }}">{{ if eq $.Lang "zh" }}查看全部{{ else }}VIEW ALL{{ end }} <span aria-hidden="true">&rarr;</span></a>
+    </div>
+    <div class="deepsea-feature-stack">
+      {{- range $blogPages }}
+      <article class="deepsea-feature-card">
+        <a class="deepsea-feature-link" href="{{ .RelPermalink }}">
+          <div class="deepsea-feature-meta">
+            <div class="deepsea-card-date">{{ .Date | time.Format $localizedDateFormat }}</div>
+          </div>
+          <div class="deepsea-feature-content">
+            <div class="deepsea-feature-title-row">
+              <h3 class="deepsea-card-title">{{ .Title }}</h3>
+            </div>
+            <p class="deepsea-card-summary">{{ .Summary | plainify | htmlUnescape | truncate 220 }}</p>
+          </div>
+        </a>
+      </article>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+
+  {{- with $insightSection }}
+  <section class="deepsea-home-section" id="insight">
+    <div class="deepsea-home-heading deepsea-home-heading-row">
+      <div>
+        <h2>{{ if eq $.Lang "zh" }}深蓝洞察{{ else }}RECENT INSIGHTS{{ end }}</h2>
+      </div>
+      <a class="deepsea-section-link" href="{{ .RelPermalink }}">{{ if eq $.Lang "zh" }}查看全部{{ else }}VIEW ALL{{ end }} <span aria-hidden="true">&rarr;</span></a>
+    </div>
+    <div class="deepsea-grid deepsea-grid-4 deepsea-insight-grid-prototype">
+      {{- range $insightPages }}
+      <article class="deepsea-card deepsea-insight-card">
+        <a class="deepsea-insight-link" href="{{ .RelPermalink }}">
+          <div class="deepsea-card-body">
+            <div class="deepsea-card-date">{{ .Date | time.Format $localizedDateFormat }}</div>
+            <div class="deepsea-card-title-row">
+              <h3 class="deepsea-card-title">{{ .Title }}</h3>
+            </div>
+            <p class="deepsea-card-summary">{{ .Summary | plainify | htmlUnescape | truncate 160 }}</p>
+          </div>
+        </a>
+      </article>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+
+  {{- partial "web3_section.html" (dict "root" . "section" $web3Section "skills" $web3SkillPages "reports" (first 3 $web3ReportPages) "showViewAll" true "sectionClass" "deepsea-home-section" "reportHeading" (cond (eq .Lang "zh") "最新漏洞利用分析报告" "Latest Exploit Analysis Reports")) }}
+</div>
+{{- end }}

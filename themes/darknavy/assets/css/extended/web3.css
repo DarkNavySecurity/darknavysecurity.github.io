@@ -1,0 +1,120 @@
+/* Web3 section styles — consistent with PaperMod dark theme */
+
+/* Table borders for web3 report pages */
+.post-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+}
+.post-content table th,
+.post-content table td {
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 6px 12px;
+}
+.post-content table th {
+  background: rgba(255,255,255,0.05);
+  font-weight: 600;
+}
+.post-content table tr:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+/* Section headings */
+.web3-section-heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 2rem 0 1rem;
+}
+
+/* Search box */
+.web3-search-box {
+  max-width: 1320px;
+  margin: 0 auto 1.5rem;
+}
+.web3-search-input {
+  width: min(100%, 28rem);
+  padding: 0.72rem 0.95rem;
+  border: 1px solid rgba(96, 165, 250, 0.18);
+  border-radius: 999px;
+  background: rgba(7, 16, 38, 0.62);
+  color: var(--content);
+  font-size: 0.86rem;
+  outline: none;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.web3-search-input:focus {
+  border-color: rgba(96, 165, 250, 0.58);
+}
+
+.web3-report-entry {
+  margin-bottom: 0;
+}
+
+.web3-report-entry .deepsea-card-summary {
+  margin-top: 0.75rem;
+  max-width: 56rem;
+  color: rgba(148, 163, 184, 0.76);
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.web3-report-meta-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Chain badges */
+.web3-chain-badge {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.web3-chain-ethereum { background: rgba(122,162,247,0.15); color: #7aa2f7; }
+.web3-chain-bsc { background: rgba(247,118,142,0.15); color: #f7768e; }
+.web3-chain-arbitrum { background: rgba(125,207,255,0.15); color: #7dcfff; }
+.web3-chain-base { background: rgba(122,162,247,0.15); color: #7aa2f7; }
+.web3-chain-polygon { background: rgba(158,206,106,0.15); color: #9ece6a; }
+.web3-chain-polygon-zkevm { background: rgba(158,206,106,0.15); color: #9ece6a; }
+.web3-chain-linea { background: rgba(187,154,247,0.15); color: #bb9af7; }
+.web3-chain-optimism { background: rgba(224,175,104,0.15); color: #e0af68; }
+.web3-chain-avalanche { background: rgba(187,154,247,0.15); color: #bb9af7; }
+
+/* Loss & vuln badges */
+.web3-loss-badge {
+  color: #f7768e;
+  font-weight: 500;
+}
+.web3-vuln-badge {
+  background: rgba(224,175,104,0.12);
+  color: #e0af68;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+.web3-artifact-link {
+  position: relative;
+  z-index: 3;
+  pointer-events: auto;
+  text-decoration: none;
+}
+.web3-artifact-link:hover {
+  color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+}
+
+/* Numbered pagination */
+.pagination-pages {
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+}
+.pagination-page.active {
+  border-color: rgba(96, 165, 250, 0.56);
+  background: rgba(59, 130, 246, 0.18);
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 600;
+}

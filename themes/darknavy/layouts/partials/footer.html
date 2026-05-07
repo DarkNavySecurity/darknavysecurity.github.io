@@ -1,0 +1,287 @@
+{{- if and .IsHome (not (.Param "hideFooter")) }}
+<canvas class="deepsea-home-effects deepsea-page-effects" data-deepsea-effects aria-hidden="true"></canvas>
+{{- end }}
+{{- if not (.Param "hideFooter") }}
+{{- $homePath := .Site.Home.RelPermalink -}}
+<footer class="footer deepsea-footer-shell">
+    <div class="deepsea-footer-glow"></div>
+    <div class="deepsea-footer-inner">
+        <div class="deepsea-footer-grid">
+            <div class="deepsea-footer-brand">
+                <img src="{{ "/images/hero-logo.png" | relURL }}" alt="{{ site.Title }}" class="deepsea-footer-logo">
+                <p class="deepsea-footer-copy">
+                    {{- if eq .Lang "zh" -}}
+                    独立网络安全研究服务机构。<br>
+                    AVSS 对抗漏洞量化评估体系发起团队。
+                    {{- else -}}
+                    Independent cybersecurity research and services organization.<br>
+                    Organizing Founder of AVSS <span class="deepsea-footer-nowrap">(Adversarial Vulnerability Scoring System)</span>
+                    {{- end -}}
+                </p>
+                <div class="deepsea-footer-socials">{{ partial "social_icons.html" }}</div>
+            </div>
+
+            <div class="deepsea-footer-column">
+                <h4>{{ if eq .Lang "zh" }}Research{{ else }}Research{{ end }}</h4>
+                <ul>
+                    <li><a href="{{ printf "%sblog/" $homePath }}">Blog</a></li>
+                    <li><a href="{{ printf "%sdarknavy_insight/" $homePath }}">Insight</a></li>
+                    <li><a href="{{ if eq .Lang "zh" }}/web3/{{ else }}{{ printf "%sweb3/" $homePath }}{{ end }}">Web3</a></li>
+                </ul>
+            </div>
+
+            <div class="deepsea-footer-column">
+                <h4>{{ if eq .Lang "zh" }}Contact{{ else }}Contact{{ end }}</h4>
+                <ul>
+                    <li><a href="{{ printf "%s#about" $homePath }}">About</a></li>
+                    <li><a href="mailto:coop@darknavy.com">coop@darknavy.com</a></li>
+                    <li>Singapore / Shanghai</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="deepsea-footer-bottom">
+            <span class="deepsea-footer-copyright">
+                {{- if not site.Params.footer.hideCopyright }}
+                    {{- if site.Copyright }}
+                        {{ site.Copyright | markdownify }}
+                    {{- else }}
+                        &copy; {{ now.Year }} <a href="{{ $homePath }}">{{ site.Title }}</a> · Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> & <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+                    {{- end }}
+                {{- end }}
+            </span>
+        </div>
+    </div>
+</footer>
+{{- end }}
+
+{{- if (not site.Params.disableScrollToTop) }}
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+{{- end }}
+
+{{- partial "extend_footer.html" . }}
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    const deepseaHeader = document.querySelector('[data-deepsea-header]');
+    if (deepseaHeader && deepseaHeader.classList.contains('deepsea-header-home')) {
+        const syncDeepseaHeader = () => {
+            deepseaHeader.classList.toggle('is-scrolled', window.scrollY > 50);
+        };
+        syncDeepseaHeader();
+        window.addEventListener('scroll', syncDeepseaHeader, { passive: true });
+    }
+
+    const deepseaFooter = document.querySelector('.deepsea-footer-shell');
+    if (deepseaFooter) {
+        const syncDeepseaFooterGlow = () => {
+            const distanceToBottom = document.documentElement.scrollHeight - window.scrollY - window.innerHeight;
+            deepseaFooter.classList.toggle('is-at-bottom', distanceToBottom < 100);
+        };
+        syncDeepseaFooterGlow();
+        window.addEventListener('scroll', syncDeepseaFooterGlow, { passive: true });
+        window.addEventListener('resize', syncDeepseaFooterGlow);
+    }
+
+    const deepseaEffectsCanvas = document.querySelector('[data-deepsea-effects]');
+    if (deepseaEffectsCanvas instanceof HTMLCanvasElement) {
+        const ctx = deepseaEffectsCanvas.getContext('2d');
+        if (ctx) {
+            let width = 0;
+            let height = 0;
+            let animationFrameId;
+            const bubbles = [];
+
+            const resizeCanvas = () => {
+                width = deepseaEffectsCanvas.width = document.documentElement.scrollWidth;
+                height = deepseaEffectsCanvas.height = Math.max(document.documentElement.scrollHeight, window.innerHeight);
+            };
+
+            const initBubbles = () => {
+                bubbles.length = 0;
+                for (let i = 0; i < 520; i++) {
+                    const initialY = Math.random() * height;
+                    const spreadFactor = Math.max(0.24, (height - initialY) / height);
+                    const lateralSpread = (Math.random() - 0.5) * width * 0.52 * spreadFactor;
+                    bubbles.push({
+                        x: width / 2 + lateralSpread,
+                        y: initialY,
+                        r: Math.random() * 5 + 1.5,
+                        speedY: Math.random() * 0.3 + 0.1,
+                        speedX: (Math.random() - 0.5) * 0.1,
+                        opacity: Math.random() * 0.62 + 0.32,
+                        wobbleSpeed: Math.random() * 0.008 + 0.003,
+                        wobbleAmount: Math.random() * 0.8 + 0.3,
+                        seed: Math.random() * Math.PI * 2,
+                    });
+                }
+            };
+
+            const renderDeepseaEffects = () => {
+                ctx.clearRect(0, 0, width, height);
+                const heroHeight = window.innerHeight;
+                const fadeStartLine = heroHeight * 0.75;
+                const fadeEndLine = heroHeight * 0.95;
+                const footerTop = deepseaFooter ? deepseaFooter.offsetTop : height;
+                const footerRiseStart = Math.max(fadeEndLine, footerTop - window.innerHeight * 0.45);
+
+                bubbles.forEach((bubble) => {
+                    let finalOpacity = bubble.opacity;
+                    if (bubble.y > fadeStartLine) {
+                        finalOpacity = bubble.opacity * 1.2;
+                    } else if (bubble.y >= fadeEndLine && bubble.y <= fadeStartLine) {
+                        finalOpacity = bubble.opacity * ((bubble.y - fadeEndLine) / (fadeStartLine - fadeEndLine)) * 1.2;
+                    } else {
+                        finalOpacity = 0;
+                    }
+
+                    if (bubble.y > footerRiseStart) {
+                        const footerRatio = Math.min(1, (bubble.y - footerRiseStart) / Math.max(1, height - footerRiseStart));
+                        finalOpacity = Math.max(finalOpacity, bubble.opacity * (0.35 + footerRatio * 1.05));
+                    }
+
+                    ctx.beginPath();
+                    ctx.arc(bubble.x, bubble.y, bubble.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(96, 165, 250, ${Math.min(finalOpacity * 0.72, 0.56)})`;
+                    ctx.shadowBlur = bubble.r * 1.8 * (finalOpacity / Math.max(bubble.opacity, 0.01));
+                    ctx.shadowColor = `rgba(96, 165, 250, ${Math.min(finalOpacity * 0.45, 0.36)})`;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+
+                    bubble.y -= bubble.speedY;
+                    bubble.x += bubble.speedX + Math.sin(bubble.y * bubble.wobbleSpeed + bubble.seed) * bubble.wobbleAmount;
+
+                    if (bubble.y < fadeEndLine || bubble.x < -50 || bubble.x > width + 50) {
+                        bubble.y = height + 10;
+                        bubble.x = width / 2 + (Math.random() - 0.5) * width * 0.28;
+                    }
+                });
+
+                animationFrameId = window.requestAnimationFrame(renderDeepseaEffects);
+            };
+
+            const handleDeepseaEffectsResize = () => {
+                const nextWidth = document.documentElement.scrollWidth;
+                const nextHeight = Math.max(document.documentElement.scrollHeight, window.innerHeight);
+                if (width !== nextWidth || height !== nextHeight) {
+                    resizeCanvas();
+                    initBubbles();
+                }
+            };
+
+            resizeCanvas();
+            initBubbles();
+            renderDeepseaEffects();
+            window.addEventListener('resize', handleDeepseaEffectsResize);
+            if ('ResizeObserver' in window) {
+                new ResizeObserver(handleDeepseaEffectsResize).observe(document.body);
+            }
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+            if (!target) return;
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                target.scrollIntoView({ behavior: "smooth" });
+            } else {
+                target.scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+
+{{- if (not site.Params.disableScrollToTop) }}
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+{{- end }}
+
+{{- if (not site.Params.disableThemeToggle) }}
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+</script>
+{{- end }}
+
+{{- if (and (eq .Kind "page") (ne .Layout "archives") (ne .Layout "search") (.Param "ShowCodeCopyButtons")) }}
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '{{- i18n "code_copy" | default "copy" }}';
+
+        function copyingDone() {
+            copybutton.innerHTML = '{{- i18n "code_copied" | default "copied!" }}';
+            setTimeout(() => {
+                copybutton.innerHTML = '{{- i18n "code_copy" | default "copy" }}';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', () => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+{{- end }}

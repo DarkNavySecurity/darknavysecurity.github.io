@@ -1,0 +1,34 @@
+{{- $root := .root -}}
+{{- $pages := .pages -}}
+{{- $localizedDateFormat := site.Params.DateFormat -}}
+<div class="deepsea-feature-stack deepsea-list-research-stack">
+  {{- range $pages }}
+  {{- $page := . -}}
+  {{- $cover := false -}}
+  {{- with $page.Params.images }}
+    {{- $imagePath := index . 0 -}}
+    {{- with $page.Resources.GetMatch $imagePath }}{{- $cover = . -}}{{- end -}}
+  {{- end }}
+  <article class="deepsea-feature-card deepsea-list-research-card{{ if $cover }} has-cover{{ end }}">
+    <a class="deepsea-feature-link deepsea-list-research-link" href="{{ $page.RelPermalink }}">
+      <div class="deepsea-feature-meta">
+        <div class="deepsea-card-date">{{ $page.Date | time.Format $localizedDateFormat }}</div>
+      </div>
+      <div class="deepsea-feature-content">
+        <div class="deepsea-feature-title-row">
+          <h2 class="deepsea-card-title">{{ $page.Title }}</h2>
+        </div>
+        <p class="deepsea-card-summary">{{ $page.Summary | plainify | htmlUnescape | truncate 220 }}</p>
+        <div class="deepsea-card-meta deepsea-list-research-meta">
+          {{- partial "post_meta.html" $page -}}
+        </div>
+      </div>
+      {{- with $cover }}
+      <figure class="deepsea-list-research-cover">
+        <img src="{{ .RelPermalink }}" alt="{{ $page.Title }}">
+      </figure>
+      {{- end }}
+    </a>
+  </article>
+  {{- end }}
+</div>

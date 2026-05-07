@@ -1,0 +1,24 @@
+{{- define "main" }}
+<article class="post-single deepsea-single-page deepsea-article-shell">
+  <header class="post-header deepsea-article-hero">
+    <div class="deepsea-article-eyebrow">
+      <a class="deepsea-pill deepsea-article-category-pill" href="{{ "/darknavy_insight/" | relLangURL }}">{{ if eq .Lang "zh" }}Insight{{ else }}Insight{{ end }}</a>
+    </div>
+    <h1 class="post-title entry-hint-parent">{{ .Title }}{{- if .Draft }}<span class="entry-hint" title="Draft">Draft</span>{{- end }}</h1>
+    <div class="post-meta deepsea-article-post-meta">
+      {{- partial "post_meta.html" . -}}
+    </div>
+  </header>
+
+  {{- if .Content }}
+  <div class="post-content deepsea-article-content">
+    {{- if not (.Param "disableAnchoredHeadings") }}{{ partial "anchored_headings.html" .Content }}{{ else }}{{ .Content }}{{ end }}
+  </div>
+  {{- end }}
+
+  <footer class="post-footer deepsea-article-footer">
+    {{- partial "post_nav_links.html" . }}
+    {{ partial "article_section_link.html" (dict "label" "Back to Insight" "href" ("/darknavy_insight/" | relLangURL)) }}
+  </footer>
+</article>
+{{- end }}

@@ -1,0 +1,26 @@
+- id: web3_section_copy
+  translation: "Smart contract auditing, blockchain client auditing, and on-chain exploit investigation by DARKNAVY"
+
+- id: web3_capabilities
+  translation: "Security Capabilities"
+
+- id: web3_reports
+  translation: "Exploit Analysis Reports"
+
+- id: web3_search_placeholder
+  translation: "Search reports..."
+
+- id: web3_artifacts
+  translation: "Artifacts"
+
+- id: web3_loss_label
+  translation: "Loss:"
+
+- id: web3_view_github
+  translation: "View on GitHub"
+
+- id: web3_view_artifacts
+  translation: "View On-chain Artifacts"
+
+- id: web3_back
+  translation: "Back to Web3 Security"

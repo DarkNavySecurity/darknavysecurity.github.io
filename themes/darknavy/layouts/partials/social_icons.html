@@ -1,0 +1,12 @@
+<div class="social-icons" {{ with .align}}align="{{.}}" {{- end }}>
+    {{- range site.Params.socialIcons }}
+    {{- $url := trim .url " " -}}
+    {{- if eq $url "index.xml" }}
+        {{- $url = "index.xml" | relLangURL -}}
+    {{- end }}
+    <a href="{{ $url | safeURL }}" target="_blank" rel="noopener noreferrer me"
+        title="{{ (.title | default .name) | title }}">
+        {{ partial "svg.html" . }}
+    </a>
+    {{- end }}
+</div>

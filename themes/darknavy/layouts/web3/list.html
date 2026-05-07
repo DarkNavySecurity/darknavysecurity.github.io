@@ -1,0 +1,92 @@
+{{- define "main" }}
+{{- $skills := where (where site.RegularPages "Section" "web3") "Params.skill_type" "!=" nil -}}
+{{- $exploits := where (where site.RegularPages "Section" "web3") "Params.chain" "!=" nil -}}
+{{- $paginator := .Paginate $exploits -}}
+<div class="deepsea-list-page">
+  <header class="deepsea-list-header">
+    <div class="deepsea-section-header">
+      <div>
+        <h1>{{ .Title }}</h1>
+        <p class="deepsea-section-copy">{{ if .Description }}{{ .Description | markdownify }}{{ else }}{{ i18n "web3_section_copy" }}{{ end }}</p>
+      </div>
+    </div>
+    {{- if .Content }}
+    <div class="post-content">
+      {{- if not (.Param "disableAnchoredHeadings") }}{{ partial "anchored_headings.html" .Content }}{{ else }}{{ .Content }}{{ end }}
+    </div>
+    {{- end }}
+  </header>
+
+  {{- if gt (len $skills) 0 }}
+  <section class="deepsea-list-section">
+    <div class="deepsea-section-header">
+      <div>
+        <h2>{{ i18n "web3_capabilities" }}</h2>
+      </div>
+    </div>
+    <div class="deepsea-grid deepsea-grid-3 deepsea-web3-capability-grid">
+      {{- range $skills }}
+      <article class="deepsea-card deepsea-web3-capability-card">
+        <a class="deepsea-web3-block-link" href="{{ .RelPermalink }}">
+          <div class="deepsea-card-body">
+            <div class="deepsea-card-title-row deepsea-card-title-row-compact">
+              <h3 class="deepsea-card-title">{{ .Title }}</h3>
+            </div>
+            <p class="deepsea-card-summary">{{ .Description }}</p>
+            {{- with .Params.tech }}<div class="deepsea-web3-inline-meta">{{ . }}</div>{{- end }}
+          </div>
+        </a>
+      </article>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+
+  {{- if gt (len $exploits) 0 }}
+  <section class="deepsea-list-section">
+    <div class="deepsea-section-header">
+      <div>
+        <h2>{{ i18n "web3_reports" }}</h2>
+      </div>
+    </div>
+
+
+    <div id="web3-report-list" class="deepsea-web3-report-list">
+      {{- range $paginator.Pages }}
+      <article class="deepsea-web3-report-card web3-report-entry" data-search="{{ lower .Title }} {{ lower .Params.chain_display }} {{ lower .Params.vuln_type }}">
+        <a class="deepsea-web3-block-link" href="{{ .RelPermalink }}">
+          <div class="deepsea-card-body">
+            <div class="deepsea-card-title-row deepsea-card-title-row-compact">
+              <h3 class="deepsea-card-title">{{ .Title }}</h3>
+            </div>
+            <div class="deepsea-web3-report-meta web3-report-meta-list">
+              {{ partial "web3_report_meta.html" (dict "root" $ "report" .) }}
+            </div>
+          </div>
+        </a>
+      </article>
+      {{- end }}
+    </div>
+
+    {{- if gt $paginator.TotalPages 1 }}
+    <footer class="page-footer">
+      <nav class="pagination">
+        {{- if $paginator.HasPrev }}
+        <a class="prev" href="{{ $paginator.Prev.URL | relURL }}">&laquo;&nbsp;{{ i18n "prev_page" }}</a>
+        {{- end }}
+        <span class="pagination-pages">
+          {{- range $p := $paginator.Pagers }}
+          <a href="{{ $p.URL | relURL }}" class="pagination-page{{ if eq $p.PageNumber $paginator.PageNumber }} active{{ end }}">{{ $p.PageNumber }}</a>
+          {{- end }}
+        </span>
+        {{- if $paginator.HasNext }}
+        <a class="next" href="{{ $paginator.Next.URL | relURL }}">{{ i18n "next_page" }}&nbsp;&raquo;</a>
+        {{- end }}
+      </nav>
+    </footer>
+    {{- end }}
+  </section>
+
+  {{- end }}
+</div>
+{{- end }}

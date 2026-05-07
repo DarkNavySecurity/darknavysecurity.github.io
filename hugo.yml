@@ -2,7 +2,9 @@ baseURL: "https://www.darknavy.org"
 title: "DARKNAVY"
 pagination:
   pagerSize: 10
-theme: PaperMod
+theme:
+  - darknavy
+  - PaperMod
 
 enableRobotsTXT: true
 buildDrafts: false
@@ -144,6 +146,8 @@ languages:
     disabled: false
     label: Chinese
     weight: 2
+    params:
+      DateFormat: "2006年1月2日"
 
 menu:
   main:

@@ -1,0 +1,26 @@
+- id: web3_section_copy
+  translation: "DARKNAVY 提供智能合约审计、区块链客户端审计与链上漏洞利用调查。"
+
+- id: web3_capabilities
+  translation: "安全能力"
+
+- id: web3_reports
+  translation: "漏洞利用分析报告"
+
+- id: web3_search_placeholder
+  translation: "搜索报告..."
+
+- id: web3_artifacts
+  translation: "分析工件"
+
+- id: web3_loss_label
+  translation: "损失："
+
+- id: web3_view_github
+  translation: "在 GitHub 查看"
+
+- id: web3_view_artifacts
+  translation: "查看链上分析工件"
+
+- id: web3_back
+  translation: "返回 Web3 安全"

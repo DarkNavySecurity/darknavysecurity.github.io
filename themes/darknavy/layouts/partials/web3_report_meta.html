@@ -1,0 +1,5 @@
+{{- $report := .report -}}
+<span>{{ $report.Date.Format "2006-01-02" }}</span>
+{{- with $report.Params.chain_display }}<span class="web3-chain-badge web3-chain-{{ $report.Params.chain }}">{{ . }}</span>{{- end }}
+{{- with $report.Params.loss }}<span class="web3-loss-badge">{{ . }}</span>{{- end }}
+{{- with $report.Params.vuln_type }}<span class="web3-vuln-badge">{{ . }}</span>{{- end }}
