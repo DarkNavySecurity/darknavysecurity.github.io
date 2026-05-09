@@ -164,7 +164,7 @@ menu:
       url: /web3/
       weight: 35
     - name: About
-      url: /about/
+      url: "#about"
       weight: 40
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
