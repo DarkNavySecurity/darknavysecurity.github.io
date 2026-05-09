@@ -10,8 +10,8 @@
 {{- $insightPages := first 4 (where site.RegularPages "Section" "darknavy_insight") -}}
 {{- $web3SkillPages := first 3 (where (where site.RegularPages "Section" "web3") "Params.skill_type" "!=" nil) -}}
 {{- $web3ReportPages := first 10 (where (where site.RegularPages "Section" "web3") "Params.chain" "!=" nil) -}}
-{{- $heroTagline := cond (eq $lang "zh") "独立网络安全研究与服务机构" "Independent cybersecurity research and services organization" -}}
-{{- $heroSubtitle := cond (eq $lang "zh") "AVSS 与量化安全的先行者，GEEKCON 国际黑客大赛创始团队" "Pioneers of AVSS and quantitative security, and founding team of GEEKCON" -}}
+{{- $heroTagline := cond (eq $lang "zh") "独立的网络安全研究服务机构" "Independent Cybersecurity Research and Services Organization" -}}
+{{- $heroSubtitle := cond (eq $lang "zh") "AVSS对抗研判和量化安全的首倡者与推动者，GEEKCON国际黑客大赛创办者。" "Pioneers of AVSS and quantitative security, and founding team of GEEKCON" -}}
 {{- $localizedDateFormat := cond (eq $lang "zh") "2006年1月2日" site.Params.DateFormat -}}
 {{- $aboutLines := slice -}}
 {{- with $aboutPage }}
