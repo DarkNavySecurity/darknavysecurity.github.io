@@ -106,7 +106,7 @@ body.dark .header.deepsea-header.is-scrolled {
 
 body.dark .nav.deepsea-nav {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   gap: 3rem;
   max-width: min(1280px, calc(100vw - 10rem));
@@ -117,6 +117,7 @@ body.dark .nav.deepsea-nav {
 .deepsea-nav-brand {
   display: flex;
   align-items: center;
+  justify-self: start;
 }
 
 .deepsea-logo-link {
@@ -139,6 +140,7 @@ body.dark .nav.deepsea-nav {
   display: flex;
   align-items: center;
   gap: 1.25rem;
+  justify-self: end;
 }
 
 .deepsea-header-socials .social-icons {
@@ -215,6 +217,7 @@ body.dark .deepsea-menu {
   margin: 0;
   line-height: 1;
   overflow: visible;
+  justify-self: center;
 }
 
 body.dark .deepsea-menu a {
@@ -550,7 +553,7 @@ body.dark .footer.deepsea-footer-shell::before {
 .deepsea-hero-prototype-inner {
   position: relative;
   z-index: 2;
-  max-width: 60rem;
+  max-width: 76rem;
   width: 100%;
   margin: 8.7rem auto 0;
   padding-inline: 2rem;
@@ -566,7 +569,7 @@ body.dark .footer.deepsea-footer-shell::before {
 }
 
 .deepsea-hero-prototype h1 {
-  width: fit-content;
+  max-width: 100%;
   margin: 0 auto;
   font-size: clamp(1.8rem, 2.5vw, 2.25rem);
   line-height: 1.12;
@@ -574,7 +577,14 @@ body.dark .footer.deepsea-footer-shell::before {
   color: rgba(255, 255, 255, 0.72);
   letter-spacing: 0.01em;
   text-align: center;
-  white-space: nowrap;
+  text-wrap: balance;
+}
+
+@media (min-width: 1100px) {
+  .deepsea-hero-prototype h1 {
+    white-space: nowrap;
+    text-wrap: unset;
+  }
 }
 
 .deepsea-hero-subtitle {
@@ -1917,7 +1927,7 @@ body.dark .nav.deepsea-article-nav {
   }
 
   .deepsea-hero-prototype h1 {
-    white-space: normal;
+    text-wrap: balance;
   }
 
   .deepsea-social-row .social-icons {
