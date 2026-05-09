@@ -12,7 +12,6 @@
 {{- $web3ReportPages := first 10 (where (where site.RegularPages "Section" "web3") "Params.chain" "!=" nil) -}}
 {{- $heroTagline := cond (eq $lang "zh") "独立网络安全研究与服务机构" "Independent cybersecurity research and services organization" -}}
 {{- $heroSubtitle := cond (eq $lang "zh") "AVSS 与量化安全的先行者，GEEKCON 国际黑客大赛创始团队" "Pioneers of AVSS and quantitative security, and founding team of GEEKCON" -}}
-{{- $aboutIntro := "Built on KeenTeam's research legacy, focused on critical security challenges" -}}
 {{- $localizedDateFormat := cond (eq $lang "zh") "2006年1月2日" site.Params.DateFormat -}}
 {{- $aboutLines := slice -}}
 {{- with $aboutPage }}
@@ -40,7 +39,6 @@
   <section class="deepsea-home-section deepsea-about-prototype" id="about">
     <div class="deepsea-home-heading deepsea-home-heading-centered">
       <h2>ABOUT</h2>
-      <p>{{ $aboutIntro }}</p>
     </div>
     <div class="deepsea-about-columns">
       <div class="deepsea-about-column">
