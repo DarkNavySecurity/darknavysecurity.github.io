@@ -11,7 +11,7 @@ ShowBreadCrumbs: false
 hideMeta: true
 ---
 
-**DARKNAVY**, headquartered in Singapore and Shanghai, is an independent cybersecurity research and services organization. We are pioneers in [**AVSS** (Adversarial Vulnerability Scoring System)](/whitepaper/AVSS%20(Adversarial%20Vulnerability%20Scoring%20System)%20White%20Paper%201.0.pdf) and **quantitative security**, as well as the founding team behind the international hacking competition [GEEKCON](https://geekcon.top/).
+**DARKNAVY**, headquartered in Singapore and Shanghai, is an independent cybersecurity research and services institute. We are pioneers in [**AVSS** (Adversarial Vulnerability Scoring System)](/whitepaper/AVSS%20(Adversarial%20Vulnerability%20Scoring%20System)%20White%20Paper%201.0.pdf) and **quantitative security**, as well as the founding team behind the international hacking competition [GEEKCON](https://geekcon.top/).
 
 Founded upon the legacy of KeenTeam, established in 2011 and globally recognized as a multiple world-record holder and international hacking competition champion, DARKNAVY inherits over a decade of cutting-edge security research experience across operating systems, chipsets, AI, mobile, IoT, and Web3. Guided by the founding team's unique vision, we have built a collaborative research team dedicated to solving the most critical security challenges faced by our clients.
 
