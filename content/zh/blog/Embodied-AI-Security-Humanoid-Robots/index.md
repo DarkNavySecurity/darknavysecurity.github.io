@@ -41,4 +41,4 @@ images = ["attachments/b9ae695a-d3b8-4a0f-b056-fd5af4bf5fc9.png"]
 本白皮书希望通过对关键风险、攻击路径与防护重点的系统梳理，为行业开展风险识别、能力建设与体系化防护提供参考。
 
 
-[《具身智能安全技术白皮书：机器人篇》](https://www.darknavy.org/whitepaper/Embodied-AI-Security-Humanoid-Robots-2604.pdf)现已正式发布，点击链接即可下载。
+[《具身智能安全技术白皮书：机器人篇》](https://www.darknavy.net/whitepaper/Embodied-AI-Security-Humanoid-Robots-2604.pdf)现已正式发布，点击链接即可下载。
