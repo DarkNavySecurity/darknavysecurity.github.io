@@ -75,6 +75,25 @@
     }
 
     const deepseaHeader = document.querySelector('[data-deepsea-header]');
+    const deepseaMenuToggle = document.querySelector('.deepsea-mobile-menu-toggle');
+    const closeDeepseaMenu = () => {
+        if (!deepseaHeader || !deepseaMenuToggle) return;
+        deepseaHeader.classList.remove('is-menu-open');
+        deepseaMenuToggle.setAttribute('aria-expanded', 'false');
+    };
+    if (deepseaHeader && deepseaMenuToggle && menu) {
+        deepseaMenuToggle.addEventListener('click', () => {
+            const isOpen = deepseaHeader.classList.toggle('is-menu-open');
+            deepseaMenuToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+        menu.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', closeDeepseaMenu);
+        });
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) closeDeepseaMenu();
+        });
+    }
+
     if (deepseaHeader && deepseaHeader.classList.contains('deepsea-header-home')) {
         const syncDeepseaHeader = () => {
             deepseaHeader.classList.toggle('is-scrolled', window.scrollY > 50);

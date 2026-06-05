@@ -63,7 +63,7 @@
                         {{- if (and site.Params.displayFullLangName (.Language.Label)) }}
                         {{- .Language.Label | emojify -}}
                         {{- else }}
-                        {{- .Lang | title -}}
+                        {{- .Lang | upper -}}
                         {{- end -}}
                     </a>
                 </li>
@@ -71,6 +71,12 @@
                 {{- end}}
             </ul>
             {{- end }}
+
+            <button class="deepsea-mobile-menu-toggle" type="button" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
             {{- if (not site.Params.disableThemeToggle) }}
             <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
