@@ -2073,6 +2073,42 @@ body.dark .nav.deepsea-article-nav {
   }
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+  body.dark .nav.deepsea-nav {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: "brand menu utilities";
+    gap: 1rem;
+    max-width: min(100vw, calc(100vw - 2rem));
+    padding: 0.95rem 0;
+  }
+
+  .deepsea-nav-brand {
+    padding-left: 0;
+  }
+
+  body.dark .deepsea-menu {
+    justify-self: center;
+    width: auto;
+    gap: clamp(1rem, 2.2vw, 1.8rem);
+    justify-content: center;
+    overflow: visible !important;
+    padding: 0;
+  }
+
+  body.dark .deepsea-menu a {
+    font-size: 0.88rem;
+    letter-spacing: 0.045em;
+  }
+
+  .deepsea-nav-utilities {
+    gap: 0.65rem;
+  }
+
+  .deepsea-header-socials {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   body.dark .main,
   body.dark .nav {
