@@ -2,7 +2,7 @@
 {{- $skills := where (where site.RegularPages "Section" "web3") "Params.skill_type" "!=" nil -}}
 {{- $exploits := where (where site.RegularPages "Section" "web3") "Params.chain" "!=" nil -}}
 {{- $paginator := .Paginate $exploits -}}
-<div class="deepsea-list-page">
+<div class="deepsea-list-page deepsea-web3-list-page">
   <header class="deepsea-list-header">
     <div class="deepsea-section-header">
       <div>

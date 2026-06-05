@@ -1,7 +1,7 @@
 {{- define "main" }}
 {{- $defaultLang := .Site.Home.Lang -}}
 {{- $web3Path := cond (eq .Lang $defaultLang) "/web3/" (printf "/%s/web3/" .Lang) -}}
-<article class="post-single deepsea-single-page deepsea-article-shell">
+<article class="post-single deepsea-single-page deepsea-article-shell deepsea-web3-single-page">
   <header class="post-header deepsea-article-hero">
     <div class="deepsea-article-eyebrow">
       {{- if .Params.skill_type }}

@@ -1098,6 +1098,24 @@ body.dark .footer.deepsea-footer-shell::before {
   padding: 1.5rem;
 }
 
+.deepsea-web3-list-page,
+.deepsea-web3-capability-grid,
+.deepsea-web3-report-list,
+.deepsea-web3-capability-card,
+.deepsea-web3-report-card,
+.deepsea-web3-block-link,
+.deepsea-web3-capability-card .deepsea-card-body,
+.deepsea-web3-report-card .deepsea-card-body,
+.deepsea-web3-capability-card .deepsea-card-title-row,
+.deepsea-web3-report-card .deepsea-card-title-row,
+.deepsea-web3-capability-card .deepsea-card-title,
+.deepsea-web3-report-card .deepsea-card-title,
+.deepsea-web3-capability-card .deepsea-card-summary,
+.deepsea-web3-report-meta,
+.web3-report-meta-list {
+  min-width: 0;
+}
+
 .deepsea-web3-capability-card .deepsea-card-title-row {
   margin: 0 0 0.75rem;
 }
@@ -1108,6 +1126,7 @@ body.dark .footer.deepsea-footer-shell::before {
   font-size: clamp(1.08rem, 1.35vw, 1.25rem);
   font-weight: 600;
   line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .deepsea-web3-capability-card .deepsea-card-summary {
@@ -1115,6 +1134,7 @@ body.dark .footer.deepsea-footer-shell::before {
   color: rgba(209, 213, 219, 0.72);
   font-size: 0.88rem;
   line-height: 1.6;
+  overflow-wrap: anywhere;
 }
 
 .deepsea-web3-capability-card .deepsea-web3-inline-meta {
@@ -1122,6 +1142,7 @@ body.dark .footer.deepsea-footer-shell::before {
   color: rgba(96, 165, 250, 0.92);
   font-size: 0.86rem;
   font-weight: 500;
+  overflow-wrap: anywhere;
 }
 
 .deepsea-web3-report-card .deepsea-card-body {
@@ -1131,6 +1152,7 @@ body.dark .footer.deepsea-footer-shell::before {
 .deepsea-web3-report-card .deepsea-card-title {
   margin-top: 0;
   font-size: clamp(1rem, 1.35vw, 1.25rem);
+  overflow-wrap: anywhere;
 }
 
 .deepsea-web3-report-card .deepsea-web3-report-meta {
@@ -1138,6 +1160,54 @@ body.dark .footer.deepsea-footer-shell::before {
   gap: 0.5rem;
   color: rgba(148, 163, 184, 0.72);
   font-size: 0.8rem;
+}
+
+.deepsea-web3-single-page,
+.deepsea-web3-single-page .deepsea-article-hero,
+.deepsea-web3-single-page .deepsea-article-content,
+.deepsea-web3-single-page .deepsea-article-footer,
+.deepsea-web3-single-page .post-meta,
+.deepsea-web3-single-page .post-description {
+  min-width: 0;
+}
+
+.deepsea-web3-single-page .post-title,
+.deepsea-web3-single-page .post-meta,
+.deepsea-web3-single-page .post-description,
+.deepsea-web3-single-page .deepsea-article-content,
+.deepsea-web3-single-page .deepsea-article-content p,
+.deepsea-web3-single-page .deepsea-article-content li,
+.deepsea-web3-single-page .deepsea-article-content a,
+.deepsea-web3-single-page .deepsea-article-content code {
+  overflow-wrap: anywhere;
+}
+
+.deepsea-web3-single-page .deepsea-article-content pre,
+.deepsea-web3-single-page .deepsea-article-content .highlight {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.deepsea-web3-single-page .deepsea-article-content pre code,
+.deepsea-web3-single-page .deepsea-article-content .highlight code {
+  overflow-wrap: normal;
+  word-break: normal;
+  white-space: pre;
+}
+
+.deepsea-web3-single-page .deepsea-article-content table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.deepsea-web3-single-page .deepsea-article-content th,
+.deepsea-web3-single-page .deepsea-article-content td {
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .deepsea-list-page,
@@ -1310,6 +1380,61 @@ body.dark .footer.deepsea-footer-shell::before {
 .post-single .post-content pre code,
 .post-single .post-content .highlight {
   border-radius: 18px;
+}
+
+.deepsea-web3-single-page .post-content,
+.deepsea-web3-single-page .post-content > *,
+.deepsea-web3-single-page .post-content p,
+.deepsea-web3-single-page .post-content li,
+.deepsea-web3-single-page .post-content ul,
+.deepsea-web3-single-page .post-content ol,
+.deepsea-web3-single-page .post-content blockquote {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.deepsea-web3-single-page .post-content p,
+.deepsea-web3-single-page .post-content li,
+.deepsea-web3-single-page .post-content a,
+.deepsea-web3-single-page .post-content code:not(pre code):not(.highlight code) {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.deepsea-web3-single-page .post-content table,
+.deepsea-web3-single-page .post-content pre,
+.deepsea-web3-single-page .post-content .highlight {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.deepsea-web3-single-page .post-content table {
+  display: block;
+  width: 100%;
+}
+
+.deepsea-web3-single-page .post-content th,
+.deepsea-web3-single-page .post-content td {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.deepsea-web3-single-page .post-content .highlight pre {
+  overflow: visible;
+}
+
+.deepsea-web3-single-page .post-content pre code,
+.deepsea-web3-single-page .post-content .highlight code,
+.deepsea-web3-single-page .post-content .chroma,
+.deepsea-web3-single-page .post-content .chroma .line,
+.deepsea-web3-single-page .post-content .chroma .cl {
+  width: max-content;
+  min-width: 100%;
+  white-space: pre;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .post-single .post-content hr {
