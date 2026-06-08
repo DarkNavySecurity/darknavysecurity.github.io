@@ -531,6 +531,7 @@ body.dark .footer.deepsea-footer-shell::before {
 
 .deepsea-hero-video-wrap,
 .deepsea-hero-video,
+.deepsea-hero-animated-bg,
 .deepsea-hero-overlay {
   position: absolute;
   inset: 0;
@@ -543,9 +544,23 @@ body.dark .footer.deepsea-footer-shell::before {
 }
 
 .deepsea-hero-video {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.deepsea-hero-animated-bg {
+  display: none;
+  background: #000 url("https://static.darknavy.net/org/hero-bg.webp") center / cover no-repeat;
+}
+
+.deepsea-use-hero-webp .deepsea-hero-video {
+  display: none;
+}
+
+.deepsea-use-hero-webp .deepsea-hero-animated-bg {
+  display: block;
 }
 
 .deepsea-hero-overlay {

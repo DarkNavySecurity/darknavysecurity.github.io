@@ -19,9 +19,10 @@
 <div class="deepsea-home deepsea-home-prototype">
   <section class="deepsea-hero-prototype" id="top">
     <div class="deepsea-hero-video-wrap">
-      <video autoplay muted loop playsinline class="deepsea-hero-video">
-        <source src="{{ "/hero-bg.mp4" | relURL }}" type="video/mp4">
+      <video autoplay muted loop playsinline webkit-playsinline="true" x5-playsinline="true" x-webkit-airplay="allow" preload="auto" class="deepsea-hero-video">
+        <source src="https://static.darknavy.net/org/hero-bg.mp4" type="video/mp4">
       </video>
+      <div class="deepsea-hero-animated-bg" aria-hidden="true"></div>
       <div class="deepsea-hero-overlay"></div>
     </div>
     <div class="deepsea-hero-prototype-inner">
@@ -115,4 +116,81 @@
 
   {{- partial "web3_section.html" (dict "root" . "section" $web3Section "skills" $web3SkillPages "reports" (first 3 $web3ReportPages) "showViewAll" true "sectionClass" "deepsea-home-section" "reportHeading" (cond (eq .Lang "zh") "最新漏洞利用分析报告" "Latest Exploit Analysis Reports")) }}
 </div>
+<script>
+(() => {
+  const userAgent = navigator.userAgent;
+  const isAndroidWechat = /MicroMessenger/i.test(userAgent) && /Android/i.test(userAgent);
+  const video = document.querySelector('.deepsea-hero-video');
+  if (!video) return;
+
+  if (isAndroidWechat) {
+    document.documentElement.classList.add('deepsea-use-hero-webp');
+    video.pause();
+    video.removeAttribute('src');
+    video.querySelectorAll('source').forEach((source) => source.removeAttribute('src'));
+    video.load();
+    return;
+  }
+
+  const primeHeroVideo = () => {
+    video.muted = true;
+    video.defaultMuted = true;
+    video.autoplay = true;
+    video.playsInline = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', 'true');
+    video.setAttribute('x5-playsinline', 'true');
+    video.setAttribute('x-webkit-airplay', 'allow');
+  };
+
+  const playHeroVideo = () => {
+    primeHeroVideo();
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch((err) => {
+        document.documentElement.dataset.heroVideoError = err && err.name ? err.name : 'play_failed';
+      });
+    }
+  };
+
+  const playWithWeixinBridge = () => {
+    playHeroVideo();
+    if (typeof WeixinJSBridge !== 'undefined') {
+      WeixinJSBridge.invoke('getNetworkType', {}, playHeroVideo);
+    }
+  };
+
+  [
+    'loadstart',
+    'loadedmetadata',
+    'loadeddata',
+    'canplay',
+    'canplaythrough',
+    'playing',
+    'suspend',
+    'stalled',
+    'waiting',
+  ].forEach((eventName) => video.addEventListener(eventName, playHeroVideo));
+
+  document.addEventListener('DOMContentLoaded', playHeroVideo);
+  window.addEventListener('pageshow', playHeroVideo);
+  window.addEventListener('load', playHeroVideo);
+  document.addEventListener('touchstart', playHeroVideo, { once: true, passive: true });
+  document.addEventListener('click', playHeroVideo, { once: true });
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) playHeroVideo();
+  });
+
+  if (typeof WeixinJSBridge !== 'undefined') {
+    playWithWeixinBridge();
+  } else {
+    document.addEventListener('WeixinJSBridgeReady', playWithWeixinBridge, false);
+  }
+
+  [80, 300, 1000, 2500].forEach((delay) => window.setTimeout(playHeroVideo, delay));
+  primeHeroVideo();
+  playHeroVideo();
+})();
+</script>
 {{- end }}
