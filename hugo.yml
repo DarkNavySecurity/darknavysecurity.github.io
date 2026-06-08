@@ -30,7 +30,7 @@ params:
   # keywords: [Blog, Portfolio, PaperMod]
   author: DARKNAVY
   # author: ["Me", "You"] # multiple authors
-  images: ["/images/white_logo.png"]
+  images: ["/images/favicon.png"]
   DateFormat: "January 2, 2006"
   defaultTheme: dark # dark, light
   disableThemeToggle: true
