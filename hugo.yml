@@ -25,8 +25,8 @@ minify:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: "DARKNAVY"
-  description: "DARKNAVY"
+  title: "DARKNAVY Blog"
+  description: "Security research and technical insights from DARKNAVY"
   # keywords: [Blog, Portfolio, PaperMod]
   author: DARKNAVY
   # author: ["Me", "You"] # multiple authors
