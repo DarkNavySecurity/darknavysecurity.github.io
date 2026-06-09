@@ -6,6 +6,8 @@ images = ["attachments/cover.png"]
 twitter-card = "summary_large_image"
 +++
 
+![deepsec](attachments/image-01.png)
+
 On April 7, Anthropic introduced Claude Mythos Preview. The announcement quickly drew attention from the AI industry, the security community, and even Wall Street.
 
 The framing was unusually strong: Mythos was presented as a powerful cybersecurity AI capable of finding and exploiting vulnerabilities, but "too strong to release broadly." Anthropic provides Mythos access only through Project Glasswing to selected companies, governments, and organizations, describing it as a way to protect those defenders before attackers can weaponize similar capabilities.
