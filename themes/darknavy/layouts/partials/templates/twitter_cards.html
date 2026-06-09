@@ -1,5 +1,12 @@
+{{- $twitterCard := "summary" -}}
+{{- with index .Params "twitter-card" -}}
+{{- $requestedTwitterCard := printf "%v" . -}}
+{{- if in (slice "summary" "summary_large_image") $requestedTwitterCard -}}
+{{- $twitterCard = $requestedTwitterCard -}}
+{{- end -}}
+{{- end -}}
+<meta name="twitter:card" content="{{ $twitterCard }}">
 {{- if .Params.cover.image -}}
-<meta name="twitter:card" content="summary">
 {{- if (ne $.Params.cover.relative true) }}
 <meta name="twitter:image" content="{{ .Params.cover.image | absURL }}">
 {{- else }}
@@ -8,10 +15,7 @@
 {{- else }}
 {{- $images := partial "templates/_funcs/get-page-images" . -}}
 {{- with index $images 0 -}}
-<meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="{{ .Permalink }}">
-{{- else -}}
-<meta name="twitter:card" content="summary">
 {{- end -}}
 {{- end }}
 <meta name="twitter:title" content="{{ .Title }}">
