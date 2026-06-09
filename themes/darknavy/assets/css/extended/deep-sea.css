@@ -1898,8 +1898,8 @@ body.dark .nav.deepsea-article-nav {
 }
 
 .deepsea-article-content img[style] {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
   zoom: normal !important;
 }
 
