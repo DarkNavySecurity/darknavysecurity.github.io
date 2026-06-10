@@ -1831,7 +1831,7 @@ body.dark .nav.deepsea-article-nav {
 
 .deepsea-article-hero {
   max-width: 56rem;
-  margin: 0 auto 3rem;
+  margin: 0 auto 0.75rem;
 }
 
 .deepsea-article-meta-row {
@@ -1861,6 +1861,15 @@ body.dark .nav.deepsea-article-nav {
 .deepsea-article-content {
   max-width: 56rem;
   margin: 0 auto;
+}
+
+.deepsea-article-shell .post-content {
+  margin-top: 0;
+}
+
+.deepsea-article-content > :first-child,
+.deepsea-article-content > p:first-child:has(> img:only-child) {
+  margin-top: 0;
 }
 
 .deepsea-article-eyebrow {
