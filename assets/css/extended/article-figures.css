@@ -1,0 +1,24 @@
+.post-single .post-content figure {
+  margin: 1.5rem 0 var(--content-gap);
+  text-align: center;
+}
+
+.post-single .post-content figure > img,
+.post-single .post-content figure > a > img {
+  display: block;
+  margin: 0 auto;
+}
+
+.post-single .post-content figure > figcaption {
+  max-width: 90%;
+  margin: 0.5rem auto 0;
+  color: rgba(209, 213, 219, 0.68);
+  text-align: center;
+}
+
+.post-single .post-content figure > figcaption > p {
+  margin: 0;
+  color: inherit;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
