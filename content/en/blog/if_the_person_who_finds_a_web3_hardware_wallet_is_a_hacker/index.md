@@ -13,7 +13,7 @@ But does the moment a hacker's fingertip touches the metal casing of a hardware 
 
 In this brief overview of attack and defense, we outline DARKNAVY's research on Web3 hardware wallets from an adversarial perspective.
 
- ![Exploiting Cypherock X1 Vault Vulnerability to display "Hacked by DARKNAVY" on screen](attachments/7040d7d5-4672-4806-a6e3-ef920e3515da.png)
+{{< figure src="attachments/7040d7d5-4672-4806-a6e3-ef920e3515da.png" alt="Cypherock X1 hardware wallet held in both hands with Hacked by DARKNAVY displayed on its screen" caption="Cypherock X1 Vault vulnerability exploitation" >}}
 
 ## Attack Surface Overview
 
@@ -31,7 +31,7 @@ These three methods may harbor vulnerabilities in their data communication proto
 * **NFC:** Although physical proximity limits its exploitation, NFC communication remains susceptible to Man-in-the-Middle (MitM) attacks, which may allow an attacker to intercept and parse sensitive data.
 * **Bluetooth:** Bluetooth communication itself has multiple risk points, such as pairing hijacking, MitM attacks, and data sniffing, and its range limit is much less restrictive than NFC's.
 
- ![USB connection of Hardware Wallets](attachments/223ade8e-09ea-490c-9c6e-ecdc00e5c99d.png)
+{{< figure src="attachments/223ade8e-09ea-490c-9c6e-ecdc00e5c99d.png" alt="Linux terminal showing a Coldcard hardware wallet detected as USB device d13e:cc10 and mounted as a 4 MiB disk" caption="USB connection of hardware wallets" >}}
 
 These communication methods connect the offline wallet to networked devices, raising concerns among users: What data is actually being transferred between the external device and the wallet? If the device is compromised, is the wallet still safe? Or, could the wallet and its accompanying app have built-in backdoors that surreptitiously upload wallet data after establishing a connection?
 
@@ -40,11 +40,11 @@ To address these concerns, hardware wallet manufacturers have introduced the con
 * **QR Code:** The client first converts the data requiring a signature into a static or dynamic QR code. The hardware wallet, equipped with a camera, scans the QR code to retrieve the data and confirm the signature, and finally, the client scans the QR code displayed on the hardware wallet. Memory corruption issues might arise during the processes of image parsing and QR code recognition.
 * **SD Card:** The client and the hardware wallet exchange signature request and signature result files in a specific format using a single SD card. Memory corruption issues may occur when parsing the file format.
 
- ![Using QR Code to obtain transaction information](attachments/f45f7110-e4c3-447c-9aef-fc31aa74121c.jpeg " =385x482")
+{{< figure src="attachments/f45f7110-e4c3-447c-9aef-fc31aa74121c.jpeg" alt="Hardware wallet camera scanning a transaction-signing QR code displayed on a computer screen" caption="QR code transaction transfer" width="385" >}}
 
 Besides attack surfaces exposed during communication, some hardware wallets also provide firmware update interfaces (commonly via USB, Bluetooth, or SD card mode). The update process typically involves hash calculations, signature verifications to ensure firmware integrity and authenticity, and version checks to prevent rollbacks. If the update process is poorly implemented, an attacker might be able to flash malicious firmware or an older, vulnerable firmware version.
 
- ![Firmware update process](attachments/f046cacb-ba9f-45b3-b2d2-3ff65fa7096b.jpeg " =214x300")
+{{< figure src="attachments/f046cacb-ba9f-45b3-b2d2-3ff65fa7096b.jpeg" alt="Coldcard Q hardware wallet screen prompting installation of firmware version 1.3.1Q after checksum and signature verification" caption="Firmware update process" width="214" >}}
 
 Furthermore, although most hardware wallets employ secure chips for private key storage, they remain vulnerable to physical attacks such as side-channel analysis and hardware fault injection.
 
@@ -56,7 +56,7 @@ Many hardware wallets communicate with computers or mobile devices via USB. Base
 
 The X1 runs a **real-time embedded system** that processes incoming USB requests. A complete USB command cycle begins with **the desktop application cySync**, which serializes the request via an SDK and transmits it to the X1 wallet over USB. The wallet processes the request and returns a data packet, repeating this circle until the command is fully executed.
 
- ![USB communication with the X1 wallet via CLI](attachments/f911a6a2-3747-4a68-a800-c14beb2f9f91.png " =910x778")
+{{< figure src="attachments/f911a6a2-3747-4a68-a800-c14beb2f9f91.png" alt="Terminal output from a Node.js script logging Cypherock X1 USB SDK requests, applet IDs, raw data, and device responses" caption="Cypherock X1 USB communication via CLI" width="910" >}}
 
 The X1 wallet contains multiple applets. After reading the `applet_id` from the request via a USB event callback, the X1 invokes the corresponding applet for further processing.
 
@@ -64,29 +64,29 @@ From an attacker's perspective, the logic related to the device's communication 
 
 In this process, if the X1 wallet lacks rigorous security checks when parsing and handling external request data, it could potentially be exploited by an attacker.
 
- ![USB Communication Between the X1 wallet and the External Device](attachments/7fe8a528-5fd4-43f7-aed6-e5de945fd2c6.png)
+{{< figure src="attachments/7fe8a528-5fd4-43f7-aed6-e5de945fd2c6.png" alt="Sequence diagram showing USB query and response flow between the Cypherock X1 wallet host interface and cySync" caption="Cypherock X1 external-device communication" >}}
 
 ## NFC Attack Surface
 
 The tap-and-go nature of NFC technology has added convenience to modern life, and some hardware wallets have adopted this feature. Unlike entrance guard systems typically use M1 cards with basic storage functions, hardware wallets generally employ CPU cards capable of more complex authentication logic. The following presents our research of the NFC module in the Tangem wallet:
 
- ![The Tangem Hardware Wallet is s black NFC card](attachments/431a8fce-b163-4c4c-8d49-1375167e6589.png " =214x176")
+{{< figure src="attachments/431a8fce-b163-4c4c-8d49-1375167e6589.png" alt="Three black Tangem NFC hardware wallet cards with the Tangem logo" caption="Tangem NFC hardware wallet cards" width="214" >}}
 
 Tangem's NFC communication operates in **unencrypted, Fast encrypted, and Strong encrypted** modes. By default, interactions begin in the unencrypted mode, where data is simply serialized. Encryption is only activated after the card responds with a *NeedEncryption* message, creating a window during which attackers can intercept plaintext data.
 
- ![NFC Interaction Data Sniffed by PM3 During the First Tap](attachments/07a00307-c38c-4e09-91f8-e1e754610e17.png)
+{{< figure src="attachments/07a00307-c38c-4e09-91f8-e1e754610e17.png" alt="Proxmark3 NFC trace from the first Tangem tap showing SELECT_UID, SELECT_AID, ReadCommand, cardPublicKey, and signature fields" caption="First-tap NFC data captured by Proxmark3" >}}
 
 > NFC consists of a Tag side and a Reader side. From an attacker's perspective, one can impersonate either side to communicate with the other.
 
 Every time the Tangem app is launched, two tap operations are required. As shown above, we sniffed the NFC interaction data during the first tap. Following the standardized SELECT_UID and SELECT_AID operations, the Reader sends a ReadCommand instruction. Upon receiving the instruction, the card returns both card information and walletData.
 
- ![ReadCommand Parameters](attachments/821b981b-29b9-4d84-a260-1884ced95ede.png " =540x234")
+{{< figure src="attachments/821b981b-29b9-4d84-a260-1884ced95ede.png" alt="Kotlin source for Tangem ReadCommand serialization appending Pin, InteractionMode, and TerminalPublicKey TLV parameters" caption="ReadCommand parameters" width="540" >}}
 
 As shown above, the ReadCommand requires three parameters: Pin, InteractionMode, and TerminalPublicKey. However, the card does not validate the Pin for this instruction. Therefore, an attacker can impersonate the Reader and access the card and walletData information simply by 'tapping' the card:
 
 These two pieces of information themselves do not contain highly sensitive data, prompting us to sniff the data from the second tap.
 
- ![NFC Interaction Data Sniffed by PM3 During the Second Tap](attachments/59192e25-ea20-4d11-9094-4c6566bc7af1.png)
+{{< figure src="attachments/59192e25-ea20-4d11-9094-4c6566bc7af1.png" alt="Proxmark3 NFC trace from the second Tangem tap showing ReadWalletsList traffic and the highlighted SHA-256 PIN value" caption="Second-tap NFC data captured by Proxmark3" >}}
 
 
 During the second tap, the Reader sends the ReadWalletsList instruction. The card validates the Pin parameter within this instruction upon receipt. if successful, it returns all CardWallet information, and if failed, it returns the error code 6A F1.
@@ -95,7 +95,7 @@ Thus, brute-forcing the PIN using the response data appears to be a possible att
 
 Tangem supports 33 custom NFC functions. Besides potential flaws in functional logic, memory-related vulnerabilities on the card also present a possible attack surface.
 
- ![Pre-1.21 Cards Lack the Security Delay Function, Delay is implemented Only in the App](attachments/7570c154-fddf-4f5c-bde5-0db3622a48ca.png " =514x234")
+{{< figure src="attachments/7570c154-fddf-4f5c-bde5-0db3622a48ca.png" alt="Kotlin source for the deprecated activateTrickySecurityDelay timer with a note that it covered cards running firmware below version 1.21" caption="App-side security delay for pre-1.21 cards" width="514" >}}
 
 ## Conclusion
 

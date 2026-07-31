@@ -6,7 +6,7 @@ images = ["attachments/cover.png"]
 twitter-card = "summary_large_image"
 +++
 
-![deepsec](attachments/image-01.png)
+{{< figure src="attachments/image-01.png" alt="deepsec logo over an underwater scene with sharks and the words Powered by DARKNAVY" caption="<span style='color:#2961F6'><strong>deepsec</strong></span>, powered by DARKNAVY" >}}
 
 On April 7, Anthropic introduced Claude Mythos Preview. The announcement quickly drew attention from the AI industry, the security community, and even Wall Street.
 
@@ -34,9 +34,7 @@ That led us to a hard question:
 
 <span style="color:#2961F6">**deepsec**</span> is DARKNAVY's attempt to answer that question.
 
-![**deepsec** architecture](attachments/image-02.png)
-
-<p style="text-align:center"><span style="color:#2961F6"><strong>deepsec</strong></span> dashboard</p>
+{{< figure src="attachments/image-02.png" alt="deepsec project dashboard listing source and binary security-research tasks for Linux, Apple, Samsung, and Qualcomm targets, with completion stages, finding counts, and run times" caption="deepsec project dashboard" >}}
 
 ## Observation: The Model Is Not the Only Bottleneck
 
@@ -88,7 +86,7 @@ The system summarizes both successful and failed paths, then updates itself. Hum
 
 We also built a PoC Agent platform for automated PoC generation and verification across virtualized environments and real devices. It currently supports Linux, Android, HarmonyOS, and iOS runtime environments. It can allocate test devices, generate PoCs, run verification, and iterate based on runtime feedback.
 
-<img src="attachments/image-03.gif" alt="PoC Agent platform" style="display: block; margin-left: auto; margin-right: auto; width: 70%; max-width: 100%; height: auto;" />
+{{< figure src="attachments/image-03.gif" alt="Animated deepsec PoC Agent workflow showing generated Linux exploit code followed by compilation and execution in an Ubuntu virtual machine" caption="Automated Linux PoC generation and verification" width="504" >}}
 
 In the Linux runtime environment below, the PoC Agent platform automatically verifies the vulnerability and triggers a kernel crash [2].
 
@@ -106,7 +104,7 @@ Below are some publicly or partially disclosable results from our AI systems. Th
 
 - **CVE-2026-????: the first Ubuntu 26.04 local privilege-escalation vulnerability automatically discovered by AI.** The issue then remained under discussion in the kernel community for about a month [2].
 
-![Ubuntu vulnerability discussion](attachments/image-04.jpg)
+{{< figure src="attachments/image-04.jpg" alt="Ubuntu 26.04 LTS terminal running Linux kernel 7.0.0-14-generic, showing an exploit completing successfully and the id command returning uid=0(root)" caption="Privilege escalation on Ubuntu 26.04 LTS" >}}
 
 - **CVE-2026-20698: an XNU kernel memory-corruption vulnerability**, affecting iOS and macOS released over roughly the past five years, confirmed and acknowledged by Apple [3].
 
@@ -114,7 +112,7 @@ Below are some publicly or partially disclosable results from our AI systems. Th
 
 - **CVE-2026-????: the first Android local privilege-escalation vulnerability automatically discovered by AI.** To our knowledge, it achieved the world's first root on Samsung's latest S26 Exynos flagship and has not yet been publicly disclosed.
 
-![Android root result](attachments/image-05.gif)
+{{< figure src="attachments/image-05.gif" alt="Animated split-screen demonstration of an exploit running on a Samsung Galaxy S26 with Exynos 2600 and opening an interactive root shell with uid=0(root)" caption="Root shell on a Samsung Galaxy S26" >}}
 
 These results cover virtualization, kernels, browsers, flagship mobile devices, and desktop OSes. With <span style="color:#2961F6">**deepsec**</span>, the user can start with prompts such as:
 

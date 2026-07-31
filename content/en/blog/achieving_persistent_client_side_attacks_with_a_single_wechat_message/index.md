@@ -21,7 +21,7 @@ From an architectural perspective, the attack surface of IM applications can be 
 
 Most IM clients support custom protocols (such as `weixin://`, `tg://`) to achieve in-app navigation. However, attackers can exploit clients' lax URL validation by crafting malicious requests, tricking users into visiting phishing sites. More covertly, attackers can abuse special function URLs. For instance, `slack://settings` can change settings. Attackers could construct links with specific parameters, then trick users into clicking them to steal data\[2\].
 
- ![Using the weixin:// Protocol to Launch WeChat](attachments/5f559069-54f7-4ffd-92c3-d68c34fb78d5.png)
+{{< figure src="attachments/5f559069-54f7-4ffd-92c3-d68c34fb78d5.png" alt="Mobile browser prompt asking whether to continue to WeChat after opening a weixin:// URL" caption="WeChat launch via the `weixin://` protocol" >}}
 
 ### 2. File Processing
 
@@ -35,7 +35,7 @@ To enhance user experience, IM clients typically implement their own file proces
 * **JSBridge**: If the client does not implement fine-grained permission controls over the interfaces exposed to web pages, a malicious webpage could exploit this to abuse permissions.
 * **Browser Engine Vulnerabilities**: For instance, in a 2023 advisory\[5\], DARKNAVY highlighted that CVE-2023-41064 and CVE-2023-4863 in the `libwebp` component of the Chromium engine affected several mainstream IM applications including WeChat, DingTalk, and QQ.
 
- ![The CVE-2023-41064 and CVE-2023-4863 vulnerabilities affect the WeChat client on Windows platforms.](attachments/12b25d34-da84-4852-881c-313cc74c661d.png)
+{{< figure src="attachments/12b25d34-da84-4852-881c-313cc74c661d.png" alt="WeChat 3.9.7.25 on Windows with its built-in browser displaying a STATUS_ACCESS_VIOLATION crash page" caption="WeChat for Windows affected by CVE-2023-41064 and CVE-2023-4863" >}}
 
 ### 4. Mini-Program Ecosystem
 
@@ -49,11 +49,11 @@ The DARKNAVY conducted a preliminary assessment of the WeChat client's attack su
 
 The WeChat client includes a built-in debugging URL mechanism. When a user accesses a URL containing `debugxweb.qq.com`, different debugging behaviors can be triggered based on the parameters of the URL. For instance, the parameter `show_webview_version` will display the current WebView version and related configuration information on the page.
 
- ![Version information displayed via show_webview_version](attachments/e384d593-d06f-4035-9022-12819d654978.png " =257x526")
+{{< figure src="attachments/e384d593-d06f-4035-9022-12819d654978.png" alt="WeChat XWEB diagnostics page listing Chromium 134.0.6998.136, Android 14, Pixel 8, and WebView configuration details" caption="XWEB version information from `show_webview_version`" width="257" >}}
 
 While this mechanism is convenient for debugging, it can pose security risks if an attacker crafts a malicious URL and tricks the user into visiting it. High-risk actions, such as version rollbacks or configuration changes, could potentially be triggered without the user's awareness. To mitigate this, the WeChat client restricts sensitive operations (like `install_embed_plugin`) to only execute when the `bEnableLocalDebug` option is enabled. Furthermore, for functionalities like `set_config_url`, which allow modification of the configuration-fetching URL, WeChat enforces strict validation of domain and protocol: only HTTPS is permitted, and the domain must be either `dldir1.qq.com` or `dldir1v6.qq.com`. This significantly reduces the risk of configuration tampering.
 
- ![URL validation mechanism for functions like set_config_url](attachments/a6209bd2-8a45-4267-be98-150595c38c69.png " =770x161")
+{{< figure src="attachments/a6209bd2-8a45-4267-be98-150595c38c69.png" alt="Decompiled Java code requiring an HTTPS configuration URL hosted on dldir1.qq.com or dldir1v6.qq.com" caption="Configuration URL validation for `set_config_url`" width="770" >}}
 
 Additionally, WeChat supports internal navigation via the `weixin://` protocol. For example, `weixin://dl/` can be used for page routing. For links containing the `ticket` parameter, the WeChat client sends a request to the cloud endpoint `/cgi-bin/mmbiz-bin/translatelink` to retrieve the actual destination URL. This helps prevent attackers from crafting fake links to redirect users to arbitrary pages, thereby enhancing the security of in-app link redirection.
 
@@ -63,11 +63,11 @@ The Android version of WeChat uses its self-developed XWEB engine, which is base
 
 To enhance browser security, WeChat has enabled a multi-process sandboxing mechanism by default. The main process runs in `xweb_privileged_process_0`, while the rendering process is isolated in `xweb_sandboxed_process_0`, effectively mitigating the impact of rendering process vulnerabilities.
 
- ![Process isolation in the Android WeChat client](attachments/3100441a-ec49-484b-9660-e4b03d7cd20e.png)
+{{< figure src="attachments/3100441a-ec49-484b-9660-e4b03d7cd20e.png" alt="Android process list showing separate WeChat xweb_privileged_process_0 and xweb_sandboxed_process_0 processes" caption="Process isolation in WeChat for Android" >}}
 
 WeChat also provides a wide range of **JSBridge** interfaces that allow webpages to invoke native functions. For example, `sendEmail` redirects to the email interface, and `scanQRCode` activates the camera to scan QR codes.
 
- ![Using sendEmail to enter the email interface](attachments/566797fc-ec34-48ea-ac24-f84ca363dce8.png " =385x253")
+{{< figure src="attachments/566797fc-ec34-48ea-ac24-f84ca363dce8.png" alt="Android email composer opened from WeChat with the subject Email From DARKNAVY and a darknavy.org link in the message body" caption="Email composer opened through `sendEmail`" width="385" >}}
 
 To prevent abuse, the WeChat client requests a permission array from the cloud when loading a webpage. This allows for fine-grained control over whether each JSBridge interface is available. On certain official test web pages, most interfaces are enabled by default, while on general web pages, only a few are accessible. This permission control strategy, based on the URL of the page, effectively limits the destructive potential of malicious websites.
 
@@ -77,9 +77,9 @@ WeChat mini-programs are developed using JavaScript and follow an architecture d
 
 The JSAPI functions exposed by the WeChat client to these two layers differ accordingly. For example, the rendering layer can call APIs such as `insertVideoPlayer` and `insertTextArea`, while the logic layer can access functions like `saveFile` and `addDownloadTask`. This isolation  prevents attackers from leveraging XSS vulnerabilities in mini-programs to execute high-privilege actions in the rendering layer.
 
- ![addToPagePool adds JSAPI functions to the rendering layer](attachments/5faa719f-ef34-44ec-a797-f921cefac225.png)
+{{< figure src="attachments/5faa719f-ef34-44ec-a797-f921cefac225.png" alt="Decompiled Java method addToPagePool registering a mini-program JSAPI instance in the rendering layer API pool" caption="Rendering-layer JSAPI registration via `addToPagePool`" >}}
 
- ![Some JSAPIs available to the rendering layer](attachments/ee59f925-6fe8-4762-aa32-028b09486308.png)
+{{< figure src="attachments/ee59f925-6fe8-4762-aa32-028b09486308.png" alt="Chrome DevTools connected to a WeChat mini-program and listing rendering-layer JSAPI functions including addDownloadTaskStraight and addVideoPlayer" caption="JSAPIs available to the rendering layer" >}}
 
 ## Conclusion
 
