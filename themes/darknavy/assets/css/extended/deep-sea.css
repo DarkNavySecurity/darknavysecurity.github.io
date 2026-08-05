@@ -1948,6 +1948,14 @@ body.dark .nav.deepsea-article-nav {
   box-shadow: 0 0 0 1px rgba(255,255,255,0.015), 0 20px 70px rgba(0, 18, 48, 0.22);
 }
 
+.post-single .deepsea-article-content table {
+  display: table;
+  width: auto;
+  max-width: 100%;
+  margin-inline: auto;
+  border-collapse: collapse;
+}
+
 .deepsea-article-content blockquote {
   color: rgba(156, 163, 175, 1);
   border-inline-start-color: rgba(96, 165, 250, 0.42);

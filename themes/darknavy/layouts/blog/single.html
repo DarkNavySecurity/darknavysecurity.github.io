@@ -7,6 +7,7 @@
     <h1 class="post-title entry-hint-parent">{{ .Title }}{{- if .Draft }}<span class="entry-hint" title="Draft">Draft</span>{{- end }}</h1>
     <div class="post-meta deepsea-article-post-meta">
       {{- partial "post_meta.html" . -}}
+      {{- partial "post_canonical.html" . -}}
     </div>
   </header>
 
