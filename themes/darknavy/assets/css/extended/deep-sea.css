@@ -1228,6 +1228,7 @@ body.dark .footer.deepsea-footer-shell::before {
 .deepsea-list-page,
 .deepsea-single-page {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.5rem;
 }
 
@@ -1830,6 +1831,7 @@ body.dark .nav.deepsea-article-nav {
 }
 
 .deepsea-article-hero {
+  width: 100%;
   max-width: 56rem;
   margin: 0 auto 0.75rem;
 }
@@ -1859,6 +1861,7 @@ body.dark .nav.deepsea-article-nav {
 }
 
 .deepsea-article-content {
+  width: 100%;
   max-width: 56rem;
   margin: 0 auto;
 }
@@ -2361,6 +2364,13 @@ body.dark .nav.deepsea-article-nav {
 
   .deepsea-article-shell {
     padding: 6.5rem 1rem 3.5rem;
+  }
+
+  .post-single .deepsea-article-content table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .deepsea-article-footer .paginav {
