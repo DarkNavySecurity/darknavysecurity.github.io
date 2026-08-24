@@ -36,7 +36,7 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Build with Hugo
-        run: hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+        run: hugo --minify
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
