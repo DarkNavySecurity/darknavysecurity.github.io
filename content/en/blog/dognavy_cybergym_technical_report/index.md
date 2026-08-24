@@ -8,6 +8,8 @@ ShowCanonicalLink = true
 
 DoGNAVY is a joint AI security harness by [deepsec@DARKNAVY](https://deepsec.darknavy.net) and independent security researchers based in Shanghai. In a full CyberGym Level 1 evaluation, it passed 1,369 of 1,507 tasks (90.84%).
 
+A broader report from the DoGNAVY team, with deepsec@DARKNAVY as a collaborator, covers vulnerability reproduction, exploitation, and repair: [DoGNAVY: Autonomous Agents for Full-Lifecycle Vulnerability Management (PDF)](https://deepsec.darknavy.net/reports/dognavy-autonomous-agents-full-lifecycle-vulnerability-management.pdf)
+
 {{< figure src="attachments/cybergym-level-1-benchmark-comparison.png" alt="CyberGym Level 1 leaderboard comparison showing DoGNAVY with a 90.84% verified rate and 96.4% vulnerable-build crash rate, alongside MDASH at 92.0%, Atlas at 90.9%, GPT-5.5-Cyber at 85.6%, and Claude Mythos Preview at 83.1%" caption="CyberGym Level 1 leaderboard comparison" >}}
 
 ## Abstract
